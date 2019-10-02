@@ -11,7 +11,7 @@ public class TileTester {
 	public void testSetColor() {
 		Tile colorOfTile = new Tile();
 		colorOfTile.setColor("black");
-		System.out.println("Testing...");
+		System.out.println("Testing....");
 		assertTrue(colorOfTile.getColor().toLowerCase()  == "black" || colorOfTile.getColor().toLowerCase() == "white" );
 		System.out.println("Sucess!");
 
@@ -36,7 +36,7 @@ public class TileTester {
 	public void testIsValid() {
 		Tile coordinates = new Tile();
 		boolean values = coordinates.isValid(7, 7);
-		System.out.println("Testing...");
+		System.out.println("Testing....");
 		assertTrue(values == true);
 		System.out.println("Sucess!");
 	}

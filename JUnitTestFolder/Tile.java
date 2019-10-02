@@ -82,7 +82,7 @@ public class Tile {
      */
     public boolean isValid(int X1, int Y1) {
     	if(X1 != Y1)
-            return false; //x and y should always be equal
+            return false; //X and Y should always be equal
     	else
     		return true;
     	    	
