@@ -40,8 +40,9 @@ public class Pawn extends Piece {
 		// checks if it is the player's first turn, and if there are no units along the
 		// path
 		// if so, it will let the pawn move two spaces forward
-		if (pawnCanMoveTwo(board, start, end))
-			return true;
+		
+		// if (pawnCanMoveTwo(board, start, end))
+			//return true;
 
 		// checks if pawn is moving on a diagonal, if it is moving only one space, and
 		// if there is an enemy in that space
