@@ -1,4 +1,4 @@
-package Model;
+package edu.sjsu.cs151.model;
 
 
 public class Tile {
