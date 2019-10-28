@@ -1,5 +1,7 @@
-package Model;
-
+package edu.sjsu.cs151.model;
+/**
+ * Created by Sehajmeet on 10/26/2019
+ */
 import Model.Piece.PieceType;
 import Model.Game;
 public class Pawn extends Piece {
@@ -10,10 +12,6 @@ public class Pawn extends Piece {
 
 	/**
 	 * The constructor for a Pawn.
-	 * 
-	 * @param x      the Pawn's X location
-	 * @param y      the Pawn's Y location
-	 * @param player the Pawn's associated player
 	 */
 	public Pawn(boolean white) {
 		super(white);
