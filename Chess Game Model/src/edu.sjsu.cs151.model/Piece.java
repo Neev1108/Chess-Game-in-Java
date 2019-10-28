@@ -1,7 +1,9 @@
-package Model;
-
+package edu.sjsu.cs151.model;
+/**
+ * Created by Sehajmeet on 10/26/2019
+ */
 public abstract class Piece {
-	//Uses immutable object pattern. We do not want the objects fields to be changed.
+
 	//Piece needs to hold type, color and name
 	private PieceType type;
 	private PieceColor color;
