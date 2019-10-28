@@ -1,5 +1,7 @@
-package Model;
-
+package edu.sjsu.cs151.model;
+/**
+ * Created by Neeval Kumar on 10/27/2019
+ */
 public class Moves {
 public Tile currentPos;
 public Tile endPos;
