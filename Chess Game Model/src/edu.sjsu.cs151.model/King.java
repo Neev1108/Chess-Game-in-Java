@@ -1,5 +1,7 @@
-package Model;
-	
+package edu.sjsu.cs151.model;
+/**
+ * Created by Sehajmeet on 10/26/2019
+ */	
 
 public class King extends Piece {
 
