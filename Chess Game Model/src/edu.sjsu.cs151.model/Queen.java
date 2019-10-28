@@ -1,5 +1,7 @@
-package Model;
-
+package edu.sjsu.cs151.model;
+/**
+ * Created by Sehajmeet on 10/27/2019
+ */
 public class Queen extends Piece{
 
 	PieceType type;
