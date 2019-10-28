@@ -1,17 +1,9 @@
-package Model;
+package edu.sjsu.cs151.model;
 
 
-
-	//import statements
-
-	/**
-	* @author      Neeval Kumar 
-	* 
-	*/
-
-	/**
-	Game class that will control the mechanisms of the game.
-	*/
+/**
+ * Created by Neeval on 10/27/2019
+ */
 	public class Game {
 		
 		public Board board;
