@@ -6,8 +6,7 @@ public class Bishop extends Piece {
 	PieceType type;
 
 	public Bishop(boolean white) {
-		super(white);
-		type = PieceType.Bishop;
+		super(white,PieceType.Bishop);
 	}
 
 	/**

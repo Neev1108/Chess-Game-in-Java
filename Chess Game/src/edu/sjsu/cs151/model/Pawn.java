@@ -3,16 +3,15 @@ package edu.sjsu.cs151.model;
  * Created by Sehajmeet on 10/26/2019
  */
 public class Pawn extends Piece {
-	Game game;
 
 	PieceType type = PieceType.Pawn;
-	Player player;
 
 	/**
 	 * The constructor for a Pawn.
 	 */
+	
 	public Pawn(boolean white) {
-		super(white);
+		super(white, PieceType.Pawn);
 	}
 
 	/**

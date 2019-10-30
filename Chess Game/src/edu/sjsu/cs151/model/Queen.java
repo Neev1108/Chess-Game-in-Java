@@ -6,8 +6,7 @@ public class Queen extends Piece{
 
 	PieceType type;
 public Queen(boolean white) {
-	super(white);
-	type = PieceType.Queen;
+	super(white, PieceType.Queen);
 }
 
 /**

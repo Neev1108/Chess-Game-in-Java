@@ -11,8 +11,11 @@ public abstract class Piece {
 	boolean PieceAlive = true;
 	
 	
-	public Piece(boolean white) {
+	public Piece(boolean white,PieceType type) {
 		this.white = white;
+		this.type = type;
+
+		
 	}
 	
 	

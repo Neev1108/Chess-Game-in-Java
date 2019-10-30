@@ -6,8 +6,7 @@ package edu.sjsu.cs151.model;
 public class Rook extends Piece {
 	PieceType type;
 	public Rook(boolean white) {
-		super(white);
-		type = PieceType.Rook;
+		super(white, PieceType.Rook);
 	}
 	
 	/**
