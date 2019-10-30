@@ -14,7 +14,26 @@ package edu.sjsu.cs151.model;
 		Player doTurn;
 		GameEvent event;
 		
-		
+		public Player getPlayer1()
+		{
+			return player1;
+		}
+
+		public Player getPlayer2()
+		{
+			return player2;
+		}
+
+		public Player getDoTurn()
+		{
+			return doTurn;
+		}
+
+		public GameEvent getEvent()
+		{
+			return event;
+		}
+
 		public Game() {
 			this.board = Board.getInstance();
 			if (player1.firstTurn == true) {
