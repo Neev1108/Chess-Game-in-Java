@@ -75,7 +75,12 @@ package edu.sjsu.cs151.model;
 			 if (!PieceMoved.isValidMove(board, move.getCurrentPos(), move.getEndPos())){
 				 return false;
 			 }
-			 
+
+			 boolean isCollision = checkCollisions(move, player, PieceMoved);
+			 if (isCollision == true)
+			 {
+			 	return false;
+			 }
 			 
 			 if (EndPiece != null) {
 				 EndPiece.pieceDied();
@@ -104,6 +109,156 @@ package edu.sjsu.cs151.model;
 			 
 		 }
 		
+
+
+		 public boolean isOccupied(Tile tile)
+		 {
+		 	if (tile.getPiece() != null)
+			{
+				return true;
+			}
+		 	return false;
+		 }
+
+		 // returns false if there are NOT any collisions
+		 public boolean checkCollisions(Moves move, Player player, Piece pieceMoved)
+		 {
+		 	Piece.PieceType type = pieceMoved.getPieceType();
+
+		 	//Knights can jump over other pieces, so only need to check for allies in the destination
+		 	if (type.equals(Piece.PieceType.Knight))
+			{
+				if (pieceMoved.getPieceColor().equals(move.getDestinationPiece().getPieceColor()))
+				{
+					System.out.println("That spot is occupied by an ally. You cannot move there.");
+					return true;
+				}
+				return false;
+			}
+		 	
+		 	
+		 	int changeX = move.getEndPos().getX() - move.getCurrentPos().getX();
+		 	int changeY = move.getEndPos().getY() - move.getCurrentPos().getY();
+		 	//If x coordinate did not change
+			if (changeX == 0)
+			{
+				if (changeY > 0)
+				{
+					//piece moved in increasing Y
+					for (int i = 1; i <= changeY; i++)
+					{
+						boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getX(), (move.getCurrentPos().getY() + i)));
+						if (occupied == true)
+						{
+							System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+							return true;
+						}
+					}
+				}
+				else //piece moved in decreasing Y
+				{
+					for (int i = -1; i >= changeY; i--)
+					{
+						boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getX(), (move.getCurrentPos().getY() + i)));
+						if (occupied == true)
+						{
+							System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+							return true;
+						}
+					}
+				}
+			}
+
+			//if Y coordinate did not change
+			else if (changeY == 0)
+			{
+				if (changeX > 0)
+				{
+					//piece moved in increasing X
+					for (int i = 1; i <= changeX; i++)
+					{
+						boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() + i), move.getCurrentPos().getY()));
+						if (occupied == true)
+						{
+							System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+							return true;
+						}
+					}
+				}
+				
+				else
+				{
+					//piece moved in decreasing X
+					for (int i = -1; i >= changeX; i--)
+					{
+						boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() + i), move.getCurrentPos().getY()));
+						if (occupied == true)
+						{
+							System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+							return true;
+						}
+					}
+				}
+				
+			}
+			
+			
+			//If the piece moved diagonally
+			if (Math.abs(changeX) == Math.abs(changeY))
+			{
+				//both x and y increase
+				for (int i = 1; i <= changeX; i++)
+				{
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() + i), (move.getCurrentPos().getY() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						return true;
+					}
+				}
+				
+				//both x and y decrease
+				for (int i = -1; i >= changeX; i--)
+				{
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() + i), (move.getCurrentPos().getY() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						return true;
+					}
+				}
+				
+				
+				//x decreases while y increases
+				for (int i = 1; i <= changeY; i++)
+				{
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() - i), (move.getCurrentPos().getY() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						return true;
+					}
+				}
+				
+				//y decreases while x increases
+				for (int i = 1; i <= changeX; i++)
+				{
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getX() + i), (move.getCurrentPos().getY() - i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						return true;
+					}
+				}
+			}
+			
+			
+			
+		 	return false;
+		 }
+
+
+
 
 	}
 	

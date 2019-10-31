@@ -32,6 +32,18 @@ public class ChessGame {
 			//if this spot is empty, will throw NullPointerException. I'm open to ideas on how to fix it.
 			Tile currentTile = game.board.getTile(row, col);
 
+			/*		will work on later
+			Tile currentTile;
+			try
+			{
+				currentTile = game.board.getTile(row, col);
+			}
+			catch(NullPointerException npe)
+			{
+				System.out.println("Error: selected tile does not contain a piece. Please select a different tile.");
+
+			}*/
+
 			Piece currentPiece = currentTile.getPiece();
 			System.out.println("You have selected " + currentPiece.getPieceColor() + " " + currentPiece.getPieceType() + ".");
 
@@ -90,32 +102,12 @@ public class ChessGame {
 
 
 
-/*
-	Changelog:
-
-	edited Main method heavily (obviously)
-	added accessor methods for the variables of Game so that I can actually use them
-*/
-
-
 
 /*
 	Notes:
-	The whole moving process is hella buggy. Pieces can land on allied spots, pieces can pass through others,
-		pawns can't move, players can control both teams, knights can't move.
-
-	King move might(?) be broken? Its hard to tell if its broken in that it doesn't allow king to move, or if its working
-		properly in that king can't step on other pieces. Until other pieces are movable, it'll be hard to test that.
-
-	It looks
-
-	Player class ought to have a toString method, maybe displaying the player name (or P1/P2/whatever)
-
-	King should have some sort of flag to know whether its in check.
-
-	I would like it if Line 34 of this class ("you have selected ___") could display the selected piece's color
-		and type/rank/whatever. Definitely not crucial, but I think it will be useful.
-
-	Line 37 will throw NullPointerException if the selected spot is empty. I'm open to ideas on how to fix it.
-
+	The movement process still has major issues, especially for certain piece types.
+	
+	Do not attempt to select an empty tile; the program will crash.
+	
+	King being in check is not properly implemented yet.
  */
