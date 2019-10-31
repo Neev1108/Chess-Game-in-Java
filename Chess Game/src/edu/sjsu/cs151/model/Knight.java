@@ -7,6 +7,7 @@ package edu.sjsu.cs151.model;
 public class Knight extends Piece {
 	PieceType type;
 	
+	
 	public Knight(boolean white) {
 		super(white, PieceType.Knight);
 	}
@@ -34,8 +35,8 @@ public class Knight extends Piece {
 			return false;
 		}
 
-		int x_diff = Math.abs(first.getX() - last.getX());
-		int y_diff = Math.abs(first.getY() - last.getY());
+		int x_diff = Math.abs(last.getX() - first.getX());
+		int y_diff = Math.abs(last.getY() - first.getY());
 
 		if ((x_diff == 1 && y_diff == 2) || (x_diff == 2 && y_diff == 1)) {
 			return true;
