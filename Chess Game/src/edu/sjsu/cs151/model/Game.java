@@ -57,7 +57,7 @@ package edu.sjsu.cs151.model;
 					}
 					else {
 						
-					System.out.print(b[i][j].getPiece() + " ");}
+					System.out.print(b[i][j].getPiece().getPieceColor().toString()  + b[i][j].getPiece().getPieceType().toString() + " ");}
 					if (j == 7) {
 						System.out.println();
 					}
