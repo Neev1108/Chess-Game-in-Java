@@ -35,7 +35,6 @@ public class PawnShape implements MoveableShape {
 		g2.fill(crown);
 		g2.draw(crown);
 		
-		
 	}
 	
 }
