@@ -1,6 +1,4 @@
 package Animation;
-import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 public class PawnAnimation {
@@ -12,7 +10,14 @@ public class PawnAnimation {
 		JFrame frame = new JFrame();
 		
 		final MoveableShape shape = new PawnShape(0, 0 , PAWN_WIDTH);
-		final MoveableShape quiz = new stationaryTile(0, 0, PAWN_WIDTH);
+		final MoveableShape quiz = new stationaryTile(0, 0, 0);
+		
+
+		
+
+		
+		
+		
 		
 		ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
 		final JLabel label = new JLabel(icon);
@@ -23,12 +28,12 @@ public class PawnAnimation {
 		
 		ShapeIcon tile =  new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT);
 		final JLabel label2 = new JLabel(tile);
-		frame.setLayout(new GridLayout());
 		frame.add(label2);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 		
+	
 		//ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
 		//ShapeIcon tile =  new ShapeIcon(quiz, ICON_WIDTH,  ICON_HEIGHT);
 		//final JLabel label = new JLabel(icon);
@@ -52,6 +57,7 @@ public class PawnAnimation {
 		});
 		
 		t.start();
+		
 	}
 
 }
