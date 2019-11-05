@@ -11,16 +11,36 @@ public class PawnAnimation {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		
-		final MoveableShape shape = new PawnShape(0,0, PAWN_WIDTH);
+		final MoveableShape shape = new PawnShape(0, 0 , PAWN_WIDTH);
+		final MoveableShape quiz = new stationaryTile(0, 0, PAWN_WIDTH);
 		
 		ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
-		
 		final JLabel label = new JLabel(icon);
-		frame.setLayout(new GridLayout());
 		frame.add(label);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
+		
+		ShapeIcon tile =  new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT);
+		final JLabel label2 = new JLabel(tile);
+		frame.setLayout(new GridLayout());
+		frame.add(label2);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		
+		//ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
+		//ShapeIcon tile =  new ShapeIcon(quiz, ICON_WIDTH,  ICON_HEIGHT);
+		//final JLabel label = new JLabel(icon);
+		//final JLabel label2 = new JLabel(tile);
+		//frame.setLayout(new GridLayout());
+		//frame.add(label2);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.pack();
+		//frame.setVisible(true);
+		
+		
+		
 		
 		final int DELAY = 50;
 		
