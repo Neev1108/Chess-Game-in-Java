@@ -12,11 +12,7 @@ public class PawnAnimation {
 
 		final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
 		final MoveableShape quiz = new stationaryTile(0, 0, 0);
-		
 
-
-	
-		
 
 		ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
 		final JLabel label = new JLabel(icon);
