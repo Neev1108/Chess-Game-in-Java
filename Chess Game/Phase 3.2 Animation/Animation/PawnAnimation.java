@@ -67,16 +67,6 @@ public class PawnAnimation {
 
         pnl.add(startButton);
         frame.add(pnl);
-
-		final int FIELD_WIDTH = 20;
-		final JTextField textField = new JTextField(FIELD_WIDTH);
-		
-		JButton startButton = new JButton("START CHESS GAME");
-		startButton.addActionListener(event -> textField.setText("Press the start button!"));
-		
-		JPanel pnl = new JPanel(new GridBagLayout());
-		pnl.add(startButton);
-		frame.add(pnl);
 		frame.setVisible(true);
 		
 	}
