@@ -15,6 +15,8 @@ public class PawnShape implements MoveableShape {
 	}
 	
 	public void move() {
+		if(y < 0 || y > 600)
+			y--;
 		y++;
 	}
 	
@@ -36,7 +38,6 @@ public class PawnShape implements MoveableShape {
 		g2.draw(crown);
 		
 
-		
 		
 	}
 	
