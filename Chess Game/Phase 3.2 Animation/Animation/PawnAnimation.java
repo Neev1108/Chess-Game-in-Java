@@ -1,5 +1,7 @@
 package Animation;
 
+import java.awt.GridBagLayout;
+
 import javax.swing.*;
 
 public class PawnAnimation {
@@ -52,6 +54,19 @@ public class PawnAnimation {
 		});
 
 		t.start();
+		
+		final int FIELD_WIDTH = 20;
+		final JTextField textField = new JTextField(FIELD_WIDTH);
+		
+		
+		
+		JButton startButton = new JButton("START CHESS GAME");
+		startButton.addActionListener(event -> textField.setText("Press the start button!"));
+		
+        JPanel pnl = new JPanel(new GridBagLayout()); 
+
+        pnl.add(startButton);
+        frame.add(pnl);
 
 	}
 
