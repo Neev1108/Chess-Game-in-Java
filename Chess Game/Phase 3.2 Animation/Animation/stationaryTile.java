@@ -82,7 +82,22 @@ public class stationaryTile implements MoveableShape {
 		
 		//Tiles on right
 		
-		Rectangle2D.Double tile11 = new Rectangle2D.Double(x + 900, y+ width - 10 , width, width);
+		
+		for (int i = 0; i < tileNumber; i++)
+		{
+			Rectangle2D.Double tile = new Rectangle2D.Double(x + 900, y+ width - 10 , width, width);
+			if (i%2 == 0)
+			{
+				g2.setColor(Color.white);
+			}
+			else
+			{
+				g2.setColor(Color.black);
+			}
+			g2.fill(tile);
+			g2.draw(tile);
+		}
+/*		Rectangle2D.Double tile11 = new Rectangle2D.Double(x + 900, y+ width - 10 , width, width);
 		g2.setColor(Color.white);
 		g2.fill(tile11);
 		g2.draw(tile11);
@@ -121,7 +136,7 @@ public class stationaryTile implements MoveableShape {
 		g2.setColor(Color.black);
 		g2.fill(tile18);
 		g2.draw(tile18);
-		
+	*/	
 		
 	
 		
