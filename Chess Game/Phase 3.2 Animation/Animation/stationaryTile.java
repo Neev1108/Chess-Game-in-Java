@@ -85,7 +85,7 @@ public class stationaryTile implements MoveableShape {
 		
 		for (int i = 0; i < tileNumber; i++)
 		{
-			Rectangle2D.Double tile = new Rectangle2D.Double(x + 900, y+ width - 10 , width, width);
+			Rectangle2D.Double tile = new Rectangle2D.Double(x + 900, y+ (width * i) , width, width);
 			if (i%2 == 0)
 			{
 				g2.setColor(Color.white);
