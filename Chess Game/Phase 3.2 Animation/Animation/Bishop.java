@@ -19,7 +19,7 @@ public class Bishop implements MoveableShape {
 		}
 		
 		public void move() {
-			if(y < 0 || y > 600)
+			if(y < 0 || y > 680)
 				y--;
 			y++;
 		}

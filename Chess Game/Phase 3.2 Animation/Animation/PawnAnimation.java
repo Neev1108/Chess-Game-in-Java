@@ -18,6 +18,7 @@ public class PawnAnimation {
 		/**
 		 * Creating a JFrame of size 2000 x 2000
 		 */
+		
 		JFrame frame = new JFrame();
 		frame.setSize(2000, 2000);
 
@@ -25,7 +26,7 @@ public class PawnAnimation {
 		 * Creating three MoveableShape objects
 		 */
 		final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
-		final MoveableShape quiz = new stationaryTile(0, 0, 0);
+		final MoveableShape quiz = new stationaryTile(0, 0, 100);
 		final MoveableShape bish = new Bishop(0, 0, PAWN_WIDTH);
 
 		/**
@@ -84,7 +85,7 @@ public class PawnAnimation {
 		pnl.add(startButton);
 		frame.add(pnl);
 		frame.setVisible(true);
-
+		
 	}
 
 }
