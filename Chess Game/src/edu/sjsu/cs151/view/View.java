@@ -91,58 +91,66 @@ import javax.swing.*;
 				
 				//start a new frame for the pick color screen
 				frame.dispose();
-				JFrame game = playerScreen();
-				JPanel pn2 = new JPanel(new FlowLayout());
-				
-				//textField asking the player to choose a color
-				JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
-				chooseColor.setPreferredSize(new Dimension(300,75));
-				Font font1 = new Font("SansSerif", Font.BOLD, 20);
-				
-				//Buttons are in the shape of pawns that are black and white
-				//This only works on my computer(I think?), Still need to create an image folder in the project so we cans store our images when someones runs
-				Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png"); 
-				Icon bPawn = new ImageIcon("C:\\\\Users\\\\Neevalk\\\\Downloads\\\\Chess_plt60.png");
-				JButton white = new JButton(wPawn);
-				JButton black = new JButton(bPawn);
-				
-				//adding everything
-				pn2.add(white);
-				pn2.add(black);
-				
-				chooseColor.setFont(font1);
-				chooseColor.setEditable(false);
-				
-				pn2.add(chooseColor);
-				game.add(pn2);
+				playerScreen();
 				
 				
-				
-				/* Action listener for only 1 button. Still need to somehow implement model into this. 
-				 * Need to set current player to the respective button pressed and then start game.
-				 * Basically the same logic in our main game class. For now just bring both action 
-				 * listeners to the same page with a startGame static method. The method should have 
-				 * a parameter of the player color chosen, but for now empty parameter is fine.
-				 */
-				white.addActionListener(event2 ->{
-					
-				});
-				
-				
-				
-			});
 			
 			
+		});
+		
 		}
 		
 		
+		public static void playerScreen() {
+			JFrame playerScreen = new JFrame("Player Screen");
+			playerScreen.setSize(400,300);
+			playerScreen.setVisible(true);
+			
+			JPanel pn2 = new JPanel(new FlowLayout());
+			
+			//textField asking the player to choose a color
+			JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
+			chooseColor.setPreferredSize(new Dimension(300,75));
+			Font font1 = new Font("SansSerif", Font.BOLD, 20);
+			
+			//Buttons are in the shape of pawns that are black and white
+			//This only works on my computer. Still need to create an image folder in the project so we cans store our images when someones runs
+			Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png"); 
+			Icon bPawn = new ImageIcon("C:\\\\Users\\\\Neevalk\\\\Downloads\\\\Chess_plt60.png");
+			JButton white = new JButton(wPawn);
+			JButton black = new JButton(bPawn);
+			
+			//adding everything
+			pn2.add(white);
+			pn2.add(black);
+			
+			chooseColor.setFont(font1);
+			chooseColor.setEditable(false);
+			
+			pn2.add(chooseColor);
+			playerScreen.add(pn2);
+			
+			
+			/* Action listener for only 1 button. Still need to somehow implement model into this. 
+			 * Need to set current player to the respective button pressed and then start game.
+			 * Basically the same logic in our main game class. For now just bring both action 
+			 * listeners to the same page with a startGame static method. The method should have 
+			 * a parameter of the player color chosen, but for now empty parameter is fine.
+			 */
+			white.addActionListener(event2 -> {
+				playerScreen.dispose();
+				JFrame game = startGameScreen();
+				
+			});
+			
+			black.addActionListener(event3 -> {
+				playerScreen.dispose();
+				JFrame game = startGameScreen();
+			});
+			
+			
 		
-		
-		public static JFrame playerScreen() {
-			JFrame game = new JFrame("Chess Game");
-			game.setSize(400,300);
-			game.setVisible(true);
-			return game;
+	
 		}
 		
 		
@@ -156,12 +164,48 @@ import javax.swing.*;
 		 * 1. Graveyard of some sort
 		 * 2. Message Screen
 		 * 3. Undo turn button
-		 * 
+		 *  
+		 *  */
 		public static JFrame startGameScreen() {
-			JFrame game = new JFrame();
-			//set size, idk a good size yet
+			
+			//New Game and exit game buttons
+			JFrame game = new JFrame("Game Screen");
+			game.setSize(800,800);
+			
+			JPanel pn3 = new JPanel();
+			pn3.setLayout(new FlowLayout());
+			pn3.setBounds(200, 800, 300, 100);
+			
+			JButton newGame = new JButton("NEW GAME");
+			JButton quitGame = new JButton("QUIT GAME");
+			pn3.add(newGame);
+			pn3.add(quitGame);
+			
+			
+	
+			game.add(pn3);
+			game.setVisible(true);
+			
+			newGame.addActionListener(newGameRecurs -> {
+				game.dispose();
+				playerScreen();
+			});
+			
+			quitGame.addActionListener(exit->{
+				game.dispose();
+				System.exit(1);
+			});
+			
+			
+			
+			
+			//board and other stuff goes here
+			
+			
+			
+			return game;
 		}
-*/
+
 	}
 
 
