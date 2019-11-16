@@ -48,5 +48,6 @@ public class PawnShape implements MoveableShape {
 		g2.draw(crownBase);
 		
 		
+		
 	}
 }

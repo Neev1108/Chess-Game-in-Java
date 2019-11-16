@@ -1,7 +1,10 @@
 package edu.sjsu.cs151.view;
 
 
-	import java.awt.GridBagLayout;
+	import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 
 	import javax.swing.*;
 
@@ -74,14 +77,12 @@ package edu.sjsu.cs151.view;
 
 			t.start();
 
-			final int FIELD_WIDTH = 20;
-			final JTextField textField = new JTextField(FIELD_WIDTH);
 			
 			/** 
 			 * Creating the button for starting the chess game
 			 */
 			JButton startButton = new JButton("START CHESS GAME");
-			startButton.addActionListener(event -> textField.setText("Press the start button!"));
+			
 
 			JPanel pnl = new JPanel(new GridBagLayout());
 
@@ -89,8 +90,77 @@ package edu.sjsu.cs151.view;
 			frame.add(pnl);
 			frame.setVisible(true);
 			
+			startButton.addActionListener(event -> {
+				
+				//start a new frame for the pick color screen
+				frame.dispose();
+				JFrame game = playerScreen();
+				JPanel pn2 = new JPanel(new FlowLayout());
+				
+				//textField asking the player to choose a color
+				JTextField chooseColor = new JTextField("Please choose a color");
+				chooseColor.setPreferredSize(new Dimension(300,100));
+				Font font1 = new Font("SansSerif", Font.BOLD, 25);
+				
+				//Buttons are in the shape of pawns that are black and white
+				Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png");
+				Icon bPawn = new ImageIcon("C:\\\\Users\\\\Neevalk\\\\Downloads\\\\Chess_plt60.png");
+				JButton white = new JButton(wPawn);
+				JButton black = new JButton(bPawn);
+				
+				//adding everything
+				pn2.add(white);
+				pn2.add(black);
+				chooseColor.setFont(font1);
+				pn2.add(chooseColor);
+				game.add(pn2);
+				
+				
+				
+				/* Action listener for only 1 button. Still need to somehow implement model into this. 
+				 * Need to set current player to the respective button pressed and then start game.
+				 * Basically the same logic in our main game class. For now just bring both action 
+				 * listeners to the same page with a startGame static method. The method should have 
+				 * a parameter of the player color chosen, but for now empty parameter is fine.
+				 */
+				white.addActionListener(event2 ->{
+					
+				});
+				
+				
+				
+			});
+			
+			
 		}
-
+		
+		
+		
+		
+		public static JFrame playerScreen() {
+			JFrame game = new JFrame("Chess Game");
+			game.setSize(400,500);
+			game.setVisible(true);
+			return game;
+		}
+		
+		
+		
+		/* This method needs to be filled out. Pretty much the chessBoard, New Game, and Exit buttons HAVE to be on here. 
+		 * Priorities:
+		 * 1. Chess Board
+		 * 2. New Game and Exit game
+		 * 
+		 * Second options:
+		 * 1. Graveyard of some sort
+		 * 2. Message Screen
+		 * 3. Undo turn button
+		 * 
+		public static JFrame startGameScreen() {
+			JFrame game = new JFrame();
+			//set size, idk a good size yet
+		}
+*/
 	}
 
 
