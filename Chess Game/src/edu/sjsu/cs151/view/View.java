@@ -1,12 +1,9 @@
 package edu.sjsu.cs151.view;
 
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.*;
 
-	import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-
-	import javax.swing.*;
 
 
 
@@ -98,12 +95,13 @@ import java.awt.GridBagLayout;
 				JPanel pn2 = new JPanel(new FlowLayout());
 				
 				//textField asking the player to choose a color
-				JTextField chooseColor = new JTextField("Please choose a color");
-				chooseColor.setPreferredSize(new Dimension(300,100));
-				Font font1 = new Font("SansSerif", Font.BOLD, 25);
+				JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
+				chooseColor.setPreferredSize(new Dimension(300,75));
+				Font font1 = new Font("SansSerif", Font.BOLD, 20);
 				
 				//Buttons are in the shape of pawns that are black and white
-				Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png");
+				//This only works on my computer(I think?), Still need to create an image folder in the project so we cans store our images when someones runs
+				Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png"); 
 				Icon bPawn = new ImageIcon("C:\\\\Users\\\\Neevalk\\\\Downloads\\\\Chess_plt60.png");
 				JButton white = new JButton(wPawn);
 				JButton black = new JButton(bPawn);
@@ -111,7 +109,10 @@ import java.awt.GridBagLayout;
 				//adding everything
 				pn2.add(white);
 				pn2.add(black);
+				
 				chooseColor.setFont(font1);
+				chooseColor.setEditable(false);
+				
 				pn2.add(chooseColor);
 				game.add(pn2);
 				
@@ -139,7 +140,7 @@ import java.awt.GridBagLayout;
 		
 		public static JFrame playerScreen() {
 			JFrame game = new JFrame("Chess Game");
-			game.setSize(400,500);
+			game.setSize(400,300);
 			game.setVisible(true);
 			return game;
 		}
