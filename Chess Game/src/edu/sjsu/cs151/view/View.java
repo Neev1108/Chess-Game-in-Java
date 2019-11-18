@@ -1,5 +1,4 @@
 package edu.sjsu.cs151.view;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.*;
@@ -104,19 +103,22 @@ import javax.swing.*;
 		public static void playerScreen() {
 			JFrame playerScreen = new JFrame("Player Screen");
 			playerScreen.setSize(400,300);
+			playerScreen.setBackground(Color.black);
 			playerScreen.setVisible(true);
+			
 			
 			JPanel pn2 = new JPanel(new FlowLayout());
 			
 			//textField asking the player to choose a color
 			JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
 			chooseColor.setPreferredSize(new Dimension(300,75));
-			Font font1 = new Font("SansSerif", Font.BOLD, 20);
+			Font font1 = new Font("SansSerif", Font.ITALIC, 20);
+			chooseColor.setBackground(Color.white);
 			
 			//Buttons are in the shape of pawns that are black and white
-			//This only works on my computer. Still need to create an image folder in the project so we cans store our images when someones runs
-			Icon wPawn = new ImageIcon("C:\\Users\\Neevalk\\Downloads\\Chess_pdt60.png"); 
-			Icon bPawn = new ImageIcon("C:\\\\Users\\\\Neevalk\\\\Downloads\\\\Chess_plt60.png");
+			//This only works on my computer. Still need to create an image folder in the project so we cans store our images when someones runs 
+			Icon wPawn = new ImageIcon("whitePawn.png"); 
+			Icon bPawn = new ImageIcon("blackPawn.png");
 			JButton white = new JButton(wPawn);
 			JButton black = new JButton(bPawn);
 			
