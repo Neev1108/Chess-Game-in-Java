@@ -3,6 +3,14 @@ package edu.sjsu.cs151.view;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This program creates the ChessBoard with
+ * all the pieces placed correctly on the board.
+ * 
+ * @author Sehajmeet Sohal
+ *
+ */
+
 public class ChessBoard {
 
 	protected JButton[][] squares;
