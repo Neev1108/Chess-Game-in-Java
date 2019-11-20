@@ -200,6 +200,10 @@ import javax.swing.*;
 			
 			
 			//board and other stuff goes here
+			JPanel panel4 = new JPanel();
+			panel4.setLayout(new BorderLayout());
+			panel4.setBounds(50, 150, 700, 700);
+			
 			
 			
 			
