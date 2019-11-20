@@ -219,7 +219,7 @@ public class View {
 		public ChessBoard() {
 			outerFrame = new JFrame();
 			container = outerFrame.getContentPane();
-			outerFrame.setSize(800, 800);
+			outerFrame.setSize(650, 800);
 			
 			boardPanel = new JPanel();
 			boardPanel.setLayout(new GridLayout(8, 8));
@@ -228,6 +228,7 @@ public class View {
 
 			JPanel topPanel = new JPanel();
 			topPanel.setLayout(new FlowLayout());
+			topPanel.setSize(650, 75);
 			//Creating the newGame button
 			JButton newGame = new JButton("NEW GAME");
 			newGame.setPreferredSize(new Dimension(120, 50));
@@ -246,15 +247,23 @@ public class View {
 			topPanel.add(newGame);
 			topPanel.add(quitGame);
 			container.add(topPanel, BorderLayout.NORTH);
-					
-			JTextField textField = new JTextField(20);
-			textField.setText("Will display an action log");
-			container.add(textField, BorderLayout.SOUTH);
+			
+			
+			//creates southPanel for text box area
+			JPanel southPanel = new JPanel();
+			southPanel.setSize(650, 75);
+			JTextArea textArea = new JTextArea();
+			textArea.setEditable(false);
+	        JScrollPane scrollPane = new JScrollPane(textArea);
+	        scrollPane.setVerticalScrollBarPolicy(
+	                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	        scrollPane.setPreferredSize(new Dimension(400, 75));
+	        southPanel.add(scrollPane);
+			container.add(southPanel, BorderLayout.SOUTH);
 			
 			outerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			outerFrame.setVisible(true);
 		}
-
 		/**
 		 * The method for creating the squares of the 
 		 * board and putting all the pieces on the Board.
