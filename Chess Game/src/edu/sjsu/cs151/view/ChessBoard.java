@@ -3,21 +3,15 @@ package edu.sjsu.cs151.view;
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * Creating a JFrame of size 2000 x 2000
- */
-
-
-
 public class ChessBoard {
 	
-	protected JPanel [][] squares;
+	protected JButton [][] squares;
 	protected JFrame boardFrame;
 	protected Container container;
-
-
 	 
-    /** Creates a new instance of Board */
+    /** Creates a new instance of Board
+     * 
+     */
     public ChessBoard() 
     {
         boardFrame = new JFrame();
@@ -27,24 +21,90 @@ public class ChessBoard {
         create_squares();
         boardFrame.setSize(600,600);
         boardFrame.setVisible(true);
+        
+
     }
     
-    private void create_squares()
-    {
-        squares = new JPanel[8][8];
-        for(int i = 0;i< squares.length;i++)
-        {
-            for(int j = 0;j < squares.length ;j++)
-            {
-                JPanel p = new JPanel();
-                p.setBackground(setColor(i,j));
-                squares[i][j] = p;
-                container.add(p);
-            }
-        }
-    }
-    
-    private Color setColor(int x, int y)
+	private void create_squares() {
+		squares = new JButton[8][8];
+		for (int i = 0; i < squares.length; i++) {
+			for (int j = 0; j < squares.length; j++) {
+				JButton button = new JButton();
+				 if (i == 1) {
+                     ImageIcon blackPawn = new ImageIcon(("blackPawn.png"));
+                     button.setIcon(blackPawn);
+                 }
+				 
+                 if (i == 6) {
+                     ImageIcon whitePawn = new ImageIcon(("whitePawn.png"));
+                     button.setIcon(whitePawn);
+                 }
+                 
+                 if (i == 0 && (j == 0 || j == 7)) {
+                	 ImageIcon blackRook = new ImageIcon(("blackRook.png"));
+                     button.setIcon(blackRook);
+                 }
+
+                 if (i == 7 && (j == 0 || j == 7)) {
+                     ImageIcon whiteRook = new ImageIcon(("whiteRook.png"));
+                     button.setIcon(whiteRook);
+                 }
+
+                 if (i == 0 && (j == 1 || j == 6)) {
+                     ImageIcon blackKnight = new ImageIcon(("blackKnight.png"));
+                     button.setIcon(blackKnight);
+                 }
+
+                 if (i == 7 && (j == 1 || j == 6)) {
+                     ImageIcon whiteKnight = new ImageIcon(("whiteKnight.png"));
+                     button.setIcon(whiteKnight);
+                 }
+
+                 if (i == 0 && (j == 2 || j == 5)) {
+                     ImageIcon blackBishop = new ImageIcon(("blackBishop.png"));
+                     button.setIcon(blackBishop);
+                 }
+
+                 if (i == 7 && (j == 2 || j == 5)) {
+                     ImageIcon whiteBishop = new ImageIcon(("whiteBishop.png"));
+                     button.setIcon(whiteBishop);
+                 }
+
+                 if (i == 0 && j == 3) {
+                     ImageIcon whiteBlack = new ImageIcon(("whiteBlack.png"));
+                     button.setIcon(whiteBlack);
+                 }
+
+                 if (i == 7 && j == 3) {
+                     ImageIcon whiteQueen = new ImageIcon(("whiteQueen.png"));
+                     button.setIcon(whiteQueen);
+                 }
+
+                 if (i == 0 && j == 4) {
+                     ImageIcon blackKing = new ImageIcon(("blackKing.png"));
+                     button.setIcon(blackKing);
+                 }
+
+                 if (i == 7 && j == 4) {
+                     ImageIcon whiteKing = new ImageIcon(("whiteKing.png"));
+                     button.setIcon(whiteKing);
+                 }
+				 
+
+				
+				
+				button.setBackground(setjor(i, j));
+
+				squares[i][j] = button;
+				container.add(button);
+                
+			}
+		}
+	}
+
+  
+
+	private Color setjor(int x, int y)
     {
         if((x+y)%2 == 0)
             return Color.CYAN;
@@ -52,9 +112,10 @@ public class ChessBoard {
             return Color.ORANGE;
     }
     
-    public static void main(String args[])
+    public static void main(String args[]) 
     {
         new ChessBoard();
+
     }
     
 }
