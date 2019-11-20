@@ -169,7 +169,7 @@ public class View {
 		newGame.setPreferredSize(new Dimension(150, 100));
 		newGame.setBackground(Color.cyan);
 
-		//Creating the newGame button
+		//Creating the quitGame button
 
 		JButton quitGame = new JButton("QUIT GAME");
 		quitGame.setPreferredSize(new Dimension(150, 100));
@@ -208,26 +208,56 @@ public class View {
 	public static class ChessBoard {
 
 		protected JButton[][] squares;
-		protected JFrame boardFrame;
+		protected JFrame outerFrame;
 		protected Container container;
+		protected JPanel boardPanel;
 
 		/**
 		 * Creates a new instance of Board
+		 * 
 		 */
 		public ChessBoard() {
-			boardFrame = new JFrame();
-			boardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			container = boardFrame.getContentPane();
-			container.setLayout(new GridLayout(8, 8));
+			outerFrame = new JFrame();
+			container = outerFrame.getContentPane();
+			outerFrame.setSize(800, 800);
+			
+			boardPanel = new JPanel();
+			boardPanel.setLayout(new GridLayout(8, 8));
+			container.add(boardPanel, BorderLayout.CENTER);
 			createSquares();
-			boardFrame.setSize(600, 600);
-			boardFrame.setVisible(true);
 
+			JPanel topPanel = new JPanel();
+			topPanel.setLayout(new FlowLayout());
+			//Creating the newGame button
+			JButton newGame = new JButton("NEW GAME");
+			newGame.setPreferredSize(new Dimension(120, 50));
+			newGame.setBackground(Color.cyan);
+
+			//Creating the quitGame button
+			JButton quitGame = new JButton("QUIT GAME");
+			quitGame.setPreferredSize(new Dimension(120, 50));
+			newGame.setBackground(Color.pink);
+			
+			quitGame.addActionListener(exit -> {
+				outerFrame.dispose();
+				System.exit(1);
+			});
+			
+			topPanel.add(newGame);
+			topPanel.add(quitGame);
+			container.add(topPanel, BorderLayout.NORTH);
+					
+			JTextField textField = new JTextField(20);
+			textField.setText("Will display an action log");
+			container.add(textField, BorderLayout.SOUTH);
+			
+			outerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			outerFrame.setVisible(true);
 		}
 
 		/**
-		 * The method for creating the squares of the board and putting all the pieces
-		 * on the Board.
+		 * The method for creating the squares of the 
+		 * board and putting all the pieces on the Board.
 		 */
 		private void createSquares() {
 			squares = new JButton[8][8];
@@ -297,7 +327,7 @@ public class View {
 					button.setBackground(setColor(i, j));
 
 					squares[i][j] = button;
-					container.add(button);
+					boardPanel.add(button);
 
 				}
 			}
@@ -316,16 +346,13 @@ public class View {
 			else
 				return Color.ORANGE;
 		}
-
-		/**
-		 * Static method to display the ChessBoard
-		 * 
-		 * @return the ChessBoard with pieces on it
-		 */
-		public static ChessBoard getChessBoard() {
+		
+		public final static ChessBoard getChessBoard() {
 			return new ChessBoard();
-
+			
 		}
+
+		
 
 	}
 }
