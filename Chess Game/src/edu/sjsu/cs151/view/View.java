@@ -1,212 +1,331 @@
 package edu.sjsu.cs151.view;
+
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.*;
 
+/**
+ * This program creates a simple moving animation
+ * 
+ * @author Sehajmeet and Neeval
+ *
+ */
+public class View {
+	private static final int ICON_WIDTH = 400;
+	private static final int ICON_HEIGHT = 100;
+	private static final int PAWN_WIDTH = 100;
 
+	public static void main(String[] args) {
+		/**
+		 * Creating a JFrame of size 2000 x 2000
+		 */
 
+		JFrame frame = new JFrame();
+		frame.setSize(2000, 2000);
 
-	/**
-	 * This program creates a simple moving animation
-	 * @author Sehajmeet and Neeval
-	 *
-	 */
-	public class View {
-		private static final int ICON_WIDTH = 400;
-		private static final int ICON_HEIGHT = 100;
-		private static final int PAWN_WIDTH = 100;
+		/**
+		 * Creating three MoveableShape objects
+		 */
+		final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
+		final MoveableShape quiz = new stationaryTile(0, 0, 100);
+		final MoveableShape bish = new BishopShape(0, 0, PAWN_WIDTH);
 
-		public static void main(String[] args) {
-			/**
-			 * Creating a JFrame of size 2000 x 2000
-			 */
-			
-			JFrame frame = new JFrame();
-			frame.setSize(2000, 2000);
+		/**
+		 * Creating the first chess piece animation
+		 */
+		ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
+		final JLabel label = new JLabel(icon);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(label);
 
-			/**
-			 * Creating three MoveableShape objects
-			 */
-			final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
-			final MoveableShape quiz = new stationaryTile(0,0,100);
-			final MoveableShape bish = new BishopShape(0, 0, PAWN_WIDTH);
+		/**
+		 * Creating the second chess piece animation
+		 */
+		ShapeIcon bishop = new ShapeIcon(bish, ICON_WIDTH, ICON_HEIGHT);
+		final JLabel label3 = new JLabel(bishop);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(label3);
 
-			/**
-			 * Creating the first chess piece animation
-			 */
-			ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
-			final JLabel label = new JLabel(icon);
-			frame.setVisible(true);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(label);
+		/**
+		 * Creating the tiles of the chess board
+		 */
+		ShapeIcon tile = new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT);
+		final JLabel label2 = new JLabel(tile);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(label2);
 
-			/**
-			 * Creating the second chess piece animation
-			 */
-			ShapeIcon bishop = new ShapeIcon(bish, ICON_WIDTH, ICON_HEIGHT);
-			final JLabel label3 = new JLabel(bishop);
-			frame.setVisible(true);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(label3);
+		final int DELAY = 5;
 
-			/**
-			 * Creating the tiles of the chess board
-			 */
-			ShapeIcon tile = new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT);
-			final JLabel label2 = new JLabel(tile);
-			frame.setVisible(true);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(label2);
+		/**
+		 * The timer for the animation
+		 */
+		Timer t = new Timer(DELAY, event -> {
+			shape.move();
+			label.repaint();
+			bish.move();
+			label3.repaint();
 
-			final int DELAY = 5;
-
-			/** 
-			 * The timer for the animation
-			 */
-			Timer t = new Timer(DELAY, event -> {
-				shape.move();
-				label.repaint();
-				bish.move();
-				label3.repaint();
-
-			});
-
-			t.start();
-
-			
-			/** 
-			 * Creating the button for starting the chess game
-			 */
-			JButton startButton = new JButton("START CHESS GAME");
-			
-
-			JPanel pnl = new JPanel(new GridBagLayout());
-
-			pnl.add(startButton);
-			frame.add(pnl);
-			frame.setVisible(true);
-			
-			startButton.addActionListener(event -> {
-				
-				//start a new frame for the pick color screen
-				frame.dispose();
-				playerScreen();
-				
-				
-			
-			
 		});
-		
-		}
-		
-		
-		public static void playerScreen() {
-			JFrame playerScreen = new JFrame("Player Screen");
-			playerScreen.setSize(400,300);
-			playerScreen.setBackground(Color.black);
-			playerScreen.setVisible(true);
-			
-			
-			JPanel pn2 = new JPanel(new FlowLayout());
-			
-			//textField asking the player to choose a color
-			JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
-			chooseColor.setPreferredSize(new Dimension(300,75));
-			Font font1 = new Font("SansSerif", Font.ITALIC, 20);
-			chooseColor.setBackground(Color.white);
-			
-			//Buttons are in the shape of pawns that are black and white
-			//This only works on my computer. Still need to create an image folder in the project so we cans store our images when someones runs 
-			Icon wPawn = new ImageIcon("whitePawn.png"); 
-			Icon bPawn = new ImageIcon("blackPawn.png");
-			JButton white = new JButton(wPawn);
-			JButton black = new JButton(bPawn);
-			
-			//adding everything
-			pn2.add(white);
-			pn2.add(black);
-			
-			chooseColor.setFont(font1);
-			chooseColor.setEditable(false);
-			
-			pn2.add(chooseColor);
-			playerScreen.add(pn2);
-			
-			
-			/* Action listener for only 1 button. Still need to somehow implement model into this. 
-			 * Need to set current player to the respective button pressed and then start game.
-			 * Basically the same logic in our main game class. For now just bring both action 
-			 * listeners to the same page with a startGame static method. The method should have 
-			 * a parameter of the player color chosen, but for now empty parameter is fine.
-			 */
-			white.addActionListener(event2 -> {
-				playerScreen.dispose();
-				JFrame game = startGameScreen();
-				
-			});
-			
-			black.addActionListener(event3 -> {
-				playerScreen.dispose();
-				JFrame game = startGameScreen();
-			});
-			
-			
-		
-	
-		}
-		
-		
-		
-		/* This method needs to be filled out. Pretty much the chessBoard, New Game, and Exit buttons HAVE to be on here. 
-		 * Priorities:
-		 * 1. Chess Board
-		 * 2. New Game and Exit game
-		 * 
-		 * Second options:
-		 * 1. Graveyard of some sort
-		 * 2. Message Screen
-		 * 3. Undo turn button
-		 *  
-		 *  */
-		public static JFrame startGameScreen() {
-			
-			//New Game and exit game buttons
-			JFrame game = new JFrame("Game Screen");
-			game.setSize(800,800);
-			
-			JPanel pn3 = new JPanel();
-			pn3.setLayout(new FlowLayout());
-			pn3.setBounds(200, 800, 300, 100);
-			
-			JButton newGame = new JButton("NEW GAME");
-			JButton quitGame = new JButton("QUIT GAME");
-			pn3.add(newGame);
-			pn3.add(quitGame);
-			
-			
-	
-			game.add(pn3);
-			game.setVisible(true);
-			
-			newGame.addActionListener(newGameRecurs -> {
-				game.dispose();
-				playerScreen();
-			});
-			
-			quitGame.addActionListener(exit->{
-				game.dispose();
-				System.exit(1);
-			});
-			
-			
-			
-			
-				
-			
-			return game;
-		}
-		
+
+		t.start();
+
+		/**
+		 * Creating the button for starting the chess game
+		 */
+		JButton startButton = new JButton("START CHESS GAME");
+
+		//Creating a GridBagLayout for our output
+		JPanel pnl = new JPanel(new GridBagLayout());
+
+		pnl.add(startButton);
+		frame.add(pnl);
+		frame.setVisible(true);
+
+
+		startButton.addActionListener(event -> {
+
+			// start a new frame for the pick color screen
+			frame.dispose();
+			playerScreen();
+
+		});
 
 	}
 
+	public static void playerScreen() {
+		JFrame playerScreen = new JFrame("Player Screen");
+		playerScreen.setSize(400, 300);
+		playerScreen.setBackground(Color.black);
+		playerScreen.setVisible(true);
 
+		JPanel pn2 = new JPanel(new FlowLayout());
+		
+		pn2.setBackground(Color.red);
+
+		// textField asking the player to choose a color
+		JTextField chooseColor = new JTextField("PLEASE CHOOSE A COLOR");
+		chooseColor.setPreferredSize(new Dimension(300, 75));
+		Font font1 = new Font("SansSerif", Font.ITALIC, 20);
+		chooseColor.setBackground(Color.white);
+
+		// Buttons are in the shape of pawns that are black and white
+		// This only works on my computer. Still need to create an image folder in the
+		// project so we cans store our images when someone runs
+		Icon wPawn = new ImageIcon("whitePawn.png");
+		Icon bPawn = new ImageIcon("blackPawn.png");
+		JButton white = new JButton(wPawn);
+		JButton black = new JButton(bPawn);
+
+		// adding everything
+		pn2.add(white);
+		pn2.add(black);
+
+		chooseColor.setFont(font1);
+		chooseColor.setEditable(false);
+
+		pn2.add(chooseColor);
+		playerScreen.add(pn2);
+
+		/**
+		 * The actionListener for selecting the white color
+		 */
+		white.addActionListener(event2 -> {
+			playerScreen.dispose();
+			JFrame game = startGameScreen();
+
+		});
+		
+		/**
+		 * The actionListener for selecting the white color
+		 */
+		black.addActionListener(event3 -> {
+			playerScreen.dispose();
+			JFrame game = startGameScreen();
+		});
+
+	}
+
+	public static JFrame startGameScreen() {
+
+		// New Game and exit game buttons
+		JFrame game = new JFrame("Game Screen");
+		game.setSize(800, 800);
+		
+		//Creating a JLabel for displaying a message
+		JLabel label = new JLabel(); 
+	    label.setText("What would you like to do?");
+	    label.setSize(100,100);
+
+		JPanel pn3 = new JPanel();
+		pn3.setBackground(Color.white);
+
+		pn3.setLayout(new FlowLayout());
+		pn3.setBounds(200, 800, 300, 100);
+		
+		//Creating the newGame button
+		JButton newGame = new JButton("NEW GAME");
+		newGame.setPreferredSize(new Dimension(150, 100));
+		newGame.setBackground(Color.cyan);
+
+		//Creating the newGame button
+
+		JButton quitGame = new JButton("QUIT GAME");
+		quitGame.setPreferredSize(new Dimension(150, 100));
+		newGame.setBackground(Color.pink);
+
+		
+		//Adding the buttons and label to the panel
+		pn3.add(label);
+		pn3.add(newGame);
+		pn3.add(quitGame);
+
+		game.add(pn3);
+		game.setVisible(true);
+
+		newGame.addActionListener(newGameRecurs -> {
+			game.dispose();
+			playerScreen();
+			ChessBoard.getChessBoard();
+
+		});
+
+		quitGame.addActionListener(exit -> {
+			game.dispose();
+			System.exit(1);
+		});
+
+		return game;
+	}
+
+	/**
+	 * The class that creates an instance of the 
+	 * ChessBoard with all the pieces on the board.
+	 * @author Sehajmeet
+	 *
+	 */
+	public static class ChessBoard {
+
+		protected JButton[][] squares;
+		protected JFrame boardFrame;
+		protected Container container;
+
+		/**
+		 * Creates a new instance of Board
+		 */
+		public ChessBoard() {
+			boardFrame = new JFrame();
+			boardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			container = boardFrame.getContentPane();
+			container.setLayout(new GridLayout(8, 8));
+			createSquares();
+			boardFrame.setSize(600, 600);
+			boardFrame.setVisible(true);
+
+		}
+
+		/**
+		 * The method for creating the squares of the board and putting all the pieces
+		 * on the Board.
+		 */
+		private void createSquares() {
+			squares = new JButton[8][8];
+			for (int i = 0; i < squares.length; i++) {
+				for (int j = 0; j < squares.length; j++) {
+					JButton button = new JButton();
+					if (i == 1) {
+						ImageIcon blackPawn = new ImageIcon(("blackPawn.png"));
+						button.setIcon(blackPawn);
+					}
+
+					if (i == 6) {
+						ImageIcon whitePawn = new ImageIcon(("whitePawn.png"));
+						button.setIcon(whitePawn);
+					}
+
+					if (i == 0 && (j == 0 || j == 7)) {
+						ImageIcon blackRook = new ImageIcon(("blackRook.png"));
+						button.setIcon(blackRook);
+					}
+
+					if (i == 7 && (j == 0 || j == 7)) {
+						ImageIcon whiteRook = new ImageIcon(("whiteRook.png"));
+						button.setIcon(whiteRook);
+					}
+
+					if (i == 0 && (j == 1 || j == 6)) {
+						ImageIcon blackKnight = new ImageIcon(("blackKnight.png"));
+						button.setIcon(blackKnight);
+					}
+
+					if (i == 7 && (j == 1 || j == 6)) {
+						ImageIcon whiteKnight = new ImageIcon(("whiteKnight.png"));
+						button.setIcon(whiteKnight);
+					}
+
+					if (i == 0 && (j == 2 || j == 5)) {
+						ImageIcon blackBishop = new ImageIcon(("blackBishop.png"));
+						button.setIcon(blackBishop);
+					}
+
+					if (i == 7 && (j == 2 || j == 5)) {
+						ImageIcon whiteBishop = new ImageIcon(("whiteBishop.png"));
+						button.setIcon(whiteBishop);
+					}
+
+					if (i == 0 && j == 3) {
+						ImageIcon whiteBlack = new ImageIcon(("whiteBlack.png"));
+						button.setIcon(whiteBlack);
+					}
+
+					if (i == 7 && j == 3) {
+						ImageIcon whiteQueen = new ImageIcon(("whiteQueen.png"));
+						button.setIcon(whiteQueen);
+					}
+
+					if (i == 0 && j == 4) {
+						ImageIcon blackKing = new ImageIcon(("blackKing.png"));
+						button.setIcon(blackKing);
+					}
+
+					if (i == 7 && j == 4) {
+						ImageIcon whiteKing = new ImageIcon(("whiteKing.png"));
+						button.setIcon(whiteKing);
+					}
+
+					button.setBackground(setColor(i, j));
+
+					squares[i][j] = button;
+					container.add(button);
+
+				}
+			}
+		}
+
+		/**
+		 * Helper method for determining the color of the square
+		 * 
+		 * @param x The vertical variable
+		 * @param y The horizontal variable
+		 * @return The color of the square
+		 */
+		private Color setColor(int x, int y) {
+			if ((x + y) % 2 == 0)
+				return Color.CYAN;
+			else
+				return Color.ORANGE;
+		}
+
+		/**
+		 * Static method to display the ChessBoard
+		 * 
+		 * @return the ChessBoard with pieces on it
+		 */
+		public static ChessBoard getChessBoard() {
+			return new ChessBoard();
+
+		}
+
+	}
+}
