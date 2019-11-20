@@ -3,6 +3,7 @@ package edu.sjsu.cs151.view;
 import java.awt.*;
 import javax.swing.*;
 
+
 /**
  * This program creates the ChessBoard with
  * all the pieces placed correctly on the board.
@@ -44,6 +45,12 @@ public class ChessBoard {
 		JButton quitGame = new JButton("QUIT GAME");
 		quitGame.setPreferredSize(new Dimension(120, 50));
 		newGame.setBackground(Color.pink);
+		
+		newGame.addActionListener(newGameRecurs -> {
+			outerFrame.dispose();
+			ChessBoard.getChessBoard();
+
+		});
 		
 		quitGame.addActionListener(exit -> {
 			outerFrame.dispose();

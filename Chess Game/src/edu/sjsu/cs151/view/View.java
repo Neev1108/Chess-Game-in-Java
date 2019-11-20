@@ -138,7 +138,7 @@ public class View {
 		});
 		
 		/**
-		 * The actionListener for selecting the white color
+		 * The actionListener for selecting the black color
 		 */
 		black.addActionListener(event3 -> {
 			playerScreen.dispose();
@@ -186,7 +186,6 @@ public class View {
 
 		newGame.addActionListener(newGameRecurs -> {
 			game.dispose();
-			playerScreen();
 			ChessBoard.getChessBoard();
 
 		});
@@ -199,13 +198,13 @@ public class View {
 		return game;
 	}
 
-	/**
+/*	/**
 	 * The class that creates an instance of the 
 	 * ChessBoard with all the pieces on the board.
 	 * @author Sehajmeet
 	 *
 	 */
-	public static class ChessBoard {
+/*	public static class ChessBoard {
 
 		protected JButton[][] squares;
 		protected JFrame outerFrame;
@@ -216,7 +215,7 @@ public class View {
 		 * Creates a new instance of Board
 		 * 
 		 */
-		public ChessBoard() {
+/*		public ChessBoard() {
 			outerFrame = new JFrame();
 			container = outerFrame.getContentPane();
 			outerFrame.setSize(650, 800);
@@ -268,7 +267,7 @@ public class View {
 		 * The method for creating the squares of the 
 		 * board and putting all the pieces on the Board.
 		 */
-		private void createSquares() {
+/*		private void createSquares() {
 			squares = new JButton[8][8];
 			for (int i = 0; i < squares.length; i++) {
 				for (int j = 0; j < squares.length; j++) {
@@ -349,7 +348,7 @@ public class View {
 		 * @param y The horizontal variable
 		 * @return The color of the square
 		 */
-		private Color setColor(int x, int y) {
+/*		private Color setColor(int x, int y) {
 			if ((x + y) % 2 == 0)
 				return Color.CYAN;
 			else
@@ -363,5 +362,5 @@ public class View {
 
 		
 
-	}
+	}*/
 }
