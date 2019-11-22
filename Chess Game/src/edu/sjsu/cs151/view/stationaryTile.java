@@ -27,7 +27,7 @@ public class stationaryTile implements edu.sjsu.cs151.view.MoveableShape {
 		//tiles on left
 		for (int i = 0; i < tileNumber; i++)
 		{
-			Rectangle2D.Double tile = new Rectangle2D.Double(x + 500, y + (width*i), width, width);
+			Rectangle2D.Double tile = new Rectangle2D.Double(x + 200, y + (width*i), width, width);
 			if (i%2 == 0)
 			{
 				g2.setColor(Color.black);

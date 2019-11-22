@@ -24,18 +24,23 @@ public class ChessBoard {
 	 * 
 	 */
 	public ChessBoard() {
+		
+		//Creates Frame
 		outerFrame = new JFrame();
 		container = outerFrame.getContentPane();
 		outerFrame.setSize(650, 800);
 		
+		//Creates board
 		boardPanel = new JPanel();
 		boardPanel.setLayout(new GridLayout(8, 8));
 		container.add(boardPanel, BorderLayout.CENTER);
 		createSquares();
 
+		//Creates topPanel for buttons
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new FlowLayout());
 		topPanel.setSize(650, 75);
+		
 		//Creating the newGame button
 		JButton newGame = new JButton("NEW GAME");
 		newGame.setPreferredSize(new Dimension(120, 50));
@@ -46,11 +51,14 @@ public class ChessBoard {
 		quitGame.setPreferredSize(new Dimension(120, 50));
 		newGame.setBackground(Color.pink);
 		
+		//newGame button functionality
 		newGame.addActionListener(newGameRecurs -> {
 			outerFrame.dispose();
+
 			View.playerScreen();;
 		});
 		
+		//quitGame button functionality
 		quitGame.addActionListener(exit -> {
 			outerFrame.dispose();
 			System.exit(1);
@@ -64,7 +72,7 @@ public class ChessBoard {
 		//creates southPanel for text box area
 		JPanel southPanel = new JPanel();
 		southPanel.setSize(650, 75);
-		JTextArea textArea = new JTextArea();
+		JTextArea textArea = new JTextArea("Welcome to our chess game!");
 		textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(
@@ -73,6 +81,8 @@ public class ChessBoard {
         southPanel.add(scrollPane);
 		container.add(southPanel, BorderLayout.SOUTH);
 		
+		
+		//display Frame
 		outerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		outerFrame.setVisible(true);
 	}
@@ -174,10 +184,11 @@ public class ChessBoard {
 		
 	}
 
-	public static void main(String[] args) {
+/*	For quicker testing purposes
+ * 	public static void main(String[] args) {
 		getChessBoard();
 	}
-
+*/
 }
 
 
