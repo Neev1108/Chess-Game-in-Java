@@ -48,8 +48,7 @@ public class ChessBoard {
 		
 		newGame.addActionListener(newGameRecurs -> {
 			outerFrame.dispose();
-			ChessBoard.getChessBoard();
-
+			View.playerScreen();;
 		});
 		
 		quitGame.addActionListener(exit -> {
@@ -128,7 +127,7 @@ public class ChessBoard {
 				}
 
 				if (i == 0 && j == 3) {
-					ImageIcon whiteBlack = new ImageIcon(("whiteBlack.png"));
+					ImageIcon whiteBlack = new ImageIcon(("blackQueen.png"));
 					button.setIcon(whiteBlack);
 				}
 
