@@ -1,6 +1,9 @@
 package edu.sjsu.cs151.view;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 
 
@@ -18,6 +21,9 @@ public class ChessBoard {
 	protected JFrame outerFrame;
 	protected Container container;
 	protected JPanel boardPanel;
+	public int x = -1;
+	public int y = -1;
+	public Icon image;
 
 	/**
 	 * Creates a new instance of Board
@@ -97,13 +103,47 @@ public class ChessBoard {
 			for (int j = 0; j < squares.length; j++) {
 				JButton button = new JButton();
 				if (i == 1) {
+					int dummyX = i;
+					int dummyY = j;
 					ImageIcon blackPawn = new ImageIcon(("blackPawn.png"));
 					button.setIcon(blackPawn);
+					button.addActionListener(event ->{
+						
+						
+						if(x == -1 && y == -1) {
+							x = dummyX;
+							y = dummyY;
+							 image =getImage(squares,dummyX,dummyY);
+						}
+						else {
+							button.setIcon(image);
+							squares[x][y].removeAll();
+							x = -1;
+							y=-1;
+							image = null;
+							
+						}
+					});
 				}
 
 				if (i == 6) {
+					int dummyX = i;
+					int dummyY = j;
 					ImageIcon whitePawn = new ImageIcon(("whitePawn.png"));
 					button.setIcon(whitePawn);
+					button.addActionListener(event ->{
+						if(x == -1 && y == -1) {
+							x = dummyX;
+							y = dummyY;
+							 image =getImage(squares,dummyX,dummyY);
+						}
+						else {
+							button.setIcon(image);
+							x = -1;
+							y=-1;
+							image = null;
+						}
+					});
 				}
 
 				if (i == 0 && (j == 0 || j == 7)) {
@@ -184,11 +224,48 @@ public class ChessBoard {
 		
 	}
 
-/*	For quicker testing purposes
- * 	public static void main(String[] args) {
+	public Icon getImage(JButton[][] squares,int x , int y){
+		
+				
+				Icon image = squares[x][y].getIcon();
+				return image;
+				
+				
+			
+			
+		
+	}
+	
+	public void move(JButton[][] squares, JButton button, int i, int j, ImageIcon image1 ) {
+		int dummyX = i;
+		int dummyY = j;
+		button.setIcon(image1);
+		button.addActionListener(event ->{
+			if(x == -1 && y == -1) {
+				x = dummyX;
+				y = dummyY;
+				 image = (ImageIcon) getImage(squares,dummyX,dummyY);
+			}
+			else {
+				button.setIcon(image);
+				x = -1;
+				y=-1;
+				image = null;
+			}
+		});
+	}
+		
+		
+		
+		
+		
+	
+	
+	
+	public static void main(String[] args) {
 		getChessBoard();
 	}
-*/
+
 }
 
 
