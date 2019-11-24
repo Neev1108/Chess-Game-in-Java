@@ -154,56 +154,6 @@ public class View {
 
 	}
 
-	/*
-	public static JFrame startGameScreen() {
-
-		// New Game and exit game buttons
-		/*JFrame game = new JFrame("Game Screen");
-		game.setSize(400, 400);
-		
-		//Creating a JLabel for displaying a message
-		JLabel label = new JLabel(); 
-	    label.setText("What would you like to do?");
-	    label.setSize(100,100);
-
-		JPanel pn3 = new JPanel();
-		pn3.setBackground(Color.white);
-
-		pn3.setLayout(new FlowLayout());
-		pn3.setBounds(200, 800, 300, 100);
-		
-		//Creating the newGame button
-		JButton newGame = new JButton("NEW GAME");
-		newGame.setPreferredSize(new Dimension(150, 100));
-		newGame.setBackground(Color.cyan);
-
-		//Creating the quitGame button
-
-		JButton quitGame = new JButton("QUIT GAME");
-		quitGame.setPreferredSize(new Dimension(150, 100));
-		newGame.setBackground(Color.pink);
-
-		
-		//Adding the buttons and label to the panel
-		pn3.add(label);
-		pn3.add(newGame);
-		pn3.add(quitGame);
-
-		game.add(pn3);
-		game.setVisible(true);
-*/
-		//newGame.addActionListener(newGameRecurs -> {
-			//game.dispose();
-
-		//});
-
-		/*quitGame.addActionListener(exit -> {
-			game.dispose();
-			System.exit(1);
-		});
-
-		return game;
-	}
-*/
+	
 
 }
