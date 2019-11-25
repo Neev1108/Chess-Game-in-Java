@@ -5,22 +5,21 @@ package edu.sjsu.cs151.model;
 
 public class Rook extends Piece {
 	PieceType type;
-	public Rook(boolean white) {
-		super(white, PieceType.Rook);
+	public Rook(boolean isWhite) {
+		super(isWhite, PieceType.Rook);
 	}
 	
 	/**
 	 * A function that determines whether the Rook moves in the right path.
 	 * 
-	 * @param board the board of the game
 	 * @param start the initial location of the piece
 	 * @param end the end location of the piece
 	 * @return a boolean indicating whether the move is valid
 	 */
 
 	@Override
-	public boolean isValidMove(Board board, Tile start, Tile end) {
-		if ((end.getX() == start.getX()) || (end.getY() == start.getY()))
+	public boolean isValidMove(Tile start, Tile end) {
+		if ((end.getRow() == start.getRow()) || (end.getCol() == start.getCol()))
 			return true;
 
 		return false;
@@ -33,8 +32,7 @@ public class Rook extends Piece {
 	 */
 	public PieceType getType() {
 		return type;
-	}
-
+	}	
 }
 
 

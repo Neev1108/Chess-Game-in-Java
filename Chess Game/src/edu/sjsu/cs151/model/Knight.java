@@ -8,8 +8,8 @@ public class Knight extends Piece {
 	PieceType type;
 	
 	
-	public Knight(boolean white) {
-		super(white, PieceType.Knight);
+	public Knight(boolean isWhite) {
+		super(isWhite, PieceType.Knight);
 	}
 
 	/**
@@ -30,13 +30,17 @@ public class Knight extends Piece {
 	 */
 
 	@Override
-	public boolean isValidMove(Board board, Tile first, Tile last) {
-		if (last.getPiece().isWhite() == this.isWhite()) {
-			return false;
+	public boolean isValidMove(Tile origin, Tile destination) {
+		
+		if (destination.getIsOccupied() == true)
+		{
+			if (destination.getPiece().isWhite() == this.isWhite()) {
+				return false;
+			}
 		}
 
-		int x_diff = Math.abs(last.getX() - first.getX());
-		int y_diff = Math.abs(last.getY() - first.getY());
+		int x_diff = Math.abs(destination.getRow() - origin.getRow());
+		int y_diff = Math.abs(destination.getCol() - origin.getCol());
 
 		if ((x_diff == 1 && y_diff == 2) || (x_diff == 2 && y_diff == 1)) {
 			return true;

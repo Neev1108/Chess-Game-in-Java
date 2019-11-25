@@ -5,8 +5,8 @@ package edu.sjsu.cs151.model;
 public class Bishop extends Piece {
 	PieceType type;
 
-	public Bishop(boolean white) {
-		super(white,PieceType.Bishop);
+	public Bishop(boolean isWhite) {
+		super(isWhite, PieceType.Bishop);
 	}
 
 	/**
@@ -26,9 +26,9 @@ public class Bishop extends Piece {
 	 * @param end the end location of the piece
 	 * @return a boolean indicating whether the move is valid
 	 */
-	public boolean isValidMove(Board board, Tile start, Tile end) {
-		int x_diff = Math.abs(end.getX() - start.getX());
-		int y_diff = Math.abs(end.getY() - start.getY());
+	public boolean isValidMove(Tile start, Tile end) {
+		int x_diff = Math.abs(end.getRow() - start.getRow());
+		int y_diff = Math.abs(end.getCol() - start.getCol());
 
 		return x_diff == y_diff;
 	}

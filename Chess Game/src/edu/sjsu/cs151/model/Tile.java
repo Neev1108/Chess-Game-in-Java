@@ -3,15 +3,24 @@ package edu.sjsu.cs151.model;
 
 public class Tile {
 	private Piece piece; //the piece that occupies the tile
-	//x and y coordinates of the tile
-	private int x; 
-	private int y;
+	//row and col coordinates of the tile
+	private int row; 
+	private int col;
+	private boolean isOccupied;
 	
 	//Constructor to initialize coordinates and piece
-	public Tile(int x, int y, Piece piece) {
+	public Tile(int row, int col, Piece piece) {
 		this.piece = piece;
-		this.x = x;
-		this.y = y;
+		this.row = row;
+		this.col = col;
+		if (piece == null)
+		{
+			isOccupied = false;
+		}
+		else
+		{
+			isOccupied = true;
+		}
 	}
 	
 	
@@ -23,24 +32,29 @@ public class Tile {
 		this.piece = piece ;
 	}
 	
-	public int getX() { 
-	    return this.x; 
+	public int getRow() { 
+	    return this.row; 
 	} 
 	  
-	public void setX(int x) { 
-	    this.x = x; 
+	public void setX(int row) { 
+	    this.row = row; 
     } 
 	  
-	public int getY() { 
-	    return this.y; 
+	public int getCol() { 
+	    return this.col; 
 	} 
 	  
-	public void setY(int y) { 
-	    this.y = y; 
+	public void setCol(int col) { 
+	    this.col = col; 
 	} 
 	
-	
+	public boolean getIsOccupied()
+	{
+		return isOccupied;
 	}
 	
-
-
+	public void setIsOccupied(boolean b)
+	{
+		isOccupied = b;
+	}
+}

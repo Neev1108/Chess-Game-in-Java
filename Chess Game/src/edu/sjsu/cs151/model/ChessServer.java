@@ -1,0 +1,241 @@
+package edu.sjsu.cs151.model;
+import java.Player;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ChessServer extends Thread
+{
+	private static List<Player> playerThreads;
+	/**
+     * This main server method runs the application. It pairs up 
+     * clients that connect to this server.
+     */
+    public static void main(String[] args) throws Exception 
+    {
+    	ChessServer server = new ChessServer();
+    	server.start();
+    	ServerManager servManager = new ServerManager(server);
+    	servManager.start();
+    }
+    
+    public void run()
+    {
+    	playerThreads = new ArrayList<>();
+    	ServerSocket listener = null;
+        try 
+        {
+        	listener = new ServerSocket(8901);
+            System.out.println("Chess Server is Running");
+            while (true) 
+            {
+                Player player1 = new Player(listener.accept(), 'W');
+                playerThreads.add(player1);
+                System.out.println("Server accepted 1 player");
+                Player player2 = new Player(listener.accept(), 'B');
+                playerThreads.add(player2);
+                System.out.println("Server accepted 2 player");
+                player1.setOpponent(player2);
+                player2.setOpponent(player1);
+                player1.start();
+                player2.start();
+            }
+        } 
+        catch(IOException e)
+        {
+        	e.printStackTrace();
+        }
+        finally 
+        {
+        	try 
+        	{
+        		if(listener != null)
+        			listener.close();
+    		} catch (IOException e) {}
+        }
+    }
+    
+    public void closeServer()
+    {
+    	for(Player threadX: playerThreads)
+    	{
+    		threadX.sendServerCLoseInfo();
+    	}
+    	System.exit(0);
+    }
+}
+
+
+class ServerManager extends Thread
+{
+	ChessServer handledServer;
+	public ServerManager(ChessServer handledServer)
+	{
+		this.handledServer = handledServer;
+	}
+	
+	public void run()
+	{
+		Scanner inputReader = new Scanner(System.in);
+		while(true) 
+	    {
+	        if (inputReader.hasNext())
+	        {
+	            String input = inputReader.next();
+	            if (input.toLowerCase().equals("quit"))
+	            {
+	            	handledServer.closeServer();
+	            	break;
+	            }
+	        }
+	    }
+		inputReader.close();
+	}
+}
+
+/**
+ * This is Player class which implements server thread dedicated 
+ * to perform communication with the single client during the match.
+ * 
+ * @author Piotr Poskart
+ *
+ */
+class Player1 extends Thread 
+{
+	/** Mark for player alliance description 'W' or 'B' */
+    char mark;
+    /** Reference to another thread which serves second's client connection */
+    Player opponent;
+    /** Reference to socket used in network communication */
+    Socket socket;
+    /** String object to store messages received from the client */
+    String receivedMessage;
+    /** BufferedReader object for buffered messages reading from client */
+    BufferedReader in;
+    /** PrintWriter object for writing messages to client */
+    PrintWriter out;
+
+    /**
+     * Constructs a handler thread for a given socket and mark
+     * initializes the stream fields, displays the first
+     * welcoming message.
+     */
+    public Player1(Socket socket, char mark)
+    {
+        this.socket = socket;
+        this.mark = mark;
+        try 
+        {
+        	in = new BufferedReader(new InputStreamReader(
+	                socket.getInputStream()));
+        	out = new PrintWriter(socket.getOutputStream(), true);
+        	out.println("Welcome to the chess game! Waiting for opponent...");
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Player died: " + e);
+        }
+    }
+	
+    /**
+     * This method sets reference to the opponent 
+     * (another server thread which handles enemy communication)
+     * @param opponent is reference to the thread handling opponent
+     *  communication.
+     */
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+    /**
+     * This method notifies client that server is to close now.
+     */
+    public void sendServerCLoseInfo()
+    {
+    	out.println("Chess server is closed, try another server...");
+		out.println("SERVER CLOSE");
+    }
+    /**
+     * This method sends prompt for the client with the
+     * current move, informing that now it is its turn.
+     */
+    public void printPrompt()
+    {
+    	if(mark == 'B')
+    		out.println("Black, your move");
+    	else if (mark == 'W')
+    		out.println("White, your move");
+    }
+    
+    /**
+     * The run method of this thread. It handles communication within 
+     * entire match. First it sends configuration messages to the client
+     * (e.g. alliance setting and START message). The it processes messages
+     * read from the client and communicate with opponent server thread 
+     * managing the state of the game. It ends when QUIT message received 
+     * or when error occured.
+     */
+    public void run() 
+    {
+        try 
+        {
+            // The thread is only started after everyone connects.
+        	out.println(new String("ALLIANCE " + mark));
+        	out.println(new String("START "));
+        	
+            // Tell the first player that it is her turn.
+            if (mark == 'W')
+            	printPrompt();
+        	else
+        		out.println("Opponent's move...");
+            // Repeatedly get commands from the client and process them.
+            while (true) 
+            {
+            	receivedMessage = in.readLine();
+            	if(receivedMessage != null)
+            	{
+	            	if (receivedMessage.startsWith("MOVE")) 
+	                {
+	            		opponent.out.println(receivedMessage);
+	            		opponent.printPrompt();
+	            		out.println("Opponent's move...");
+	                } 
+	            	else
+	            	{
+	            		System.out.println(receivedMessage);
+		            	if (receivedMessage.startsWith("QUIT")) 
+		                {
+		            		// notify second player that another has disconnected
+		            		opponent.out.println("Opponent disconnected...");
+		            		opponent.out.println("DISCON");
+		            		return;
+		                }
+	            	}
+            	}
+            	else
+            	{
+            		System.out.println("Otrzymalem null");
+            		return;
+            	}
+            }
+        } 
+        catch (IOException e)
+        {
+         	System.out.println("Exception! - cannot read from the input buffer");
+        	e.printStackTrace(System.out);        
+    	}
+        catch(Exception e1)
+        {
+        	System.out.println("Error, Undefined server exception");
+        }
+        finally
+        {
+            try {socket.close();} catch (IOException e) {}
+        }
+    }
+}
