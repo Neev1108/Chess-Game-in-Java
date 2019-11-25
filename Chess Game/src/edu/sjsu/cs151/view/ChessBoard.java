@@ -24,6 +24,7 @@ public class ChessBoard{
 	int x = -1;
 	int y = -1;
 	public Icon image;
+	public JButton oldButton;
 	/**
 	 * Creates a new instance of Board
 	 * 
@@ -272,16 +273,20 @@ public class ChessBoard{
 		getChessBoard();
 	}
 */
-	
+	public JButton getButton(int x, int y) {
+		return squares[x][y];
+	}
 	
 	public void move(JButton button,int dummyX, int dummyY, ImageIcon icon) {
-		if (this.x == -1 && y == -1) {
+		if (this.x == -1 && this.y == -1) {
 			x = dummyX;
 			y = dummyY;
 			image = getImage(dummyX, dummyY);
+			oldButton = getButton(dummyX, dummyY);
+			
 		} else {
 			button.setIcon(image);
-		
+			
 		}
 	}
 }
