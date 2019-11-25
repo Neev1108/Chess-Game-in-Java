@@ -5,21 +5,21 @@ package edu.sjsu.cs151.model;
  *
  */
 public class Player {
-public String color;
-public boolean firstTurn = false;
-
-public Player(String color, boolean firstTurn) {
-	this.color = color;
-	this.firstTurn = firstTurn;
+	private String color;	
+	
+	public Player(String color, boolean firstTurn) {
+		this.color = color;
+		
+		
+	}
+	
+	public String getColor() {
+		return color;
+	}
 	
 	
-}
-
-public String getColor() {
-	return color;
-}
-
-public boolean firstTurn() {
-	return firstTurn = true;
-}
+	public String toString()
+	{
+		return color + " Player";
+	}
 }

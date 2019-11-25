@@ -8,17 +8,24 @@ public abstract class Piece {
 	// Piece needs to hold type, color and name
 	private PieceType type;
 	private PieceColor color;
-	boolean white = false;
-	boolean PieceAlive = true;
+	private String colorString;
+	private boolean isWhite = false;
+	private boolean PieceAlive = true;
+	private boolean hasMoved = false;
 
-	public Piece(boolean white, PieceType type) {
-		this.white = white;
-		if (white == true) {
+	public Piece(boolean isWhite, PieceType type) {
+		this.isWhite = isWhite;
+		if (isWhite == true) {
 			color = PieceColor.White;
-		} else
+			colorString = "White";
+		} 
+		else
+		{
 			color = PieceColor.Black;
+			colorString = "Black";
+		}
 		this.type = type;
-
+		
 	}
 
 	// enums for type and color
@@ -33,7 +40,7 @@ public abstract class Piece {
 		Black {
 			@Override
 			public String toString() {
-				return "w";
+				return "b";
 			}
 		}
 	}
@@ -79,7 +86,7 @@ public abstract class Piece {
 	}
 
 	public boolean isWhite() {
-		return this.white == true;
+		return this.isWhite;
 	}
 
 	// getter methods for each
@@ -91,10 +98,38 @@ public abstract class Piece {
 		return color;
 	}
 
-	public abstract boolean isValidMove(Board board, Tile currentPos, Tile endPos);
+	public abstract boolean isValidMove(Tile origin, Tile destination);
+	
+	public void move(Tile origin, Tile destination)
+	{
+		destination.setPiece(origin.getPiece());
+		origin.setPiece(null);
+		destination.setIsOccupied(true);
+		origin.setIsOccupied(false);
+		this.setHasMoved(true);
+	}
+	
+
+//	public abstract boolean isValidMove(Board board, Tile currentPos, Tile endPos);
 
 	public boolean pieceDied() {
 		this.PieceAlive = false;
 		return this.PieceAlive;
+	}
+	
+	
+	public String getColorString()
+	{
+		return colorString;
+	}
+	
+	public boolean getHasMoved()
+	{
+		return hasMoved;
+	}
+	
+	public void setHasMoved(boolean b)
+	{
+		hasMoved = b;
 	}
 }

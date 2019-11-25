@@ -3,15 +3,15 @@ package edu.sjsu.cs151.model;
  * Created by Sehajmeet on 10/26/2019
  */
 public class Pawn extends Piece {
-
+	
 	PieceType type = PieceType.Pawn;
 
 	/**
 	 * The constructor for a Pawn.
 	 */
 	
-	public Pawn(boolean white) {
-		super(white, PieceType.Pawn);
+	public Pawn(boolean isWhite) {
+		super(isWhite, PieceType.Pawn);
 	}
 
 	/**
@@ -31,109 +31,60 @@ public class Pawn extends Piece {
 	 * @param end   the final box of the board
 	 * @return a boolean indicating whether the path is valid
 	 */
-	public boolean isValidMove(Board board, Tile start, Tile end) {
-		// checks if it is the player's first turn, and if there are no units along the
-		// path
-		// if so, it will let the pawn move two spaces forward
+	public boolean isValidMove(Tile origin, Tile destination) {
+				
+		int diffRow = origin.getRow() - destination.getRow();
+		int diffCol = origin.getCol() - destination.getCol();
+		System.out.println(origin.getRow() + " " + destination.getRow() + " " + diffRow);
+		System.out.println(origin.getCol() + " " + destination.getCol() + " " + diffCol);
+		diffRow = Math.abs(diffRow);
+		diffCol = Math.abs(diffCol);
 		
-		// if (pawnCanMoveTwo(board, start, end))
-			//return true;
-
-		// checks if pawn is moving on a diagonal, if it is moving only one space, and
-		// if there is an enemy in that space
-		if (pawnCanCapture(board, start, end))
-			return true;
-
-		// checks if pawn is moving one space forward, does not let it move forward
-		// unless space is empty
-		if (pawnCanMoveForward(board, start, end))
-			return true;
-
-		else {
+		System.out.println("hasMoved = " + this.getHasMoved());
+		//outside any eligible move range
+		if (diffCol > 1)
+		{
+			System.out.println("That is too far for a pawn to move in X.");
 			return false;
 		}
-	}
-
-	/**
-	 * A function that determines whether the pawn is moving two steps.
-	 * 
-	 * @param start the initial box of the board
-	 * @param end   the final box of the board
-	 * @return a boolean indicating whether the path is valid
-	 */
-	
-	/*
-	protected boolean pawnCanMoveTwo(Board board, Tile start, Tile end) {
-		// we can't move the piece to a Spot that
-		// has a piece of the same color
-		if (end.getPiece().isWhite() == this.isWhite()) {
+		if ((this.getHasMoved() == true) && (diffRow == 2))
+		{
+			System.out.println("This pawn has already moved and can now only move one space forward at a time.");
 			return false;
 		}
-
-		int abs_Y_diff = Math.abs(end.getY() - start.getY());
-
-		if ((abs_Y_diff == 2) && (this.game.doTurn == 1 || this.player.game.turn == 2)
-				&& (board.getTile(end.getX(), end.getY()) == null)) {
+		if (diffRow != 1 && diffRow != 2)
+		{
+			System.out.println("That is too far for a pawn to move in Y.");
+			return false;
+		}
+		
+		//pawn is trying to capture
+		if (diffCol != 0)
+		{
+			boolean destOcc = destination.getIsOccupied();
+			//no piece in destination, can't capture
+			if (destOcc == false)
+			{
+				System.out.println("You can't capture an empty space.");
+				return false;
+			}
+			//destination contains an ally
+			if (destination.getPiece().getPieceColor().equals(this.getPieceColor()))
+			{
+				System.out.println("You can't capture your allies.");
+				return false;
+			}
 			return true;
 		}
-
-		else
-			return false;
-	}
-
-*/
-	/**
-	 * A function that determines whether the pawn captures diagonally.
-	 * 
-	 * @param start the initial box of the board
-	 * @param end   the final box of the board
-	 * @return a boolean indicating whether the path is valid
-	 */
-	protected boolean pawnCanCapture(Board board, Tile start, Tile end) {
-
-		// we can't move the piece to a Spot that
-		// has a piece of the same color
-		if (end.getPiece().isWhite() == this.isWhite()) {
+		
+		if (destination.getIsOccupied() == true)
+		{
+			System.out.println("Pawns cannot interact with pieces directly ahead.");
 			return false;
 		}
-		int abs_X_diff = Math.abs(end.getX() - start.getX());
-		int abs_Y_diff = Math.abs(end.getY() - start.getY());
-		int Y_diff = end.getY() - start.getY();
-
-		if ((abs_X_diff == abs_Y_diff) && (abs_Y_diff == 1)) {
-			if ((board.getTile(end.getX(), end.getY()) != null && Y_diff < 0))
-				return true;
-
-			if ((board.getTile(end.getX(), end.getY()) != null && Y_diff > 0))
-				return true;
-		}
-
-		return false;
-
+		
+		return true;
 	}
-
-	/**
-	 * A function that determines whether the pawn is moving one step.
-	 * 
-	 * @param start the initial box of the board
-	 * @param end   the final box of the board
-	 * @return a boolean indicating whether the path is valid
-	 */
-	protected boolean pawnCanMoveForward(Board board, Tile start, Tile end) {
-		if (end.getPiece().isWhite() == this.isWhite()) {
-			return false;
-		}
-		int abs_Y_diff = Math.abs(end.getY() - start.getY());
-		int Y_diff = end.getY() - start.getY();
-
-		if (((Y_diff < 0 && abs_Y_diff == 1) || (Y_diff > 0 && abs_Y_diff == 1))
-				&& ((board.getTile(end.getX(), end.getY()) == null && start.getX() == end.getX()))) {
-			return true;
-		}
-
-		return false;
-	}
-
 }
 	
 

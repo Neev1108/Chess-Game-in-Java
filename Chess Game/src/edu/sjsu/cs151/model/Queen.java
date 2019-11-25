@@ -5,8 +5,8 @@ package edu.sjsu.cs151.model;
 public class Queen extends Piece{
 
 	PieceType type;
-public Queen(boolean white) {
-	super(white, PieceType.Queen);
+public Queen(boolean isWhite) {
+	super(isWhite, PieceType.Queen);
 }
 
 /**
@@ -19,11 +19,11 @@ public Queen(boolean white) {
  */
 
 @Override
-public boolean isValidMove(Board board, Tile start, Tile end) {
-	int x_diff = Math.abs(end.getX() - start.getX());
-	int y_diff = Math.abs(end.getX() - start.getX());
+public boolean isValidMove(Tile start, Tile end) {
+	int x_diff = Math.abs(end.getRow() - start.getRow());
+	int y_diff = Math.abs(end.getRow() - start.getRow());
 
-	if ((x_diff == y_diff) || (end.getX() == start.getX()) || (end.getY() == start.getY()))
+	if ((x_diff == y_diff) || (end.getRow() == start.getRow()) || (end.getCol() == start.getCol()))
 		return true;
 
 	return false;
