@@ -5,7 +5,6 @@ package edu.sjsu.cs151.model;
  *
  */
 public class Player {
-<<<<<<< HEAD
 	public String color;
 	public boolean firstTurn = false;
 
@@ -22,23 +21,5 @@ public class Player {
 
 	public boolean firstTurn() {
 		return firstTurn = true;
-=======
-	private String color;	
-	
-	public Player(String color, boolean firstTurn) {
-		this.color = color;
-		
-		
-	}
-	
-	public String getColor() {
-		return color;
-	}
-	
-	
-	public String toString()
-	{
-		return color + " Player";
->>>>>>> branch 'master' of https://github.com/SkylerHungerford/cs151-team8-chess
 	}
 }
