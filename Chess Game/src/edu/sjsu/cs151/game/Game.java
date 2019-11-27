@@ -15,7 +15,17 @@ public class Game {
 	private static Model model;
 
 	public static void main(String [] args){
+		view = View.init(queue);
+		model = new Model();
 	
+		Controller game = new Controller(view,model,queue);
+		game.mainLoop();
+		view.dispose();
+		queue.clear();
+	}
+	
+	public void mainLoop() {
+		
 	}
 
 }

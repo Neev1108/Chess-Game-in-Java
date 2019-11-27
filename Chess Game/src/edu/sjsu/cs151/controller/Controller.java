@@ -17,5 +17,11 @@ public class Controller {
 	private GameInfo gameInfo;
 	private List<Valve> valves = new LinkedList<Valve>();
 
-
+	public Controller(Model model, View view,BlockingQueue<Message> queue) {
+		this.model = model;
+		this.view = view;
+		messageQueue = queue;
+	}
+	
+	
 }
