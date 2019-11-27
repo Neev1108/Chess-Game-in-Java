@@ -1,5 +1,5 @@
 package edu.sjsu.cs151.controller;
 
-public class NewGameMessage {
+public class NewGameMessage implements Message {
 
 }

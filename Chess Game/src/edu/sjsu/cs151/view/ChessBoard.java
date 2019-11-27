@@ -1,294 +1,184 @@
 package edu.sjsu.cs151.view;
-
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
+import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
-
-
-/**
- * This program creates the ChessBoard with
- * all the pieces placed correctly on the board.
- * 
- * @author Sehajmeet Sohal
- *
- */
-
-public class ChessBoard{
-
-	protected JButton[][] squares;
-	protected JFrame outerFrame;
-	protected Container container;
-	protected JPanel boardPanel;
-	int x = -1;
-	int y = -1;
-	public Icon image;
-	public JButton oldButton;
-	/**
-	 * Creates a new instance of Board
-	 * 
-	 */
+ 
+public class ChessBoard extends JFrame implements MouseListener, MouseMotionListener {
+	JLayeredPane pane;
+	JPanel chessBoard;
+	JLabel chessPiece;
+	int x;
+	int y;
+	final Dimension BOARD_SIZE = new Dimension(600,600);
+	
 	public ChessBoard() {
+		pane = new JLayeredPane();
+		  getContentPane().add(pane);
+		  pane.setPreferredSize(BOARD_SIZE);
+		  pane.addMouseListener(this);
+		  pane.addMouseMotionListener(this);
 		
-		//Creates Frame
-		outerFrame = new JFrame();
-		container = outerFrame.getContentPane();
-		outerFrame.setSize(650, 800);
-		
-		//Creates board
-		boardPanel = new JPanel();
-		boardPanel.setLayout(new GridLayout(8, 8));
-		container.add(boardPanel, BorderLayout.CENTER);
-		createSquares();
-
-		//Creates topPanel for buttons
-		JPanel topPanel = new JPanel();
-		topPanel.setLayout(new FlowLayout());
-		topPanel.setSize(650, 75);
-		
-		//Creating the newGame button
-		JButton newGame = new JButton("NEW GAME");
-		newGame.setPreferredSize(new Dimension(120, 50));
-		newGame.setBackground(Color.cyan);
-
-		//Creating the quitGame button
-		JButton quitGame = new JButton("QUIT GAME");
-		quitGame.setPreferredSize(new Dimension(120, 50));
-		newGame.setBackground(Color.pink);
-		
-		//newGame button functionality
-		newGame.addActionListener(newGameRecurs -> {
-			outerFrame.dispose();
-
-			View.playerScreen();;
-		});
-		
-		//quitGame button functionality
-		quitGame.addActionListener(exit -> {
-			outerFrame.dispose();
-			System.exit(1);
-		});
-		
-		topPanel.add(newGame);
-		topPanel.add(quitGame);
-		container.add(topPanel, BorderLayout.NORTH);
-		
-		
-		//creates southPanel for text box area
-		JPanel southPanel = new JPanel();
-		southPanel.setSize(650, 75);
-		JTextArea textArea = new JTextArea("Welcome to our chess game!");
-		textArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setVerticalScrollBarPolicy(
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(400, 75));
-        southPanel.add(scrollPane);
-		container.add(southPanel, BorderLayout.SOUTH);
-		
-		
-		//display Frame
-		outerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		outerFrame.setVisible(true);
-		
+		  chessBoard = new JPanel();
+		  pane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
+		  chessBoard.setLayout(new GridLayout(8, 8));
+		  chessBoard.setPreferredSize(BOARD_SIZE);
+		  chessBoard.setBounds(0, 0, BOARD_SIZE.width, BOARD_SIZE.height);
+		  
+		  for (int i = 0; i < 64; i++) {
+			  JPanel tile = new JPanel(new BorderLayout());
+			  chessBoard.add(tile);
+			 
+			  int row = (i / 8) % 2;
+			  
+			  if (row == 0) 
+			  tile.setBackground( i % 2 == 0 ? Color.GRAY : Color.orange );
+			  else 
+			  tile.setBackground( i % 2 == 0 ? Color.orange : Color.GRAY );
+		  }
+		  
+		  JLabel blackRook = new JLabel( new ImageIcon("blackRook.png") );
+		  JPanel panel = (JPanel)chessBoard.getComponent(0);
+		  panel.add(blackRook);
+		  
+		  JLabel blackKnight = new JLabel( new ImageIcon("blackKnight.png") );
+		  JPanel panel2 = (JPanel)chessBoard.getComponent(1);
+		  panel2.add(blackKnight);
+		  
+		  JLabel blackBishop = new JLabel( new ImageIcon("blackBishop.png") );
+		  JPanel panel3 = (JPanel)chessBoard.getComponent(2);
+		  panel3.add(blackBishop);
+		  
+		  JLabel blackKing = new JLabel( new ImageIcon("blackKing.png") );
+		  JPanel panel4 = (JPanel)chessBoard.getComponent(3);
+		  panel4.add(blackKing);
+		  
+		  JLabel blackQueen = new JLabel( new ImageIcon("blackQueen.png") );
+		  JPanel panel5 = (JPanel)chessBoard.getComponent(4);
+		  panel5.add(blackQueen);
+		  
+		  JLabel blackBishop2 = new JLabel( new ImageIcon("blackBishop.png") );
+		  JPanel panel6 = (JPanel)chessBoard.getComponent(5);
+		  panel6.add(blackBishop2);
+		  
+		  JLabel blackKnight2 = new JLabel( new ImageIcon("blackKnight.png") );
+		  JPanel panel7 = (JPanel)chessBoard.getComponent(6);
+		  panel7.add(blackKnight2);
+		  
+		  JLabel blackRook2 = new JLabel( new ImageIcon("blackRook.png") );
+		  JPanel panel8 = (JPanel)chessBoard.getComponent(7);
+		  panel8.add(blackRook2);
+		  
+		  for(int i = 8; i < 16; i++) {
+			  JLabel blackPawn = new JLabel( new ImageIcon("blackPawn.png") );
+			  JPanel panels = (JPanel)chessBoard.getComponent(i);
+			  panels.add(blackPawn);
+		  }
+		  
+		  for(int i= 48; i< 56; i++) {
+		  JLabel whitePawn = new JLabel( new ImageIcon("whitePawn.png") );
+		  JPanel panels2 = (JPanel)chessBoard.getComponent(i);
+		  panels2.add(whitePawn);
+		  }  
+		  
+		  JLabel whiteRook = new JLabel( new ImageIcon("whiteRook.png") );
+		  JPanel panel56 = (JPanel)chessBoard.getComponent(56);
+		  panel56.add(whiteRook);
+		  
+		  JLabel whiteKnight = new JLabel( new ImageIcon("whiteKnight.png") );
+		  JPanel panel57 = (JPanel)chessBoard.getComponent(57);
+		  panel57.add(whiteKnight);
+		  
+		  JLabel whiteBishop = new JLabel( new ImageIcon("whiteBishop.png") );
+		  JPanel panel58 = (JPanel)chessBoard.getComponent(58);
+		  panel58.add(whiteBishop);
+		  
+		  JLabel whiteKing = new JLabel( new ImageIcon("whiteKing.png") );
+		  JPanel panel59 = (JPanel)chessBoard.getComponent(59);
+		  panel59.add(whiteKing);
+		  
+		  JLabel whiteQueen = new JLabel( new ImageIcon("whiteQueen.png") );
+		  JPanel panel60 = (JPanel)chessBoard.getComponent(60);
+		  panel60.add(whiteQueen);
+		  
+		  JLabel whiteBishop2 = new JLabel( new ImageIcon("whiteBishop.png") );
+		  JPanel panel61 = (JPanel)chessBoard.getComponent(61);
+		  panel61.add(whiteBishop2);
+		  
+		  JLabel whiteKnight2 = new JLabel( new ImageIcon("whiteKnight.png") );
+		  JPanel panel62 = (JPanel)chessBoard.getComponent(62);
+		  panel62.add(whiteKnight2);
+		  
+		  JLabel whiteRook2 = new JLabel( new ImageIcon("whiteRook.png") );
+		  JPanel panel63 = (JPanel)chessBoard.getComponent(63);
+		  panel63.add(whiteRook2);
+		  
+		  
 	}
-
-	/**
-	 * The method for creating the squares of the 
-	 * board and putting all the pieces on the Board.
-	 */
+		  
+		
+		  public void mousePressed(MouseEvent e){
+			  //keep chess piece null
+			  chessPiece = null;
+			  
+			  //get component on chessBoard at point clicked
+			  Component comp =  chessBoard.findComponentAt(e.getX(), e.getY());
+			 
+			  //if person clicks empty tile, just return so they can pick a different tile
+			  if (comp instanceof JPanel) 
+			  return;
+			 
+			  //store location in x and y
+			  Point parentLocation = comp.getParent().getLocation();
+			  x = parentLocation.x - e.getX();
+			  y = parentLocation.y - e.getY();
+			  
+			  //store the chessPiece in a chessPiece
+			  chessPiece = (JLabel)comp;
+			  chessPiece.setLocation(e.getX() + x, e.getY() + y);
+			  chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+			  pane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+			  }
+			 
+			  //drag the chess piece around
+			  
+			  public void mouseDragged(MouseEvent me) {
+			  if (chessPiece == null) return;
+			 chessPiece.setLocation(me.getX() + x, me.getY() + y);
+			 }
+			 
+			  //Drop the chess piece back onto the chess board
+			 
+			  public void mouseReleased(MouseEvent e) {
+				  //if no chessPiece initialized means nothing was mouse pressed
+			  if(chessPiece == null) return;
+			 
+			  chessPiece.setVisible(false);
+			  Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
+			 
+			  if (c instanceof JLabel){
+			  Container parent = c.getParent();
+			  parent.remove(0);
+			  parent.add( chessPiece );
+			  }
+			  else {
+			  Container parent = (Container)c;
+			  parent.add( chessPiece );
+			  }
+			 
+			  chessPiece.setVisible(true);
+			  }
+			 
+			  public void mouseClicked(MouseEvent e) {
+			  
+			  }
+			  public void mouseMoved(MouseEvent e) {
+			 }
+			  public void mouseEntered(MouseEvent e){
+			  
+			  }
+			  public void mouseExited(MouseEvent e) {
+			  
+			  }
 	
-	private void createSquares() {
-		squares = new JButton[8][8];
-		for (int i = 0; i < squares.length; i++) {
-			for (int j = 0; j < squares.length; j++) {
-				JButton button = new JButton();
-				if (i == 1) {
-					ImageIcon blackPawn = new ImageIcon(("blackPawn.png"));
-					button.setIcon(blackPawn);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY,blackPawn);
-						
-				});
-				}
-				else if (i == 6) {
-					ImageIcon whitePawn = new ImageIcon(("whitePawn.png"));
-					button.setIcon(whitePawn);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY,whitePawn);
-				});
-				}
-
-				else if (i == 0 && (j == 0 || j == 7)) {
-					ImageIcon blackRook = new ImageIcon(("blackRook.png"));
-					button.setIcon(blackRook);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, blackRook);
-				});
-				}
-
-				else if (i == 7 && (j == 0 || j == 7)) {
-					ImageIcon whiteRook = new ImageIcon(("whiteRook.png"));
-					button.setIcon(whiteRook);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteRook);
-				});
-				}
-
-				else if (i == 0 && (j == 1 || j == 6)) {
-					ImageIcon blackKnight = new ImageIcon(("blackKnight.png"));
-					button.setIcon(blackKnight);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, blackKnight);
-				});
-				}
-
-				else if (i == 7 && (j == 1 || j == 6)) {
-					ImageIcon whiteKnight = new ImageIcon(("whiteKnight.png"));
-					button.setIcon(whiteKnight);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteKnight);
-				});
-				}
-
-				else if (i == 0 && (j == 2 || j == 5)) {
-					ImageIcon blackBishop = new ImageIcon(("blackBishop.png"));
-					button.setIcon(blackBishop);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, blackBishop);
-				});
-				}
-
-				else if (i == 7 && (j == 2 || j == 5)) {
-					ImageIcon whiteBishop = new ImageIcon(("whiteBishop.png"));
-					button.setIcon(whiteBishop);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteBishop);
-				});
-				}
-
-				else if (i == 0 && j == 3) {
-					ImageIcon whiteBlack = new ImageIcon(("blackQueen.png"));
-					button.setIcon(whiteBlack);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteBlack);
-				});
-				}
-
-				else if (i == 7 && j == 3) {
-					ImageIcon whiteQueen = new ImageIcon(("whiteQueen.png"));
-					button.setIcon(whiteQueen);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteQueen);
-				});
-				}
-
-				else if (i == 0 && j == 4) {
-					ImageIcon blackKing = new ImageIcon(("blackKing.png"));
-					button.setIcon(blackKing);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, blackKing);
-				});
-				}
-
-				else if (i == 7 && j == 4) {
-					ImageIcon whiteKing = new ImageIcon(("whiteKing.png"));
-					button.setIcon(whiteKing);
-					int dummyX = i;
-					int dummyY = j;
-					button.addActionListener(event -> {
-						move(button,dummyX,dummyY, whiteKing);
-				});
-				}
-
-				button.setBackground(setColor(i, j));
-
-				squares[i][j] = button;
-				boardPanel.add(button);
-				int dummyX = i;
-				int dummyY = j;
-				button.addActionListener(event -> {
-					if (this.x == -1 && y == -1) {
-						x = dummyX;
-						y = dummyY;
-						image = getImage(dummyX, dummyY);
-					} else 
-						button.setIcon(image);
-					
-				});
-
-			}
-		}
-	}
-
-	/**
-	 * Helper method for determining the color of the square
-	 * 
-	 * @param x The vertical variable
-	 * @param y The horizontal variable
-	 * @return The color of the square
-	 */
-	private Color setColor(int x, int y) {
-		if ((x + y) % 2 == 0)
-			return Color.CYAN;
-		else
-			return Color.ORANGE;
-	}
-	
-	public final static ChessBoard getChessBoard() {
-		return new ChessBoard();
-		
-	}
-
-	public Icon getImage(int x, int y) {
-		Icon image = squares[x][y].getIcon();
-		return image;
-	}
-
-/*	For quicker testing purposes
- * 	public static void main(String[] args) {
-		getChessBoard();
-	}
-*/
-	public JButton getButton(int x, int y) {
-		return squares[x][y];
-	}
-	
-	public void move(JButton button,int dummyX, int dummyY, ImageIcon icon) {
-		if (this.x == -1 && this.y == -1) {
-			x = dummyX;
-			y = dummyY;
-			image = getImage(dummyX, dummyY);
-			oldButton = getButton(dummyX, dummyY);
-			
-		} else {
-			button.setIcon(image);
-			
-		}
-	}
 }
-
-

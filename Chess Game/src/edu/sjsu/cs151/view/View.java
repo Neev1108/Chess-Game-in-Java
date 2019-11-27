@@ -140,8 +140,9 @@ public class View {
 		 */
 		white.addActionListener(event2 -> {
 			playerScreen.dispose();
-			ChessBoard.getChessBoard();
-
+			JFrame frame = new ChessBoard();
+			  frame = setIdealFrame(frame);
+			  
 		});
 		
 		/**
@@ -149,9 +150,52 @@ public class View {
 		 */
 		black.addActionListener(event3 -> {
 			playerScreen.dispose();
-			ChessBoard.getChessBoard();
+			JFrame frame = new ChessBoard();
+			  frame = setIdealFrame(frame);
 		});
 
+	}
+	
+	
+	public static JFrame setIdealFrame(JFrame frame) {
+		frame.setSize(600, 750);
+		frame.setBackground(Color.BLACK);
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new FlowLayout());
+		
+		//Creating the newGame button
+		JButton newGame = new JButton("NEW GAME");
+		newGame.setPreferredSize(new Dimension(200,50 ));
+		newGame.setBackground(Color.cyan);
+
+		//Creating the quitGame button
+		JButton quitGame = new JButton("QUIT GAME");
+		quitGame.setPreferredSize(new Dimension(200, 50));
+		newGame.setBackground(Color.pink);
+		
+		//newGame button functionality
+		newGame.addActionListener(newGameRecurs -> {
+			frame.dispose();
+
+			View.playerScreen();;
+		});
+		
+		//quitGame button functionality
+		quitGame.addActionListener(exit -> {
+			frame.dispose();
+			System.exit(1);
+		});
+		
+		bottomPanel.add(newGame);
+		bottomPanel.add(quitGame);
+		bottomPanel.setBackground(Color.black);
+		frame.add(bottomPanel, BorderLayout.SOUTH);
+		  frame.setResizable(true);
+		  
+		  frame.setVisible(true);
+		  
+		  return frame;
+		  
 	}
 
 	
