@@ -5,8 +5,8 @@ package edu.sjsu.cs151.model;
 public class Bishop extends Piece {
 	PieceType type;
 
-	public Bishop(boolean isWhite) {
-		super(isWhite, PieceType.Bishop);
+	public Bishop(boolean isWhite, Tile currentTile) {
+		super(isWhite, PieceType.Bishop, currentTile);
 	}
 
 	/**

@@ -1,6 +1,5 @@
-package edu.sjsu.cs151.game;
+package edu.sjsu.cs151.model;
 
-import edu.sjsu.cs151.model.*;
 public class ChessGame {
 	
 	public static void main(String args[]) {

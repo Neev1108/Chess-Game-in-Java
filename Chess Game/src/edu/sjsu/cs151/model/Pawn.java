@@ -10,8 +10,8 @@ public class Pawn extends Piece {
 	 * The constructor for a Pawn.
 	 */
 	
-	public Pawn(boolean isWhite) {
-		super(isWhite, PieceType.Pawn);
+	public Pawn(boolean isWhite, Tile currentTile) {
+		super(isWhite, PieceType.Pawn, currentTile);
 	}
 
 	/**
@@ -35,12 +35,8 @@ public class Pawn extends Piece {
 				
 		int diffRow = origin.getRow() - destination.getRow();
 		int diffCol = origin.getCol() - destination.getCol();
-		System.out.println(origin.getRow() + " " + destination.getRow() + " " + diffRow);
-		System.out.println(origin.getCol() + " " + destination.getCol() + " " + diffCol);
 		diffRow = Math.abs(diffRow);
 		diffCol = Math.abs(diffCol);
-		
-		System.out.println("hasMoved = " + this.getHasMoved());
 		//outside any eligible move range
 		if (diffCol > 1)
 		{
@@ -69,7 +65,7 @@ public class Pawn extends Piece {
 				return false;
 			}
 			//destination contains an ally
-			if (destination.getPiece().getPieceColor().equals(this.getPieceColor()))
+			if (destination.getPiece().getPieceColor().compareTo(this.getPieceColor()) == 0)
 			{
 				System.out.println("You can't capture your allies.");
 				return false;

@@ -22,4 +22,9 @@ public class Player {
 	public boolean firstTurn() {
 		return firstTurn = true;
 	}
+	
+	public String toString()
+	{
+		return color + " Player";
+	}
 }

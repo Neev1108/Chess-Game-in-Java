@@ -5,8 +5,8 @@ package edu.sjsu.cs151.model;
 
 public class Rook extends Piece {
 	PieceType type;
-	public Rook(boolean isWhite) {
-		super(isWhite, PieceType.Rook);
+	public Rook(boolean isWhite, Tile currentTile) {
+		super(isWhite, PieceType.Rook, currentTile);
 	}
 	
 	/**

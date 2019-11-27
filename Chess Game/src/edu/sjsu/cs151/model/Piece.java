@@ -12,8 +12,9 @@ public abstract class Piece {
 	private boolean isWhite = false;
 	private boolean PieceAlive = true;
 	private boolean hasMoved = false;
+	private Tile currentTile;
 
-	public Piece(boolean isWhite, PieceType type) {
+	public Piece(boolean isWhite, PieceType type, Tile currentTile) {
 		this.isWhite = isWhite;
 		if (isWhite == true) {
 			color = PieceColor.White;
@@ -25,7 +26,7 @@ public abstract class Piece {
 			colorString = "Black";
 		}
 		this.type = type;
-		
+		this.currentTile = currentTile;
 	}
 
 	// enums for type and color
@@ -67,7 +68,7 @@ public abstract class Piece {
 		Knight {
 			@Override
 			public String toString() {
-				return "K";
+				return "C"; //C for Cavalier/Chevalier
 			}
 		},
 		Bishop {
@@ -131,5 +132,15 @@ public abstract class Piece {
 	public void setHasMoved(boolean b)
 	{
 		hasMoved = b;
+	}
+	
+	public Tile getCurrentTile()
+	{
+		return currentTile;
+	}
+	
+	public void setCurrentTile(Tile newTile)
+	{
+		currentTile = newTile;
 	}
 }

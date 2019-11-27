@@ -219,8 +219,6 @@ public class Game {
 			 doTurn = player1;
 		 
 		 return true;
-		 
-		 
 	 }
 	
 

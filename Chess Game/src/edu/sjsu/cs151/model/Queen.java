@@ -5,8 +5,8 @@ package edu.sjsu.cs151.model;
 public class Queen extends Piece{
 
 	PieceType type;
-public Queen(boolean isWhite) {
-	super(isWhite, PieceType.Queen);
+public Queen(boolean isWhite, Tile currentTile) {
+	super(isWhite, PieceType.Queen, currentTile);
 }
 
 /**

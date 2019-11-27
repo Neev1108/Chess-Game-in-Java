@@ -8,8 +8,8 @@ public class King extends Piece {
 	PieceType type;
 	
 	
-	public King(boolean isWhite) {
-		super(isWhite, PieceType.King);
+	public King(boolean isWhite, Tile currentTile) {
+		super(isWhite, PieceType.King, currentTile);
 	}
 
 	/**
@@ -33,23 +33,32 @@ public class King extends Piece {
 	
 	    @Override
 	    public boolean isValidMove(Tile start, Tile end) 
-	    { 
-	        // we can't move the piece to a Box that  
-	        // has a piece of the same color 
-	        if (end.getPiece().isWhite() == this.isWhite()) { 
-	            return false; 
-	        } 
-	  
-	        int x = Math.abs(start.getRow() - end.getRow()); 
-	        int y = Math.abs(start.getCol() - end.getCol()); 
-	        if (x + y == 1) { 
-	            // check if this move will not result in the king 
-	            // being attacked if so return true 
-	            return true; 
-	        }
-	        else
-	        	return false;
-	  
+	    {
+	    	int diffRow = start.getRow() - end.getRow();
+	    	diffRow = Math.abs(diffRow);
+	    	int diffCol = start.getCol() - end.getCol();
+	    	diffCol = Math.abs(diffCol);
+	    	
+	    	//King can only move 1 square in any direction (unless Castling)
+	    	if ((diffRow > 1 || diffCol > 1) && (this.getHasMoved() == true))
+	    	{
+	    		System.out.println("This King cannot move that far right now.");
+	    		return false;
+	    	}
+	    	
+	    	
+	    	
+	    	//check for allies
+	    	if (end.getIsOccupied() == true)
+	    	{
+	    		if (end.getPiece().getColorString().compareTo(start.getPiece().getColorString()) == 0)
+	    		{
+	    			System.out.println("That tile is already held by an ally");
+	    			return false;
+	    		}
+	    	}
+	    	
+	    	return true;
 	    } 
 	  
 
