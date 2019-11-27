@@ -1,4 +1,7 @@
 package edu.sjsu.cs151.model;
+
+import edu.sjsu.cs151.model.Piece.PieceType;
+
 /**
  * Created by Sehajmeet on 10/26/2019
  */	
@@ -6,6 +9,7 @@ package edu.sjsu.cs151.model;
 public class King extends Piece {
 
 	PieceType type;
+	boolean isInCheck = false;
 	
 	
 	public King(boolean isWhite, Tile currentTile) {
@@ -31,42 +35,44 @@ public class King extends Piece {
 	 */
 
 	
-	    @Override
-	    public boolean isValidMove(Tile start, Tile end) 
-	    {
-	    	int diffRow = start.getRow() - end.getRow();
-	    	diffRow = Math.abs(diffRow);
-	    	int diffCol = start.getCol() - end.getCol();
-	    	diffCol = Math.abs(diffCol);
-	    	
-	    	//King can only move 1 square in any direction (unless Castling)
-	    	if ((diffRow > 1 || diffCol > 1) && (this.getHasMoved() == true))
-	    	{
-	    		System.out.println("This King cannot move that far right now.");
-	    		return false;
-	    	}
-	    	
-	    	
-	    	
-	    	//check for allies
-	    	if (end.getIsOccupied() == true)
-	    	{
-	    		if (end.getPiece().getColorString().compareTo(start.getPiece().getColorString()) == 0)
-	    		{
-	    			System.out.println("That tile is already held by an ally");
-	    			return false;
-	    		}
-	    	}
-	    	
-	    	return true;
-	    } 
-	  
+    @Override
+    public boolean isValidMove(Tile start, Tile end) 
+    {
+    	int diffRow = start.getRow() - end.getRow();
+    	diffRow = Math.abs(diffRow);
+    	int diffCol = start.getCol() - end.getCol();
+    	diffCol = Math.abs(diffCol);
+    	
+    	//King can only move 1 square in any direction (unless Castling)
+    	if ((diffRow > 1 || diffCol > 1) && (this.getHasMoved() == true))
+    	{
+    		System.out.println("This King cannot move that far right now.");
+    		return false;
+    	}
+    	
+    	
+    	
+    	//check for allies
+    	if (end.getIsOccupied() == true)
+    	{
+    		if (end.getPiece().getColorString().compareTo(start.getPiece().getColorString()) == 0)
+    		{
+    			System.out.println("That tile is already held by an ally");
+    			return false;
+    		}
+    	}
+    	
+    	return true;
+    } 
+  
+    public boolean getIsInCheck()
+    {
+    	return isInCheck;
+    }
+ 
+    public void setIsInCheck(boolean b)
+    {
+    	isInCheck = b;
+    }
 
-	 
-
-
-	}	
-	
-	
-	
-	
+}

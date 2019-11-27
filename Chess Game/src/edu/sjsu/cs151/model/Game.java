@@ -387,7 +387,10 @@ public class Game {
 
 
 
-
+	 public boolean kingInCheck(King king) 
+	 {
+		 return false;
+	 }
 }
 
 
