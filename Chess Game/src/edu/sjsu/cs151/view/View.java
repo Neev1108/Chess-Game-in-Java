@@ -159,7 +159,6 @@ public class View {
 	
 	public static JFrame setIdealFrame(JFrame frame) {
 		frame.setSize(600, 750);
-		frame.setBackground(Color.BLACK);
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
 		
@@ -170,8 +169,15 @@ public class View {
 
 		//Creating the quitGame button
 		JButton quitGame = new JButton("QUIT GAME");
-		quitGame.setPreferredSize(new Dimension(200, 50));
+		quitGame.setPreferredSize(new Dimension(100, 50));
 		newGame.setBackground(Color.pink);
+		
+		JTextArea textArea = new JTextArea("Welcome to our chess game!");
+		textArea.setEditable(false);
+		JScrollPane scrollpane = new JScrollPane(textArea);
+		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.setPreferredSize(new Dimension(200,75));
+		bottomPanel.add(scrollpane);
 		
 		//newGame button functionality
 		newGame.addActionListener(newGameRecurs -> {
@@ -185,7 +191,7 @@ public class View {
 			frame.dispose();
 			System.exit(1);
 		});
-		
+
 		bottomPanel.add(newGame);
 		bottomPanel.add(quitGame);
 		bottomPanel.setBackground(Color.black);

@@ -25,6 +25,8 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 		  chessBoard.setPreferredSize(BOARD_SIZE);
 		  chessBoard.setBounds(0, 0, BOARD_SIZE.width, BOARD_SIZE.height);
 		  
+		  
+		  //set colors and adds Jpanels for the tiles
 		  for (int i = 0; i < 64; i++) {
 			  JPanel tile = new JPanel(new BorderLayout());
 			  chessBoard.add(tile);
@@ -36,6 +38,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 			  else 
 			  tile.setBackground( i % 2 == 0 ? Color.orange : Color.GRAY );
 		  }
+		  
 		  
 		  JLabel blackRook = new JLabel( new ImageIcon("blackRook.png") );
 		  JPanel panel = (JPanel)chessBoard.getComponent(0);
