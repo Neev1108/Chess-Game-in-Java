@@ -28,6 +28,8 @@ public class Tile {
 	public Piece getPiece() { 
 	    return this.piece; 
 	} 
+	
+	
 	public void setPiece(Piece piece) { //replaces the piece on the tile by the new piece
 		this.piece = piece ;
 	}

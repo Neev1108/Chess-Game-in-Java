@@ -1,8 +1,29 @@
 package edu.sjsu.cs151.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.util.concurrent.BlockingQueue;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.Timer;
+
+import edu.sjsu.cs151.controller.Message;
+import edu.sjsu.cs151.model.*;
+import edu.sjsu.cs151.view.*;
+import edu.sjsu.cs151.controller.*;
+
+import java.awt.event.*;
 /**
  * This program creates a simple moving animation
  * 
@@ -10,9 +31,12 @@ import javax.swing.*;
  *
  */
 public class View {
+	
+	public BlockingQueue<Message> queue;
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
+	
 
 	public static void main(String[] args) {
 		/**
@@ -95,6 +119,8 @@ public class View {
 			// start a new frame for the pick color screen
 			frame.dispose();
 			playerScreen();
+			//queue.put(new NewGameMessage);
+			
 
 		});
 

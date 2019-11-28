@@ -22,5 +22,11 @@ public class Controller {
 	
 	
 
-
+	public Controller(Model model, View view,BlockingQueue<Message> queue) {
+		this.model = model;
+		this.view = view;
+		messageQueue = queue;
+	}
+	
+	
 }

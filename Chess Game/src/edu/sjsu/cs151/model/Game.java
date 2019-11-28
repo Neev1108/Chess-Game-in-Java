@@ -188,9 +188,28 @@ public class Game {
 		 
 		 //check if the destination contains an ally
 		 
-		 //test if the move leaves allied king in check
-		 boolean kingSafe = true;
+		 boolean containsAlly = checkDestinationForAlly(move, player, PieceMoved);
+		 if (containsAlly == true)
+		 {
+			 return false;
+		 }
 		 
+		 
+		 //test if the move leaves allied king in check
+		 boolean testAllyKingCheck = false;
+		 if (player.getColor().compareTo("White") == 0)
+		 {
+			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+		 }
+		 else
+		 {
+			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+		 }
+		 if (testAllyKingCheck == true)
+		 {
+			 System.out.println("This move would leave your King in danger and thus cannot be performed");
+			 return false;
+		 }
 		 
 		 //Move is able to be performed; perform move
 		 PieceMoved.move(move.getCurrentPos(), move.getEndPos());
@@ -389,8 +408,111 @@ public class Game {
 
 	 public boolean kingInCheck(King king) 
 	 {
-		 return false;
+		 boolean result = false;
+		 
+		 Tile kingTile = king.getCurrentTile();
+		 int checkRow = kingTile.getRow();
+		 int checkCol = kingTile.getCol();
+		 Tile checkTile = kingTile;
+		 boolean checkForPiece = false;
+		 Piece checkPiece = null;
+		 
+		 while (checkRow > -1)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+				 }
+			 }
+			 checkRow = checkRow -1;
+		 }
+		 
+		 checkRow = kingTile.getRow();
+		 while (checkRow < 8)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+				 }
+			 }
+			 checkRow = checkRow + 1;
+		 }
+		 
+		 
+		 while (checkCol > -1)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+				 }
+			 }
+			 checkCol = checkCol -1;
+		 }
+		 
+		 checkCol = kingTile.getCol();
+		 while (checkRow < 8)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+				 }
+			 }
+			 checkCol = checkCol + 1;
+		 }
+		 king.setIsInCheck(result);
+		 return result;
 	 }
+
+	 
+
 }
 
 
