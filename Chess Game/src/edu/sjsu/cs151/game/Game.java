@@ -15,7 +15,8 @@ public class Game {
 	private static Model model;
 
 	public static void main(String [] args){
-	
+		
+			
 	}
 
 }

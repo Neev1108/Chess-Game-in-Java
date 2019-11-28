@@ -16,6 +16,11 @@ public class Controller {
 	private Model model;
 	private GameInfo gameInfo;
 	private List<Valve> valves = new LinkedList<Valve>();
+	
+	
+	
+	
+	
 
 
 }
