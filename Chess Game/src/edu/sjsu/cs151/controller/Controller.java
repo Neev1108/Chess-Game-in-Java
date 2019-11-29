@@ -28,5 +28,27 @@ public class Controller {
 		messageQueue = queue;
 	}
 	
+	public void mainloop() throws Exception{
+		ValveResponses response = ValveResponses.EXECUTED;
+		Message message = null;
+		while(response != ValveResponses.FINISH) {
+			try {
+				message = (Message) messageQueue.take();
+			}
+			catch(InterruptedException e){
+				e.printStackTrace(); }
+		}
+		for(Valve valve : valves)
+		{
+		if(response != ValveResponses.MISS) 
+			break;
+		}
+		
+	}
+	
+	public void updateGameInfo(){
+		
+	}
+	
 	
 }

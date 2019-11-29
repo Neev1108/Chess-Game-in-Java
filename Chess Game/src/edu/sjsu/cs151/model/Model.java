@@ -1,6 +1,6 @@
 package edu.sjsu.cs151.model;
 
-public class Model {
+public class Model{
 	
 	public static void main(String args[]) {
 		System.out.println("For this assignment we are simulating a chess game in console.");
@@ -8,6 +8,8 @@ public class Model {
 		game.playGame();
 		
 	}
+
+	
 
 }
 

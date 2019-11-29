@@ -2,6 +2,8 @@ package edu.sjsu.cs151.model;
 
 import java.util.Scanner;
 
+import edu.sjsu.cs151.controller.PlayerChosenMessage;
+
 /**
  * Created by Neeval on 10/27/2019
  */
@@ -19,7 +21,14 @@ public class Game {
 	{
 		return player1;
 	}
+	
+	public void setPlayer1(PlayerChosenMessage message) {
+		this.player1 = new Player(message.getColor(), message.isFirstTurn());
+	}
 
+	public void setPlayer2(PlayerChosenMessage message) {
+		this.player2 = new Player(message.getColor(), message.isFirstTurn());
+	}
 	public Player getPlayer2()
 	{
 		return player2;

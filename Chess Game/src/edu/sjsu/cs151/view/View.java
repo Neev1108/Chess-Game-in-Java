@@ -32,11 +32,16 @@ import java.awt.event.*;
  */
 public class View {
 	
-	public BlockingQueue<Message> queue;
+	public static BlockingQueue<Message> queue;
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
 	
+
+	public View(BlockingQueue<Message> queue2) {
+		// TODO Auto-generated constructor stub
+		this.queue = queue;
+	}
 
 	public static void main(String[] args) {
 		/**
@@ -115,9 +120,12 @@ public class View {
 
 
 		startButton.addActionListener(event -> {
-
+			NewGameMessage newGame = new NewGameMessage();
+			queue.add(newGame);
+			
 			// start a new frame for the pick color screen
 			frame.dispose();
+			
 			playerScreen();
 			//queue.put(new NewGameMessage);
 			
@@ -165,6 +173,7 @@ public class View {
 		 * The actionListener for selecting the white color
 		 */
 		white.addActionListener(event2 -> {
+			queue.add(new PlayerChosenMessage("White", true));
 			playerScreen.dispose();
 			JFrame frame = new ChessBoard();
 			  frame = setIdealFrame(frame);
@@ -175,6 +184,7 @@ public class View {
 		 * The actionListener for selecting the black color
 		 */
 		black.addActionListener(event3 -> {
+			queue.add(new PlayerChosenMessage("Black", false));
 			playerScreen.dispose();
 			JFrame frame = new ChessBoard();
 			  frame = setIdealFrame(frame);
@@ -228,6 +238,12 @@ public class View {
 		  
 		  return frame;
 		  
+	}
+	
+	public static View init(BlockingQueue<Message> queue) {
+		View view = new View(queue);
+		return view;
+		
 	}
 
 	
