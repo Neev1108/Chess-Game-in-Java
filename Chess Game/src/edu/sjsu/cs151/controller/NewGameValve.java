@@ -10,8 +10,7 @@ public class NewGameValve implements Valve{
 		if(message.getClass() != NewGameMessage.class) {
 			return ValveResponses.MISS;
 		}
-		View.playerScreen();
-		
+		//modelGame.start();
 		//needs to create a thread for model which will start the moment the player color is chosen
 		
 		return ValveResponses.EXECUTED;

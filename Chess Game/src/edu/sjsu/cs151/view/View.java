@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -30,20 +31,21 @@ import java.awt.event.*;
  * @author Sehajmeet and Neeval
  *
  */
-public class View {
+public class View implements Runnable {
 	
 	public static BlockingQueue<Message> queue;
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
+	ReentrantLock lock;
 	
 
-	public View(BlockingQueue<Message> queue2) {
-		// TODO Auto-generated constructor stub
-		this.queue = queue;
+	public View(BlockingQueue<Message> queue2, ReentrantLock lock) {
+		this.lock = lock;
+		this.queue = queue2;
 	}
 
-	public static void main(String[] args) {
+	public void run() {
 		/**
 		 * Creating a JFrame of size 2000 x 2000
 		 */
@@ -120,14 +122,25 @@ public class View {
 
 
 		startButton.addActionListener(event -> {
-			NewGameMessage newGame = new NewGameMessage();
-			queue.add(newGame);
 			
+			// was doing some thread testing lock.wait will make the view thread wait, but I still have to figure out how to start the model's thread
+			
+			//synchronized(lock) {
+			//try {
+				NewGameMessage newGame = new NewGameMessage();
+				queue.add(newGame);
+				//lock.wait();
+				
+			//} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			//}
+			//}
 			// start a new frame for the pick color screen
 			frame.dispose();
 			
 			playerScreen();
-			//queue.put(new NewGameMessage);
+			
 			
 
 		});
@@ -240,10 +253,14 @@ public class View {
 		  
 	}
 	
-	public static View init(BlockingQueue<Message> queue) {
-		View view = new View(queue);
+	public static View init(BlockingQueue<Message> queue, ReentrantLock lock) {
+		View view = new View(queue, lock);
 		return view;
 		
+	}
+	
+	public BlockingQueue<Message> getQueue() {
+		return this.queue;
 	}
 
 	

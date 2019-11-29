@@ -1,8 +1,8 @@
 package edu.sjsu.cs151.model;
 
-public class Model{
+public class Model implements Runnable{
 	
-	public static void main(String args[]) {
+	public void run() {
 		System.out.println("For this assignment we are simulating a chess game in console.");
 		Game game = new Game();		
 		game.playGame();

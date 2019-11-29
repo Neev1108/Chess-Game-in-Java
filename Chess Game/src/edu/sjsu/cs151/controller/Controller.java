@@ -28,7 +28,8 @@ public class Controller {
 		messageQueue = queue;
 	}
 	
-	public void mainloop() throws Exception{
+	
+	public void mainLoop() throws Exception{
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
 		while(response != ValveResponses.FINISH) {
@@ -44,6 +45,10 @@ public class Controller {
 			break;
 		}
 		
+	}
+	
+	public void updateMessageQueue(BlockingQueue<Message> queue){
+		this.messageQueue = queue;
 	}
 	
 	public void updateGameInfo(){
