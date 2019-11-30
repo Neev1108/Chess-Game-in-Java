@@ -19,9 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import edu.sjsu.cs151.controller.Message;
 import edu.sjsu.cs151.model.*;
-import edu.sjsu.cs151.view.*;
 import edu.sjsu.cs151.controller.*;
 
 import java.awt.event.*;
@@ -40,9 +38,9 @@ public class View implements Runnable {
 	ReentrantLock lock;
 	
 
-	public View(BlockingQueue<Message> queue2, ReentrantLock lock) {
+	public View(BlockingQueue<Message> queue, ReentrantLock lock) {
 		this.lock = lock;
-		this.queue = queue2;
+		View.queue = queue;
 	}
 
 	public void run() {
@@ -127,8 +125,11 @@ public class View implements Runnable {
 			
 			//synchronized(lock) {
 			//try {
-				NewGameMessage newGame = new NewGameMessage();
-				queue.add(newGame);
+			try {
+				queue.put(new NewGameMessage()); // Add to queue
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 				//lock.wait();
 				
 			//} catch (InterruptedException e) {
@@ -188,7 +189,7 @@ public class View implements Runnable {
 		white.addActionListener(event2 -> {
 			queue.add(new PlayerChosenMessage("White", true));
 			playerScreen.dispose();
-			JFrame frame = new ChessBoard();
+			JFrame frame = new ChessBoard(queue);
 			  frame = setIdealFrame(frame);
 			  
 		});
@@ -199,7 +200,7 @@ public class View implements Runnable {
 		black.addActionListener(event3 -> {
 			queue.add(new PlayerChosenMessage("Black", false));
 			playerScreen.dispose();
-			JFrame frame = new ChessBoard();
+			JFrame frame = new ChessBoard(queue);
 			  frame = setIdealFrame(frame);
 		});
 
@@ -237,8 +238,11 @@ public class View implements Runnable {
 		
 		//quitGame button functionality
 		quitGame.addActionListener(exit -> {
-			NewGameMessage QuitGame = new NewGameMessage();
-			queue.add(QuitGame);
+			try {
+				queue.put(new EndGameMessage()); // Add to queue
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}     
 			frame.dispose();
 			System.exit(1);
 		});
@@ -261,10 +265,4 @@ public class View implements Runnable {
 		
 	}
 	
-	public BlockingQueue<Message> getQueue() {
-		return this.queue;
-	}
-
-	
-
 }
