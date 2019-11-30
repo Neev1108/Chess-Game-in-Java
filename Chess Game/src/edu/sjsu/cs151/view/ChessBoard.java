@@ -162,6 +162,8 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 
 	
 	//Drop the chess piece back onto the chess board
+	
+	
 
 	public void mouseReleased(MouseEvent e) {
 		//if no chessPiece initialized means nothing was mouse pressed
@@ -185,6 +187,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 
 			chessPiece.setVisible(true);
 		}
+		
 	}
 	
 	

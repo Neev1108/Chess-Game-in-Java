@@ -29,6 +29,8 @@ public class Controller {
 	}
 	
 	
+	
+	
 	public void mainLoop() throws Exception{
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
@@ -50,6 +52,8 @@ public class Controller {
 	public void updateMessageQueue(BlockingQueue<Message> queue){
 		this.messageQueue = queue;
 	}
+	
+	
 	
 	public void updateGameInfo(){
 		

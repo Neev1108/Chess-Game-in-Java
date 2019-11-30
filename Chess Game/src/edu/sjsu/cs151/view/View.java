@@ -237,6 +237,8 @@ public class View implements Runnable {
 		
 		//quitGame button functionality
 		quitGame.addActionListener(exit -> {
+			NewGameMessage QuitGame = new NewGameMessage();
+			queue.add(QuitGame);
 			frame.dispose();
 			System.exit(1);
 		});
