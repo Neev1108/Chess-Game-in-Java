@@ -1,34 +1,33 @@
 package edu.sjsu.cs151.controller;
 
-public class MoveMessage implements Message {
+public class MoveMessage implements Message{
 
-	private int start, end;
+	private int currentPosition, endPosition;
 		
 		/**
 		* Message for an attempted move
 		* @param s start position
 		* @param e end position
 		*/
-		public MoveMessage(int s, int e) {
-			start = s;
-			end = e;		
+		public MoveMessage(int currentPosition, int endPosition) {
+			this.currentPosition = currentPosition;
+			this.currentPosition = endPosition;		
 		}
 
 		/**
 		* Start position getter method
 		* @return start position
 		*/
-		public int getStart() {
-			return start;
+		public int getCurrentPosition() {
+			return currentPosition;
 		}
 		
 		/**
 		* End position getter method
 		* @return end position
 		*/
-		public int getEnd() {
-			return end;
+		public int getEndPosition() {
+			return endPosition;
 		}	
 	
-
 }

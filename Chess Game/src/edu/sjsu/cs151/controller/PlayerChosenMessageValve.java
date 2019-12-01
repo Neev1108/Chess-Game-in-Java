@@ -1,8 +1,5 @@
 package edu.sjsu.cs151.controller;
 
-import edu.sjsu.cs151.model.Game;
-import edu.sjsu.cs151.view.View;
-
 public class PlayerChosenMessageValve implements Valve {
 
 	public ValveResponses execute(Message message) {

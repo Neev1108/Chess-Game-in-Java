@@ -23,6 +23,7 @@ import edu.sjsu.cs151.model.*;
 import edu.sjsu.cs151.controller.*;
 
 import java.awt.event.*;
+
 /**
  * This program creates a simple moving animation
  * 
@@ -30,13 +31,12 @@ import java.awt.event.*;
  *
  */
 public class View implements Runnable {
-	
+
 	public static BlockingQueue<Message> queue;
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
 	ReentrantLock lock;
-	
 
 	public View(BlockingQueue<Message> queue, ReentrantLock lock) {
 		this.lock = lock;
@@ -57,8 +57,7 @@ public class View implements Runnable {
 		final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
 		final MoveableShape quiz = new stationaryTile(0, 0, 100);
 		final MoveableShape bish = new BishopShape(0, 0, PAWN_WIDTH);
-		
-		
+
 		/**
 		 * Creating the first chess piece animation
 		 */
@@ -102,47 +101,44 @@ public class View implements Runnable {
 
 		t.start();
 
-		
 		/**
 		 * Creating the button for starting the chess game
 		 */
 		JButton startButton = new JButton("START CHESS GAME");
-		
-		//Creating a GridBagLayout for our output
+
+		// Creating a GridBagLayout for our output
 		JLabel backg = new JLabel(new ImageIcon("background.png"));
 		backg.setLayout(new FlowLayout());
 		JPanel pnl = new JPanel();
-		
+
 		backg.add(pnl);
 		pnl.add(startButton);
 		frame.add(backg);
 		frame.setVisible(true);
 
-
 		startButton.addActionListener(event -> {
-			
-			// was doing some thread testing lock.wait will make the view thread wait, but I still have to figure out how to start the model's thread
-			
-			//synchronized(lock) {
-			//try {
+
+			// was doing some thread testing lock.wait will make the view thread wait, but I
+			// still have to figure out how to start the model's thread
+
+			// synchronized(lock) {
+			// try {
 			try {
 				queue.put(new NewGameMessage()); // Add to queue
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-				//lock.wait();
-				
-			//} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			//}
-			//}
+			// lock.wait();
+
+			// } catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			// }
 			// start a new frame for the pick color screen
 			frame.dispose();
-			
+
 			playerScreen();
-			
-			
 
 		});
 
@@ -154,7 +150,6 @@ public class View implements Runnable {
 		playerScreen.setBackground(Color.black);
 		playerScreen.setVisible(true);
 
-		
 		JLabel background = new JLabel(new ImageIcon("background.png"));
 		background.setLayout(new FlowLayout());
 
@@ -190,10 +185,10 @@ public class View implements Runnable {
 			queue.add(new PlayerChosenMessage("White", true));
 			playerScreen.dispose();
 			JFrame frame = new ChessBoard(queue);
-			  frame = setIdealFrame(frame);
-			  
+			frame = setIdealFrame(frame);
+
 		});
-		
+
 		/**
 		 * The actionListener for selecting the black color
 		 */
@@ -201,48 +196,48 @@ public class View implements Runnable {
 			queue.add(new PlayerChosenMessage("Black", false));
 			playerScreen.dispose();
 			JFrame frame = new ChessBoard(queue);
-			  frame = setIdealFrame(frame);
+			frame = setIdealFrame(frame);
 		});
 
 	}
-	
-	
+
 	public static JFrame setIdealFrame(JFrame frame) {
 		frame.setSize(600, 750);
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
-		
-		//Creating the newGame button
+
+		// Creating the newGame button
 		JButton newGame = new JButton("NEW GAME");
-		newGame.setPreferredSize(new Dimension(200,50 ));
+		newGame.setPreferredSize(new Dimension(200, 50));
 		newGame.setBackground(Color.cyan);
 
-		//Creating the quitGame button
+		// Creating the quitGame button
 		JButton quitGame = new JButton("QUIT GAME");
 		quitGame.setPreferredSize(new Dimension(100, 50));
 		newGame.setBackground(Color.pink);
-		
+
 		JTextArea textArea = new JTextArea("Welcome to our chess game!");
 		textArea.setEditable(false);
 		JScrollPane scrollpane = new JScrollPane(textArea);
 		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollpane.setPreferredSize(new Dimension(200,75));
+		scrollpane.setPreferredSize(new Dimension(200, 75));
 		bottomPanel.add(scrollpane);
-		
-		//newGame button functionality
+
+		// newGame button functionality
 		newGame.addActionListener(newGameRecurs -> {
 			frame.dispose();
 
-			View.playerScreen();;
+			View.playerScreen();
+			;
 		});
-		
-		//quitGame button functionality
+
+		// quitGame button functionality
 		quitGame.addActionListener(exit -> {
 			try {
 				queue.put(new EndGameMessage()); // Add to queue
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
-			}     
+			}
 			frame.dispose();
 			System.exit(1);
 		});
@@ -251,18 +246,18 @@ public class View implements Runnable {
 		bottomPanel.add(quitGame);
 		bottomPanel.setBackground(Color.black);
 		frame.add(bottomPanel, BorderLayout.SOUTH);
-		  frame.setResizable(true);
-		  
-		  frame.setVisible(true);
-		  
-		  return frame;
-		  
+		frame.setResizable(true);
+
+		frame.setVisible(true);
+
+		return frame;
+
 	}
-	
+
 	public static View init(BlockingQueue<Message> queue, ReentrantLock lock) {
 		View view = new View(queue, lock);
 		return view;
-		
+
 	}
-	
+
 }
