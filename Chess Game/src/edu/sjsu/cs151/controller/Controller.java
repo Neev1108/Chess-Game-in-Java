@@ -21,16 +21,44 @@ public class Controller {
 	
 
 	public Controller(Model model, View view,BlockingQueue<Message> queue) {
+		valves.add(new NewGameValve());
+    	valves.add(new MoveValve(model, view));
+    	valves.add(new EndGameValve());
 		this.model = model;
 		this.view = view;
 		this.queue = queue;
 	}
 	
 	
+	public View getView() {
+		return view;
+	}
+
+
+	public Model getModel() {
+		return model;
+	}
+
+
 	public void mainLoop() throws Exception{
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
-		System.out.println(queue);
+		while (response != ValveResponses.FINISH) {
+			try {
+				message = queue.take();		
+			}
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			for (Valve valve: valves) {
+				response = valve.execute(message);
+				
+				if(response != ValveResponses.MISS)
+					break;
+			}
+		}
+		
+		
 		
 	}
 	
@@ -38,9 +66,7 @@ public class Controller {
 		this.queue = queue;
 	}
 	
-	public void updateGameInfo(){
-		
-	}
+	
 	
 	
 }

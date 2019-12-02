@@ -36,10 +36,9 @@ public class View implements Runnable {
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
-	ReentrantLock lock;
+	
 
-	public View(BlockingQueue<Message> queue, ReentrantLock lock) {
-		this.lock = lock;
+	public View(BlockingQueue<Message> queue) {
 		View.queue = queue;
 	}
 
@@ -254,10 +253,6 @@ public class View implements Runnable {
 
 	}
 
-	public static View init(BlockingQueue<Message> queue, ReentrantLock lock) {
-		View view = new View(queue, lock);
-		return view;
 
-	}
 
 }

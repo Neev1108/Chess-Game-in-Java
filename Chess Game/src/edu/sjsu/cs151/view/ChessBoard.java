@@ -36,6 +36,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 	public ChessBoard(BlockingQueue<Message> queue) {
 
 		// adding the pane with the mouse listeners
+		this.queue = queue;
 		pane = new JLayeredPane();
 		getContentPane().add(pane);
 		pane.setPreferredSize(BOARD_SIZE);
@@ -204,11 +205,13 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 				//tile.add(chessPiece);
 
 				try {
-					queue.put(new MoveMessage(currentPosition, endPosition));
+					MoveMessage message = new MoveMessage(currentPosition, endPosition);
+					queue.put(message);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 			}
 
 			//else {
@@ -238,5 +241,37 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 	public void mouseExited(MouseEvent e) {
 
 	}
+	
+	public void updateBoard() {
+		pane.removeAll(); 
+        pane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
+	}
+	
+	public JPanel getTileAt(int position) {
+		return (JPanel) chessBoard.getComponent(position);
+	}
+	
+	public void movePiece(int currentPosition, int endPosition) {
+		getTileAt(currentPosition).add(chessPiece);
+		getTileAt(endPosition).remove(0);
+	}
+	
+	public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue){
+		return queue;
+	}
+
+	public JPanel getChessBoard() {
+		return chessBoard;
+	}
+
+	public JLabel getChessPiece() {
+		return chessPiece;
+	}
+
+	public BlockingQueue<Message> getQueue() {
+		return queue;
+	}
+	
+	
 
 }

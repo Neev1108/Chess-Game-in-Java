@@ -15,21 +15,11 @@ public class Game {
 	private static View view;
 	private static Model model;
 	
-	  /**
-     * Controller Constructor
-     * @param View, Model, and BlockingQueue 
-	 * @return 
-     */
-    public void Controller(BlockingQueue<Message> queue, Model model, View view) {
-    	Game.queue = queue;
-    	Game.model = model;
-    	Game.view = view;
-    }
+
     
 
 	public static void main(String [] args){
-		ReentrantLock lock = new ReentrantLock();
-		view = View.init(queue, lock);
+		view = new View(queue);
 		model = new Model();
 		
 		Thread viewThread = new Thread(view);
@@ -40,16 +30,16 @@ public class Game {
 		//these will start the game in the console AND the view thread, working on making it thread safe right now
 		viewThread.start();
 		modelThread.start();
-		//game.updateMessageQueue(view.getQueue());
-		/*
-		try {
-			game.mainLoop();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+			try {
+				game.mainLoop();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		//view.dispose();
-		queue.clear();
-		*/	
+		queue.clear();	
 	}
 	
 	
