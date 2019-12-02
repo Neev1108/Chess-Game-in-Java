@@ -21,18 +21,19 @@ public class Game {
 	public static void main(String [] args){
 		view = new View(queue);
 		model = new Model();
+		Controller controller = new Controller(model, view, queue);
 		
 		Thread viewThread = new Thread(view);
 		Thread modelThread = new Thread(model);
-		Controller game = new Controller(model, view, queue);
 		
 		
 		//these will start the game in the console AND the view thread, working on making it thread safe right now
 		viewThread.start();
 		modelThread.start();
 		
+		
 			try {
-				game.mainLoop();
+				controller.mainLoop();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
