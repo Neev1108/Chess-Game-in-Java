@@ -11,7 +11,7 @@ public class MoveMessage implements Message{
 		*/
 		public MoveMessage(int currentPosition, int endPosition) {
 			this.currentPosition = currentPosition;
-			this.currentPosition = endPosition;		
+			this.endPosition = endPosition;		
 		}
 
 		/**
