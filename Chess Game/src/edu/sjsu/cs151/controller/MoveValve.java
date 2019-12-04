@@ -35,10 +35,7 @@ public class MoveValve implements Valve {
 		Tile endTile = model.getTile(endRow, endCol);
 		Player currentPlayer = model.getDoTurn();
 		Moves move = new Moves (currentPlayer, currentTile, endTile);
-		boolean isSuccessful = model.startTurn(move);
-		
-		System.out.println(isSuccessful);
-		
+		boolean isSuccessful = model.startTurn(move);		
 		
 		
 		 // if start turn is successful then make move on view or dont move
