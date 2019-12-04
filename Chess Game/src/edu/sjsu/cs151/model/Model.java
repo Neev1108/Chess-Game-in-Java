@@ -204,21 +204,21 @@ public class Model {
 		 
 		 
 		 //test if the move leaves allied king in check
-	//	 boolean testAllyKingCheck = false;
+	/*	 boolean testAllyKingCheck = false;
 		 if (player.getColor().compareTo("White") == 0)
 		 {
-//			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
 		 }
 		 else
 		 {
-//			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+			 testAllyKingCheck = kingInCheck(board.getBlackKing());
 		 }
-	//	 if (testAllyKingCheck == true)
-	/*	 {
+		 if (testAllyKingCheck == true)
+		 {
 			 System.out.println("This move would leave your King in danger and thus cannot be performed");
 			 return false;
 		 }
-*/		 
+	*/	 
 		 //Move is able to be performed; perform move
 		 PieceMoved.move(move.getCurrentPos(), move.getEndPos());
 		 
@@ -414,7 +414,7 @@ public class Model {
 
 
 
-	/* public boolean kingInCheck(King king) 
+/*	 public boolean kingInCheck(King king) 
 	 {
 		 boolean result = false;
 		 
@@ -519,6 +519,11 @@ public class Model {
 		 return result;
 	 }
 */
+
+
+
+
+
 	 public Tile getTile(int row, int col)
 	 {
 		 return board.getTile(row, col);
