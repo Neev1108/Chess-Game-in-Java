@@ -35,6 +35,11 @@ public class MoveValve implements Valve {
 		Tile endTile = model.getTile(endRow, endCol);
 		Player currentPlayer = model.getDoTurn();
 		Moves move = new Moves (currentPlayer, currentTile, endTile);
+		
+		//model.startTurn will now return an ArrayList<String> with any error messages and the result.
+		
+		
+		
 		boolean isSuccessful = model.startTurn(move);
 		
 	//	System.out.println(isSuccessful);

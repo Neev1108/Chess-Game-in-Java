@@ -1,5 +1,6 @@
 package edu.sjsu.cs151.model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.sjsu.cs151.controller.PlayerChosenMessage;
@@ -177,12 +178,15 @@ public class Model {
 	
 	
 	public boolean startTurn(Moves move){
-		 Player player = move.getPlayer();
-		 Piece PieceMoved = move.getPieceMoved();
-		 Piece EndPiece = move.getDestinationPiece();
+		ArrayList<String> results = new ArrayList<String>();
+		Player player = move.getPlayer();
+		Piece PieceMoved = move.getPieceMoved();
+		Piece EndPiece = move.getDestinationPiece();
 
-		 if (player.getColor().compareTo(PieceMoved.getColorString()) != 0)
+		if (player.getColor().compareTo(PieceMoved.getColorString()) != 0)
 			{
+				results.add("The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.");
+				results.add("false");
 				System.out.println("The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.");
 				return false;
 			}
