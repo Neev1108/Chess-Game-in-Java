@@ -180,7 +180,7 @@ public class Model {
 		 Player player = move.getPlayer();
 		 Piece PieceMoved = move.getPieceMoved();
 		 Piece EndPiece = move.getDestinationPiece();
-		 
+		 System.out.println();
 		 //Check if the move can be performed by the piece
 		 if (!PieceMoved.isValidMove(move.getCurrentPos(), move.getEndPos())){
 			 System.out.println("Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.");
@@ -204,21 +204,21 @@ public class Model {
 		 
 		 
 		 //test if the move leaves allied king in check
-		 boolean testAllyKingCheck = false;
+	//	 boolean testAllyKingCheck = false;
 		 if (player.getColor().compareTo("White") == 0)
 		 {
-			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+//			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
 		 }
 		 else
 		 {
-			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+//			 testAllyKingCheck = kingInCheck(board.getBlackKing());
 		 }
-		 if (testAllyKingCheck == true)
-		 {
+	//	 if (testAllyKingCheck == true)
+	/*	 {
 			 System.out.println("This move would leave your King in danger and thus cannot be performed");
 			 return false;
 		 }
-		 
+*/		 
 		 //Move is able to be performed; perform move
 		 PieceMoved.move(move.getCurrentPos(), move.getEndPos());
 		 
@@ -414,7 +414,7 @@ public class Model {
 
 
 
-	 public boolean kingInCheck(King king) 
+	/* public boolean kingInCheck(King king) 
 	 {
 		 boolean result = false;
 		 
@@ -518,12 +518,12 @@ public class Model {
 		 king.setIsInCheck(result);
 		 return result;
 	 }
-
+*/
 	 public Tile getTile(int row, int col)
 	 {
 		 return board.getTile(row, col);
 	 }
-
+	 
 }
 
 

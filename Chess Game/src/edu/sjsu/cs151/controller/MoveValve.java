@@ -27,6 +27,10 @@ public class MoveValve implements Valve {
 		int endRow = endPosition/8;
 		int endCol = endPosition%8;
 		
+		System.out.println("Current Row: " + currentRow + "    Current Col: " + currentCol);
+		System.out.println("End Row: " + endRow + "    End Col: " + endCol);
+
+		
 		Tile currentTile = model.getTile(currentRow, currentCol);
 		Tile endTile = model.getTile(endRow, endCol);
 		Player currentPlayer = model.getDoTurn();

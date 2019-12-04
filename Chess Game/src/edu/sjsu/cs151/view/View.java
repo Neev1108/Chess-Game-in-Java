@@ -384,12 +384,12 @@ public class View implements Runnable {
 						Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
 						tile.remove(0); // removes whichever piece was already there
 						tile.add(chessPiece);
-						
+						updateBoard();
 					}
 					else {
 						Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
 						tile.add(chessPiece);
-
+						updateBoard();
 					}
 				}
 
