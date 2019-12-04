@@ -224,7 +224,7 @@ public class Model {
 			 System.out.println("This move would leave your King in danger and thus cannot be performed");
 			 return false;
 		 }
-	*/	 
+*/ 
 		 //Move is able to be performed; perform move
 		 PieceMoved.move(move.getCurrentPos(), move.getEndPos());
 		 
@@ -545,8 +545,8 @@ public class Model {
 		 king.setIsInCheck(result);
 		 return result;
 	 }
-*/
 
+*/
 
 
 

@@ -43,10 +43,10 @@ public class Board {
 		// sets black player pieces
 		for (int i = 0; i < 8; i++) {
 			board[1][i] = new Tile(1, i, new Pawn(false));
-			board[1][i].getPiece().setCurrentTile(board[1][i]);
+//			board[1][i].getPiece().setCurrentTile(board[1][i]);
 		}
 		board[0][4] = new Tile(0, 4, new King(false));
-		board[0][4].getPiece().setCurrentTile(board[0][4]);
+	//	board[0][4].getPiece().setCurrentTile(board[0][4]);
 		board[0][3] = new Tile(0, 3, new Queen(false));
 		board[0][0] = new Tile(0, 0, new Rook(false));
 		board[0][7] = new Tile(0, 7, new Rook(false));
@@ -60,11 +60,11 @@ public class Board {
 		// sets white player pieces
 		for (int i = 0; i < 8; i++) {
 			board[6][i] = new Tile(6, i, new Pawn(true));
-			board[6][i].getPiece().setCurrentTile(board[6][i]);
+//			board[6][i].getPiece().setCurrentTile(board[6][i]);
 		}
 	
 		board[7][4] = new Tile(7, 4, new King(true));
-		board[7][4].getPiece().setCurrentTile(board[7][4]);
+//		board[7][4].getPiece().setCurrentTile(board[7][4]);
 		board[7][3] = new Tile(7, 3, new Queen(true));
 		board[7][0] = new Tile(7, 0, new Rook(true));
 		board[7][7] = new Tile(7, 7, new Rook(true));
