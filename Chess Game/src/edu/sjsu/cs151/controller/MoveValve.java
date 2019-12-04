@@ -37,7 +37,7 @@ public class MoveValve implements Valve {
 		Moves move = new Moves (currentPlayer, currentTile, endTile);
 		boolean isSuccessful = model.startTurn(move);
 		
-		System.out.println(isSuccessful);
+	//	System.out.println(isSuccessful);
 		
 		
 		
