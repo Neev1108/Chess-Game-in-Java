@@ -70,80 +70,80 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 		}
 
 		// adds black pieces
-		JLabel blackRook = new JLabel(new ImageIcon("blackRook.png"));
+		JLabel blackRook = new JLabel(new ImageIcon(getClass().getResource("/resources/blackRook.png")));
 		JPanel panel = (JPanel) chessBoard.getComponent(0);
 		panel.add(blackRook);
 
-		JLabel blackKnight = new JLabel(new ImageIcon("blackKnight.png"));
+		JLabel blackKnight = new JLabel(new ImageIcon(getClass().getResource("/resources/blackKnight.png")));
 		JPanel panel2 = (JPanel) chessBoard.getComponent(1);
 		panel2.add(blackKnight);
 
-		JLabel blackBishop = new JLabel(new ImageIcon("blackBishop.png"));
+		JLabel blackBishop = new JLabel(new ImageIcon(getClass().getResource("/resources/blackBishop.png")));
 		JPanel panel3 = (JPanel) chessBoard.getComponent(2);
 		panel3.add(blackBishop);
 
-		JLabel blackKing = new JLabel(new ImageIcon("blackKing.png"));
+		JLabel blackKing = new JLabel(new ImageIcon(getClass().getResource("/resources/blackKing.png")));
 		JPanel panel4 = (JPanel) chessBoard.getComponent(3);
 		panel4.add(blackKing);
 
-		JLabel blackQueen = new JLabel(new ImageIcon("blackQueen.png"));
+		JLabel blackQueen = new JLabel(new ImageIcon(getClass().getResource("/resources/blackQueen.png")));
 		JPanel panel5 = (JPanel) chessBoard.getComponent(4);
 		panel5.add(blackQueen);
 
-		JLabel blackBishop2 = new JLabel(new ImageIcon("blackBishop.png"));
+		JLabel blackBishop2 = new JLabel(new ImageIcon(getClass().getResource("/resources/blackBishop.png")));
 		JPanel panel6 = (JPanel) chessBoard.getComponent(5);
 		panel6.add(blackBishop2);
 
-		JLabel blackKnight2 = new JLabel(new ImageIcon("blackKnight.png"));
+		JLabel blackKnight2 = new JLabel(new ImageIcon(getClass().getResource("/resources/blackKnight.png")));
 		JPanel panel7 = (JPanel) chessBoard.getComponent(6);
 		panel7.add(blackKnight2);
 
-		JLabel blackRook2 = new JLabel(new ImageIcon("blackRook.png"));
+		JLabel blackRook2 = new JLabel(new ImageIcon(getClass().getResource("/resources/blackRook.png")));
 		JPanel panel8 = (JPanel) chessBoard.getComponent(7);
 		panel8.add(blackRook2);
 
 		for (int i = 8; i < 16; i++) {
-			JLabel blackPawn = new JLabel(new ImageIcon("blackPawn.png"));
+			JLabel blackPawn = new JLabel(new ImageIcon(getClass().getResource("/resources/blackPawn.png")));
 			JPanel panels = (JPanel) chessBoard.getComponent(i);
 			panels.add(blackPawn);
 		}
 
 		// adds white pieces
 		for (int i = 48; i < 56; i++) {
-			JLabel whitePawn = new JLabel(new ImageIcon("whitePawn.png"));
+			JLabel whitePawn = new JLabel(new ImageIcon(getClass().getResource("/resources/whitePawn.png")));
 			JPanel panels2 = (JPanel) chessBoard.getComponent(i);
 			panels2.add(whitePawn);
 		}
 
-		JLabel whiteRook = new JLabel(new ImageIcon("whiteRook.png"));
+		JLabel whiteRook = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteRook.png")));
 		JPanel panel56 = (JPanel) chessBoard.getComponent(56);
 		panel56.add(whiteRook);
 
-		JLabel whiteKnight = new JLabel(new ImageIcon("whiteKnight.png"));
+		JLabel whiteKnight = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteKnight.png")));
 		JPanel panel57 = (JPanel) chessBoard.getComponent(57);
 		panel57.add(whiteKnight);
 
-		JLabel whiteBishop = new JLabel(new ImageIcon("whiteBishop.png"));
+		JLabel whiteBishop = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteBishop.png")));
 		JPanel panel58 = (JPanel) chessBoard.getComponent(58);
 		panel58.add(whiteBishop);
 
-		JLabel whiteKing = new JLabel(new ImageIcon("whiteKing.png"));
+		JLabel whiteKing = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteKing.png")));
 		JPanel panel59 = (JPanel) chessBoard.getComponent(59);
 		panel59.add(whiteKing);
 
-		JLabel whiteQueen = new JLabel(new ImageIcon("whiteQueen.png"));
+		JLabel whiteQueen = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteQueen.png")));
 		JPanel panel60 = (JPanel) chessBoard.getComponent(60);
 		panel60.add(whiteQueen);
 
-		JLabel whiteBishop2 = new JLabel(new ImageIcon("whiteBishop.png"));
+		JLabel whiteBishop2 = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteBishop.png")));
 		JPanel panel61 = (JPanel) chessBoard.getComponent(61);
 		panel61.add(whiteBishop2);
 
-		JLabel whiteKnight2 = new JLabel(new ImageIcon("whiteKnight.png"));
+		JLabel whiteKnight2 = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteKnight.png")));
 		JPanel panel62 = (JPanel) chessBoard.getComponent(62);
 		panel62.add(whiteKnight2);
 
-		JLabel whiteRook2 = new JLabel(new ImageIcon("whiteRook.png"));
+		JLabel whiteRook2 = new JLabel(new ImageIcon(getClass().getResource("/resources/whiteRook.png")));
 		JPanel panel63 = (JPanel) chessBoard.getComponent(63);
 		panel63.add(whiteRook2);
 
