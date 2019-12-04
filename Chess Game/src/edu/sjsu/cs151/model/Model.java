@@ -180,7 +180,13 @@ public class Model {
 		 Player player = move.getPlayer();
 		 Piece PieceMoved = move.getPieceMoved();
 		 Piece EndPiece = move.getDestinationPiece();
-		 System.out.println();
+
+		 if (player.getColor().compareTo(PieceMoved.getColorString()) != 0)
+			{
+				System.out.println("The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.");
+				return false;
+			}
+		 
 		 //Check if the move can be performed by the piece
 		 if (!PieceMoved.isValidMove(move.getCurrentPos(), move.getEndPos())){
 			 System.out.println("Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.");
@@ -238,6 +244,27 @@ public class Model {
 				 event = GameEvent.BlackWin;
 			 
 		 }
+		 
+		 System.out.println("Move successful\n");
+			
+			
+		if (this.getEvent() == GameEvent.WhiteWin || this.getEvent() == GameEvent.BlackWin)
+		{
+			System.out.println("Game complete");
+			return true;
+		}
+		else 
+		{
+			
+			if (player.equals(this.getPlayer1())) 
+			{
+				player = this.getPlayer2();
+			} 
+			else
+				player = this.getPlayer1();
+			System.out.println("Turn complete, " + player.toString() + " will begin their turn.");
+
+		}
 		 
 		 if(doTurn == player1) {
 			 doTurn = player2;
