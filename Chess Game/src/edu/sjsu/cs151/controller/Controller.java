@@ -7,18 +7,27 @@ import java.util.concurrent.BlockingQueue;
 import edu.sjsu.cs151.view.*;
 import edu.sjsu.cs151.model.*;
 
-
+/**
+ * The main Controller class that handles the 
+ * game management through the commands and messages generated 
+ * in the Model and the View. 
+ *
+ */
 public class Controller {
 	private BlockingQueue<Message> queue;
 	private View view;
 	private Model model;
-	private GameInfo gameInfo;
 	private List<Valve> valves = new LinkedList<Valve>();
 	
 	
 	
 	
-	
+	/**
+	 * Controller constructor. 
+	 * @param model
+	 * @param view
+	 * @param queue
+	 */
 
 	public Controller(Model model, View view,BlockingQueue<Message> queue) {
 		valves.add(new NewGameValve());
