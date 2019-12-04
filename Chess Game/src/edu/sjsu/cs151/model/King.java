@@ -12,8 +12,8 @@ public class King extends Piece {
 	boolean isInCheck = false;
 	
 	
-	public King(boolean isWhite, Tile currentTile) {
-		super(isWhite, PieceType.King, currentTile);
+	public King(boolean isWhite) {
+		super(isWhite, PieceType.King);
 	}
 
 	/**

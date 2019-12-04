@@ -8,8 +8,8 @@ public class Knight extends Piece {
 	PieceType type;
 	
 	
-	public Knight(boolean isWhite, Tile currentTile) {
-		super(isWhite, PieceType.Knight, currentTile);
+	public Knight(boolean isWhite) {
+		super(isWhite, PieceType.Knight);
 	}
 
 	/**

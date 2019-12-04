@@ -14,7 +14,7 @@ public abstract class Piece {
 	private boolean hasMoved = false;
 	private Tile currentTile;
 
-	public Piece(boolean isWhite, PieceType type, Tile currentTile) {
+	public Piece(boolean isWhite, PieceType type) {
 		this.isWhite = isWhite;
 		if (isWhite == true) {
 			color = PieceColor.White;

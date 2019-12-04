@@ -10,8 +10,8 @@ public class Pawn extends Piece {
 	 * The constructor for a Pawn.
 	 */
 	
-	public Pawn(boolean isWhite, Tile currentTile) {
-		super(isWhite, PieceType.Pawn, currentTile);
+	public Pawn(boolean isWhite) {
+		super(isWhite, PieceType.Pawn);
 	}
 
 	/**
