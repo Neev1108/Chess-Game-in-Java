@@ -457,6 +457,7 @@ public class View implements Runnable {
 		
 		public void canmovePiece(boolean canMove) {
 			this.canMove = canMove;
+			chessBoardFrame.updateChessBoardFrame(canMove);
 		}
 		
 		public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue){
@@ -475,6 +476,6 @@ public class View implements Runnable {
 			return queue;
 		}
 	
-	
+		
 	
 }
