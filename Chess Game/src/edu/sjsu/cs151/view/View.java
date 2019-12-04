@@ -224,7 +224,7 @@ public class View implements Runnable {
 		// Creating the quitGame button
 		JButton quitGame = new JButton("QUIT GAME");
 		quitGame.setPreferredSize(new Dimension(100, 50));
-		newGame.setBackground(Color.pink);
+		quitGame.setBackground(Color.pink);
 
 		JTextArea textArea = new JTextArea("Welcome to our chess game!");
 		textArea.setEditable(false);

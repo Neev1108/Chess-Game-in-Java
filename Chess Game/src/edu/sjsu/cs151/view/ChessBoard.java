@@ -204,10 +204,19 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 		pieceImage2 = chessBoard.findComponentAt(e.getX(), e.getY());
 		System.out.println("pieceImage2      " + pieceImage2);
 
-		endTile = (Container) pieceImage2;
-		System.out.println("endTile:      " + endTile);
-
-		
+		String pI2 = pieceImage2.toString();
+		String substring = pI2.substring(0, 18);
+		int i = substring.compareTo("javax.swing.JPanel");
+		if (i == 0)
+		{
+			endTile = (Container) pieceImage2;
+			System.out.println("endTile:      " + endTile);
+		}
+		else
+		{
+			endTile = pieceImage2.getParent();
+			System.out.println("endTile:      " + endTile);
+		}
 		System.out.println(currentPosition + " " + endPosition);
 	
 		try 
@@ -279,6 +288,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 			Container tile = pieceImage.getParent(); // gets the parent component of the piece, which is the tile
 			tile.remove(0); // removes whichever piece was already there
 			//tile.add(chessPiece);
+			//endTile.remove(0);
 			endTile.add(chessPiece);
 			chessPiece.setVisible(true);
 			updateBoard();
