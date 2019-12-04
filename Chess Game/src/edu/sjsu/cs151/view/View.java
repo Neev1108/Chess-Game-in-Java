@@ -113,7 +113,7 @@ public class View implements Runnable {
 		JButton startButton = new JButton("START CHESS GAME");
 
 		// Creating a GridBagLayout for our output
-		JLabel backg = new JLabel(new ImageIcon("background.png"));
+		JLabel backg = new JLabel(new ImageIcon(getClass().getResource("/resources/background.png")));
 		backg.setLayout(new FlowLayout());
 		JPanel pnl = new JPanel();
 
@@ -158,7 +158,7 @@ public class View implements Runnable {
 		playerScreen.setBackground(Color.black);
 		playerScreen.setVisible(true);
 
-		JLabel background = new JLabel(new ImageIcon("background.png"));
+		JLabel background = new JLabel(new ImageIcon("resources/background.png"));
 		background.setLayout(new FlowLayout());
 
 		// textField asking the player to choose a color
@@ -170,8 +170,8 @@ public class View implements Runnable {
 		// Buttons are in the shape of pawns that are black and white
 		// This only works on my computer. Still need to create an image folder in the
 		// project so we cans store our images when someone runs
-		Icon wPawn = new ImageIcon("whitePawn.png");
-		Icon bPawn = new ImageIcon("blackPawn.png");
+		Icon wPawn = new ImageIcon("resources/whitePawn.png");
+		Icon bPawn = new ImageIcon("resources/blackPawn.png");
 		JButton white = new JButton(wPawn);
 		JButton black = new JButton(bPawn);
 
