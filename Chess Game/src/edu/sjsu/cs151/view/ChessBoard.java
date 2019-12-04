@@ -288,9 +288,8 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 		if(canMove)
 		{
 			Container tile = pieceImage.getParent(); // gets the parent component of the piece, which is the tile
-			tile.remove(0); // removes whichever piece was already there
-			//tile.add(chessPiece);
-			//endTile.remove(0);
+			tile.add(chessPiece);
+			endTile.removeAll();
 			endTile.add(chessPiece);
 			chessPiece.setVisible(true);
 			updateBoard();
