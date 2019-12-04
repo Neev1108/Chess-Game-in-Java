@@ -41,6 +41,7 @@ public class Controller {
 
 
 	public void mainLoop() throws Exception{
+		System.out.println("I am running");
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
 		while (response != ValveResponses.FINISH) {
@@ -66,7 +67,16 @@ public class Controller {
 		this.queue = queue;
 	}
 	
-	
+	public void printMessageQueue(BlockingQueue<Message> queue)
+	{
+		try {
+			System.out.println(queue.take());
+			
+		}
+		catch (InterruptedException e){
+			
+		}
+	}
 	
 	
 }

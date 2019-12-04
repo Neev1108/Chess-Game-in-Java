@@ -2,6 +2,7 @@ package edu.sjsu.cs151.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -36,10 +38,12 @@ public class View implements Runnable {
 	private static final int ICON_WIDTH = 400;
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
-	
+	private static ChessBoard chessBoardFrame;
+
 
 	public View(BlockingQueue<Message> queue) {
 		View.queue = queue;
+		chessBoardFrame = new ChessBoard(queue);
 		run();
 	}
 
@@ -124,7 +128,9 @@ public class View implements Runnable {
 			// synchronized(lock) {
 			// try {
 			try {
-				queue.put(new NewGameMessage()); // Add to queue
+				queue.put(new NewGameMessage());// Add to queue
+				
+				printMessageQueue();
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -184,8 +190,9 @@ public class View implements Runnable {
 		white.addActionListener(event2 -> {
 			queue.add(new PlayerChosenMessage("White", true));
 			playerScreen.dispose();
-			JFrame frame = new ChessBoard(queue);
-			frame = setIdealFrame(frame);
+			//JFrame frame = new ChessBoard(queue);
+			//	frame = setIdealFrame(frame);
+			chessBoardFrame = (ChessBoard) setIdealFrame(chessBoardFrame);
 
 		});
 
@@ -195,8 +202,9 @@ public class View implements Runnable {
 		black.addActionListener(event3 -> {
 			queue.add(new PlayerChosenMessage("Black", false));
 			playerScreen.dispose();
-			JFrame frame = new ChessBoard(queue);
-			frame = setIdealFrame(frame);
+		//	JFrame frame = new ChessBoard(queue);
+		//	frame = setIdealFrame(frame);
+			chessBoardFrame = (ChessBoard) setIdealFrame(chessBoardFrame);
 		});
 
 	}
@@ -256,4 +264,213 @@ public class View implements Runnable {
 
 	
 
+	
+	
+	
+	
+	
+	
+	
+	public void dontMove(int currentPosition, int endPosition)
+	{
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	JLayeredPane pane;
+	JPanel chessBoard;
+	JLabel chessPiece;
+	int x;
+	int y;
+	
+	int currentPosition;
+	int endPosition;
+	
+	
+	
+	
+	// NOTE ALL IMAGES FOR THE PIECE OR JLABELS
+		public void mousePressed(MouseEvent e) {
+			// keep chess piece null, so we can store to drop later when we mouse press
+			chessPiece = null;
+
+			// get component on chessBoard at point clicked
+			Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
+
+			// if person clicks empty tile, just return so they can choose a piece instead
+			if (pieceImage instanceof JPanel)
+				return;
+
+			// store the chessPiece in a chessPiece and sets the location image from the
+			// mouse pointer
+
+			chessPiece = (JLabel) pieceImage;
+			chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
+			chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+			pane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+			currentPosition = (e.getX()/75) + (8 *(e.getY()/75));
+			
+			
+		}
+
+		// drag the chess piece around
+
+		public void mouseDragged(MouseEvent e) {
+			if (chessPiece == null)
+				return;
+			chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
+
+		}
+
+		// Drop the chess piece back onto the chess board
+
+		public void mouseReleased(MouseEvent e) {
+			// if no chessPiece initialized means nothing was mouse pressed
+			if (chessPiece == null)
+
+				return;
+			
+
+			//else {
+
+				//chessPiece.setVisible(false);
+				endPosition = (e.getX()/75) + (8 * (e.getY()/75));
+				
+				
+				System.out.println(currentPosition + " " + endPosition);
+				//Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
+				//Container jill =   pieceImage.getParent();
+				//System.out.println(jill.getLocation());
+
+
+				//if (pieceImage instanceof JLabel) {
+					
+					//Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
+					//tile.remove(0); // removes whichever piece was already there
+					// adds the piece onto the tile
+					//tile.add(chessPiece);
+
+					try {
+						MoveMessage message = new MoveMessage(currentPosition, endPosition);
+						queue.put(message);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+
+				//else {
+					//Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
+					//tile.add(chessPiece);
+
+				//}
+
+			//}
+			
+			
+			//chessPiece.setVisible(true);
+		
+
+		// just for interface implementation, blank methods
+		public void mouseClicked(MouseEvent e) {
+
+		}
+
+		public void mouseMoved(MouseEvent e) {
+		}
+
+		public void mouseEntered(MouseEvent e) {
+
+		}
+
+		public void mouseExited(MouseEvent e) {
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public void printMessageQueue()
+		{
+			try {
+				System.out.println(queue.take());
+				
+			}
+			catch (InterruptedException e){
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
+		public void updateBoard() {
+			pane.removeAll(); 
+	        pane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
+		}
+		
+		public JPanel getTileAt(int position) {
+			return (JPanel) chessBoard.getComponent(position);
+		}
+		
+		public void movePiece(int currentPosition, int endPosition) {
+			getTileAt(currentPosition).add(chessPiece);
+			getTileAt(endPosition).remove(0);
+		}
+		
+		public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue){
+			return queue;
+		}
+
+		public JPanel getChessBoard() {
+			return chessBoard;
+		}
+
+		public JLabel getChessPiece() {
+			return chessPiece;
+		}
+
+		public BlockingQueue<Message> getQueue() {
+			return queue;
+		}
+	
+	
+	
 }

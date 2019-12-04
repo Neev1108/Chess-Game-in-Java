@@ -33,15 +33,15 @@ public class MoveValve implements Valve {
 		Moves move = new Moves (currentPlayer, currentTile, endTile);
 		boolean isSuccessful = model.startTurn(move);
 		
-		
+		System.out.println(isSuccessful);
 		
 		
 		
 		 // if start turn is successful then make move on view or dont move
 		if (isSuccessful == true)
-			view.Move(currentPosition, endPosition);
+			view.movePiece(currentPosition, endPosition);
 		else
-			view.dontMove(s, e);
+			view.dontMove(currentPosition, endPosition);
 
 		return ValveResponses.EXECUTED;
 		
