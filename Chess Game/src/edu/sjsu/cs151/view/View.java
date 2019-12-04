@@ -161,7 +161,7 @@ public class View implements Runnable {
 		playerScreen.setVisible(true);
 
 		JLabel background = new JLabel(new ImageIcon("resources/background.png"));
-	//	Icon background = new ImageIcon("resources/background.png");
+	//	Icon background = new ImageIcon("/resources/background.png");
 		
 		background.setLayout(new FlowLayout());
 
