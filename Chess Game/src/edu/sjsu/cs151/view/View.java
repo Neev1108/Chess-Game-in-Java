@@ -154,13 +154,15 @@ public class View implements Runnable {
 		playerScreen();
 	}
 
-	public static void playerScreen() {
+	public  void playerScreen() {
 		JFrame playerScreen = new JFrame("Player Screen");
 		playerScreen.setSize(400, 300);
 		playerScreen.setBackground(Color.black);
 		playerScreen.setVisible(true);
 
 		JLabel background = new JLabel(new ImageIcon("resources/background.png"));
+	//	Icon background = new ImageIcon("resources/background.png");
+		
 		background.setLayout(new FlowLayout());
 
 		// textField asking the player to choose a color
@@ -172,10 +174,12 @@ public class View implements Runnable {
 		// Buttons are in the shape of pawns that are black and white
 		// This only works on my computer. Still need to create an image folder in the
 		// project so we cans store our images when someone runs
-		Icon wPawn = new ImageIcon("resources/whitePawn.png");
-		Icon bPawn = new ImageIcon("resources/blackPawn.png");
-		JButton white = new JButton(wPawn);
-		JButton black = new JButton(bPawn);
+	//	Icon wPawn = new ImageIcon("/resources/whitePawn.png");
+	//	Icon bPawn = new ImageIcon("/resources/blackPawn.png");
+		Icon whitePawn = new ImageIcon(getClass().getResource("/resources/whitePawn.png"));
+		Icon blackPawn = new ImageIcon(getClass().getResource("/resources/blackPawn.png"));
+		JButton white = new JButton(whitePawn);
+		JButton black = new JButton(blackPawn);
 
 		// adding everything
 		background.add(white);
@@ -213,7 +217,7 @@ public class View implements Runnable {
 
 	}
 
-	public static JFrame setIdealFrame(JFrame frame) {
+	public  JFrame setIdealFrame(JFrame frame) {
 		frame.setSize(600, 750);
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
@@ -239,7 +243,7 @@ public class View implements Runnable {
 		newGame.addActionListener(newGameRecurs -> {
 			frame.dispose();
 
-			View.playerScreen();
+			this.playerScreen();
 			;
 		});
 
