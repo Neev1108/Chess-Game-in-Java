@@ -1,7 +1,7 @@
 package edu.sjsu.cs151.controller;
 
-import edu.sjsu.cs151.model.Game;
 import edu.sjsu.cs151.model.Model;
+import edu.sjsu.cs151.model.ModelTester;
 import edu.sjsu.cs151.view.View;
 
 public class NewGameValve implements Valve{

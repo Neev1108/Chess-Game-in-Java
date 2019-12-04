@@ -40,6 +40,7 @@ public class View implements Runnable {
 
 	public View(BlockingQueue<Message> queue) {
 		View.queue = queue;
+		run();
 	}
 
 	public void run() {
@@ -253,6 +254,6 @@ public class View implements Runnable {
 
 	}
 
-
+	
 
 }

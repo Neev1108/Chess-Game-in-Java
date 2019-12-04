@@ -1,13 +1,13 @@
 package edu.sjsu.cs151.controller;
 
-import edu.sjsu.cs151.model.Model;
+import edu.sjsu.cs151.model.ModelTester;
 import edu.sjsu.cs151.view.View;
 
 public class PlayerChosenMessageValve implements Valve {
 	View view;
-	Model model;
+	ModelTester model;
 	
-	public PlayerChosenMessageValve(Model model, View view) {
+	public PlayerChosenMessageValve(ModelTester model, View view) {
 		this.model = model;
 		this.view = view;
 	}

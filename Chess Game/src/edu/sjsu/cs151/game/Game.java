@@ -5,7 +5,7 @@ import edu.sjsu.cs151.model.*;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.ReentrantLock;
+//import java.util.concurrent.locks.ReentrantLock;
 
 import edu.sjsu.cs151.controller.*;
 
@@ -23,13 +23,13 @@ public class Game {
 		model = new Model();
 		Controller controller = new Controller(model, view, queue);
 		
-		Thread viewThread = new Thread(view);
-		Thread modelThread = new Thread(model);
+//		Thread viewThread = new Thread(view);
+//		Thread modelThread = new Thread(model);
 		
 		
 		//these will start the game in the console AND the view thread, working on making it thread safe right now
-		viewThread.start();
-		modelThread.start();
+//		viewThread.start();
+//		modelThread.start();
 		
 		
 			try {
