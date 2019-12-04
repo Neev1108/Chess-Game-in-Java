@@ -51,7 +51,7 @@ public class Model {
 		}
 		else
 			this.doTurn = player2;
-		playGame();
+		//playGame();
 	}
 
 	public void printBoard() {

@@ -39,9 +39,9 @@ public class MoveValve implements Valve {
 		
 		 // if start turn is successful then make move on view or dont move
 		if (isSuccessful == true)
-			view.movePiece(currentPosition, endPosition);
+			view.canmovePiece(isSuccessful);
 		else
-			view.dontMove(currentPosition, endPosition);
+			view.canmovePiece(false);
 
 		return ValveResponses.EXECUTED;
 		

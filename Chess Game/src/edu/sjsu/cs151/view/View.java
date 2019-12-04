@@ -3,6 +3,7 @@ package edu.sjsu.cs151.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -39,6 +40,7 @@ public class View implements Runnable {
 	private static final int ICON_HEIGHT = 100;
 	private static final int PAWN_WIDTH = 100;
 	private static ChessBoard chessBoardFrame;
+	boolean canMove;
 
 
 	public View(BlockingQueue<Message> queue) {
@@ -274,6 +276,7 @@ public class View implements Runnable {
 	public void dontMove(int currentPosition, int endPosition)
 	{
 		
+		
 	}
 	
 	
@@ -356,24 +359,18 @@ public class View implements Runnable {
 				return;
 			
 
-			//else {
+			else {
 
-				//chessPiece.setVisible(false);
+				chessPiece.setVisible(false);
 				endPosition = (e.getX()/75) + (8 * (e.getY()/75));
 				
 				
 				System.out.println(currentPosition + " " + endPosition);
-				//Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
-				//Container jill =   pieceImage.getParent();
-				//System.out.println(jill.getLocation());
+				Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
+				
 
 
-				//if (pieceImage instanceof JLabel) {
-					
-					//Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
-					//tile.remove(0); // removes whichever piece was already there
-					// adds the piece onto the tile
-					//tile.add(chessPiece);
+				if (pieceImage instanceof JLabel) {
 
 					try {
 						MoveMessage message = new MoveMessage(currentPosition, endPosition);
@@ -383,18 +380,26 @@ public class View implements Runnable {
 						e1.printStackTrace();
 					}
 					
+					if(canMove == true) {
+						Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
+						tile.remove(0); // removes whichever piece was already there
+						tile.add(chessPiece);
+						
+					}
+					else {
+						Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
+						tile.add(chessPiece);
+
+					}
 				}
 
-				//else {
-					//Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
-					//tile.add(chessPiece);
+				chessPiece.setVisible(true);
+			}
 
-				//}
-
-			//}
+		}
 			
 			
-			//chessPiece.setVisible(true);
+		
 		
 
 		// just for interface implementation, blank methods
@@ -450,9 +455,8 @@ public class View implements Runnable {
 			return (JPanel) chessBoard.getComponent(position);
 		}
 		
-		public void movePiece(int currentPosition, int endPosition) {
-			getTileAt(currentPosition).add(chessPiece);
-			getTileAt(endPosition).remove(0);
+		public void canmovePiece(boolean canMove) {
+			this.canMove = canMove;
 		}
 		
 		public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue){
