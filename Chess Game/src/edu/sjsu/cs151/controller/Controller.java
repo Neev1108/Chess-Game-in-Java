@@ -50,7 +50,7 @@ public class Controller {
 
 
 	public void mainLoop() throws Exception{
-		System.out.println("I am running");
+	//	System.out.println("I am running");
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
 		while (response != ValveResponses.FINISH) {

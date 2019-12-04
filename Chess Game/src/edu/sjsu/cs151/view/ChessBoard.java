@@ -156,11 +156,13 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 
 		// get component on chessBoard at point clicked
 		pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
-		System.out.println("pieceImage      " + pieceImage);
-		System.out.println("MousePressed: e.getX " + e.getX() + " e.getY " + e.getY());
+
+		
+	//	System.out.println("pieceImage      " + pieceImage);
+	//	System.out.println("MousePressed: e.getX " + e.getX() + " e.getY " + e.getY());
 
 		startTile = pieceImage.getParent();
-		System.out.println("startTile      " + startTile);
+	//	System.out.println("startTile      " + startTile);
 		// if person clicks empty tile, just return so they can choose a piece instead
 		if (pieceImage instanceof JPanel)
 			return;
@@ -196,13 +198,13 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 			return;
 		}
 		
-		System.out.println("MouseReleased: e.getX " + e.getX() + " e.getY " + e.getY());
+	//	System.out.println("MouseReleased: e.getX " + e.getX() + " e.getY " + e.getY());
 		
 		endPosition = (e.getX()/75) + (8 * (e.getY()/75));
 		
 		//returning the tile, not a pieceimage
 		pieceImage2 = chessBoard.findComponentAt(e.getX(), e.getY());
-		System.out.println("pieceImage2      " + pieceImage2);
+	//	System.out.println("pieceImage2      " + pieceImage2);
 
 		String pI2 = pieceImage2.toString();
 		String substring = pI2.substring(0, 18);
@@ -210,14 +212,14 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 		if (i == 0)
 		{
 			endTile = (Container) pieceImage2;
-			System.out.println("endTile:      " + endTile);
+	//		System.out.println("endTile:      " + endTile);
 		}
 		else
 		{
 			endTile = pieceImage2.getParent();
-			System.out.println("endTile:      " + endTile);
+	//		System.out.println("endTile:      " + endTile);
 		}
-		System.out.println(currentPosition + " " + endPosition);
+	//	System.out.println(currentPosition + " " + endPosition);
 	
 		try 
 		{
@@ -282,7 +284,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 	
 	public void updateChessBoardFrame(boolean canMove)
 	{
-		System.out.println("update");
+	//	System.out.println("update");
 		if(canMove)
 		{
 			Container tile = pieceImage.getParent(); // gets the parent component of the piece, which is the tile

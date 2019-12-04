@@ -20,14 +20,14 @@ public class Game {
 	public static void main(String [] args){
 		view = new View(queue);
 		model = new Model();
-		System.out.println("test1");
+//		System.out.println("test1");
 
 		Controller controller = new Controller(model, view, queue);
 		
-		System.out.println("test");
+	//	System.out.println("test");
 		try {
 			controller.mainLoop();
-			controller.printMessageQueue(queue);
+	//		controller.printMessageQueue(queue);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
