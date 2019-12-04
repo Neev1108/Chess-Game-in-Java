@@ -113,11 +113,8 @@ public class View implements Runnable {
 //		JButton startButton = new JButton("START CHESS GAME");
 
 		// Creating a GridBagLayout for our output
-<<<<<<< HEAD
 /*		JLabel backg = new JLabel(new ImageIcon("background.png"));
-=======
 		JLabel backg = new JLabel(new ImageIcon(getClass().getResource("/resources/background.png")));
->>>>>>> branch 'master' of https://github.com/SkylerHungerford/cs151-team8-chess.git
 		backg.setLayout(new FlowLayout());
 		JPanel pnl = new JPanel();
 
