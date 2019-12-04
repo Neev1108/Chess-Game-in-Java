@@ -56,7 +56,7 @@ public class ModelWithKingCheck {
 		}
 		else
 			this.doTurn = player2;
-		playGame();
+		//playGame();
 	}
 
 	public void printBoard() {
@@ -85,10 +85,6 @@ public class ModelWithKingCheck {
 	{
 		Scanner scan = new Scanner(System.in);
 		Player currentPlayer = this.getPlayer1();
-		
-		System.out.println(board.getBlackKing());
-		
-		
 		while ((this.getEvent() != GameEvent.WhiteWin) && (this.getEvent() != GameEvent.BlackWin))
 		{
 			this.printBoard();
