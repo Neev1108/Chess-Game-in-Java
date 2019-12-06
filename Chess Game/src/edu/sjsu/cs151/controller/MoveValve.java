@@ -47,11 +47,19 @@ public class MoveValve implements Valve {
 		
 		
 		 // if start turn is successful then make move on view or dont move
-		if (isSuccessful == true)
+		if (isSuccessful == true) {
 			view.canmovePiece(isSuccessful);
-		else
+			if(currentPlayer.getColor() != "White") 
+			view.setGameInfo("Move successful. White player move." );
+			else 
+				view.setGameInfo("Move sucessful. Black Player move.");
+			}
+		else {
 			view.canmovePiece(false);
-
+			view.setGameInfo(model.getGameInfo());
+		}
+		
+		view.printGameInfo();
 		return ValveResponses.EXECUTED;
 		
 		

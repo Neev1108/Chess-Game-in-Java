@@ -1,8 +1,11 @@
 package edu.sjsu.cs151.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
 
+import edu.sjsu.cs151.controller.Message;
 import edu.sjsu.cs151.controller.PlayerChosenMessage;
 
 /**
@@ -17,6 +20,8 @@ public class Model {
 	Player player2 = new Player("Black", false);
 	Player doTurn;
 	GameEvent event;
+	BlockingQueue<Message> queue;
+	String message;
 	
 	public Player getPlayer1()
 	{
@@ -188,12 +193,15 @@ public class Model {
 				results.add("The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.");
 				results.add("false");
 				System.out.println("The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.");
+				String oppPiece = "The piece you selected is your opponent's. Please select a " + player.getColor() + " piece.";
+				message = oppPiece;
 				return false;
 			}
 		 
 		 //Check if the move can be performed by the piece
 		 if (!PieceMoved.isValidMove(move.getCurrentPos(), move.getEndPos())){
 			 System.out.println("Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.");
+			 message = "Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.";
 			 return false;
 		 }
 
@@ -316,7 +324,9 @@ public class Model {
 		{
 			if (pieceMoved.getPieceColor().equals(move.getDestinationPiece().getPieceColor()))
 			{
-				System.out.println("That spot is occupied by an ally. You cannot move there.");
+				String allyOccupied = "That spot is occupied by an ally. You cannot move there.";
+				System.out.println(allyOccupied);
+				message = allyOccupied;
 				return true;
 			}
 			return false;
@@ -336,7 +346,9 @@ public class Model {
 					boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getRow(), (move.getCurrentPos().getCol() + i)));
 					if (occupied == true)
 					{
-						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						String isObstructed = "A different piece prevents you from reaching your destination. Please select another destination.";
+						System.out.println(isObstructed);
+						message = isObstructed;
 						return true;
 					}
 				}
@@ -349,6 +361,7 @@ public class Model {
 					if (occupied == true)
 					{
 						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
 						return true;
 					}
 				}
@@ -367,6 +380,7 @@ public class Model {
 					if (occupied == true)
 					{
 						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
 						return true;
 					}
 				}
@@ -381,6 +395,7 @@ public class Model {
 					if (occupied == true)
 					{
 						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
 						return true;
 					}
 				}
@@ -399,6 +414,7 @@ public class Model {
 				if (occupied == true)
 				{
 					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+					message = "A different piece prevents you from reaching your destination. Please select another destination.";
 					return true;
 				}
 			}
@@ -410,6 +426,7 @@ public class Model {
 				if (occupied == true)
 				{
 					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+					message = "A different piece prevents you from reaching your destination. Please select another destination.";
 					return true;
 				}
 			}
@@ -422,6 +439,7 @@ public class Model {
 				if (occupied == true)
 				{
 					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+					message = "A different piece prevents you from reaching your destination. Please select another destination.";
 					return true;
 				}
 			}
@@ -433,6 +451,7 @@ public class Model {
 				if (occupied == true)
 				{
 					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+					message = "A different piece prevents you from reaching your destination. Please select another destination.";
 					return true;
 				}
 			}
@@ -559,6 +578,12 @@ public class Model {
 	 {
 		 return board.getTile(row, col);
 	 }
+	 
+	 public String getGameInfo() {
+		  return message;
+		 
+	 }
+	
 	 
 }
 

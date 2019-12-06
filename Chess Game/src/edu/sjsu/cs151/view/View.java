@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -41,7 +42,8 @@ public class View implements Runnable {
 	private static final int PAWN_WIDTH = 100;
 	private static ChessBoard chessBoardFrame;
 	boolean canMove;
-
+	LinkedList<String> gameInfo = new LinkedList<String>();
+	JTextArea textArea;
 
 	public View(BlockingQueue<Message> queue) {
 		View.queue = queue;
@@ -232,7 +234,7 @@ public class View implements Runnable {
 		quitGame.setPreferredSize(new Dimension(100, 50));
 		quitGame.setBackground(Color.pink);
 
-		JTextArea textArea = new JTextArea("Welcome to our chess game!");
+		textArea = new JTextArea();
 		textArea.setEditable(false);
 		JScrollPane scrollpane = new JScrollPane(textArea);
 		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -482,6 +484,15 @@ public class View implements Runnable {
 			return queue;
 		}
 	
+		public void setGameInfo(String message) {
+			gameInfo.add(message);
+		}
 		
+		public void printGameInfo() {
+			for(String s: gameInfo) {
+				textArea.append( " \n" + s);
+				gameInfo.remove(0);
+			}
+		}
 	
 }
