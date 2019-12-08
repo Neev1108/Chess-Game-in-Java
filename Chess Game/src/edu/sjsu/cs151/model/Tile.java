@@ -8,9 +8,8 @@ package edu.sjsu.cs151.model;
  */
 public class Tile {
 	private Piece piece; // the piece that occupies the tile
-	// row and col coordinates of the tile
-	private int row;
-	private int col;
+	private int row;	// row and col coordinates of the tile
+	private int col;   // row and col coordinates of the tile
 	private boolean isOccupied;
 
 	/**

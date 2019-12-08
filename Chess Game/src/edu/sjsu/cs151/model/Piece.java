@@ -1,6 +1,9 @@
 package edu.sjsu.cs151.model;
 
 /**
+ * This is the abstract piece class which contain the methods
+ * that are common to all the chess pieces.
+ * 
  * Created by Sehajmeet on 10/26/2019
  */
 public abstract class Piece {
