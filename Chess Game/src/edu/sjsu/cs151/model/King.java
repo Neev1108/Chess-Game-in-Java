@@ -26,10 +26,9 @@ public class King extends Piece {
 	/**
 	 * A function that determines whether the King moves in the right path.
 	 * 
-	 * @param board the board of the game
 	 * @param start the initial location of the piece
 	 * @param end the end location of the piece
-	 * @return a boolean indicating whether the move is valid
+	 * @return The boolean value after determining the validity of the move
 	 */
 
 	
@@ -74,7 +73,7 @@ public class King extends Piece {
  
     /**
      * Setter method to put the King in check
-     * @return Boolean value after determining the status of the King
+     * @param b The boolean value for setting the status of the King
      */
     public void setIsInCheck(boolean b)
     {

@@ -224,7 +224,7 @@ public class Model {
 	/**
 	 * Method to check if the player is making a valid move 
 	 * and not moving the enemy pieces
-	 * @param move
+	 * @param move The move user tries to make
 	 * @return The boolean value by checking the validity of the move.
 	 */
 	
@@ -370,6 +370,7 @@ public class Model {
 	 
 	 /**
 	  * Method to check if any collisions happened or not.
+	  * @param move The move player tries to make
 	  * @param player The Player making the move
 	  * @param pieceMoved The piece moved by the player
 	  * @return  false if there are NOT any collisions

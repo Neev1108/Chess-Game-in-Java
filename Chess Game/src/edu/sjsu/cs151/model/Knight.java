@@ -28,8 +28,8 @@ public class Knight extends Piece {
 	/**
 	 * A function that determines whether the Knight is moving in an "L" path.
 	 * 
-	 * @param first the initial location of the piece
-	 * @param last  the ends location of the piece
+	 * @param origin the initial location of the piece
+	 * @param destination  the ends location of the piece
 	 * @return a boolean indicating whether the move is valid
 	 */
 

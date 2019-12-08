@@ -28,10 +28,9 @@ public class Bishop extends Piece {
 	/**
 	 * A function that determines whether the Bishop moves in the right path.
 	 * 
-	 * @param board the board of the game
 	 * @param start the initial location of the piece
 	 * @param end the end location of the piece
-	 * @return a boolean indicating whether the move is valid
+	 * @return The boolean value after determining the validity of the move
 	 */
 	public boolean isValidMove(Tile start, Tile end) {
 		int x_diff = Math.abs(end.getRow() - start.getRow());

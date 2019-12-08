@@ -292,8 +292,8 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 	/**
 	 * Method to return the tile with the piece on it.
 	 * 
-	 * @param position The position of the piece
-	 * @return The tile with piece on it.
+	 * @param currentPosition The start position of the piece
+	 * @param endPosition The end position of the piece
 	 */
 	public void movePiece(int currentPosition, int endPosition) {
 		getTileAt(currentPosition).add(chessPiece);
@@ -302,7 +302,7 @@ public class ChessBoard extends JFrame implements MouseListener, MouseMotionList
 
 	/**
 	 * THis method gets the queue with the messages in it.
-	 * 
+	 * @param queue The empty blocking queue
 	 * @return The BlockingQueue
 	 */
 	public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue) {

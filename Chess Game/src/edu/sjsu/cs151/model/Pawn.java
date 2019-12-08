@@ -8,6 +8,7 @@ public class Pawn extends Piece {
 
 	/**
 	 * The constructor for a Pawn.
+	 * @param isWhite Boolean value to determine if the piece is white or not
 	 */
 	
 	public Pawn(boolean isWhite) {
@@ -27,8 +28,8 @@ public class Pawn extends Piece {
 	 * A function that determines whether the pawn is moving two steps or one step
 	 * or captures diagonally.
 	 * 
-	 * @param start the initial box of the board
-	 * @param end   the final box of the board
+	 * @param origin the initial box of the board
+	 * @param destination   the final box of the board
 	 * @return a boolean indicating whether the path is valid
 	 */
 	public boolean isValidMove(Tile origin, Tile destination) {

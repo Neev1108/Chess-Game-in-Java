@@ -35,6 +35,7 @@ public class Game {
 
 	/**
 	 * The main method that lets us play the game combining the three components.
+	 * @param args The String arguments
 	 */
 
 	public static void main(String[] args) {

@@ -7,9 +7,9 @@ package edu.sjsu.cs151.model;
 public class ModelTester {
 	/**
 	 * Main method that simulates our game
-	 * @param args
+	 * @param args unused
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println("For this assignment we are simulating a chess game in console.");
 		Model game = new Model();		
 		game.playGame();

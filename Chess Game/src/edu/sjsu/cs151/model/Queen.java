@@ -20,7 +20,6 @@ public class Queen extends Piece {
 	/**
 	 * A function that determines whether the Queen moves in the right path.
 	 * 
-	 * @param board the board of the game
 	 * @param start the initial location of the piece
 	 * @param end   the end location of the piece
 	 * @return a boolean indicating whether the move is valid

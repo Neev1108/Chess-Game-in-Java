@@ -146,7 +146,7 @@ public abstract class Piece {
 	
 	/**
 	 * This method the 
-	 * @return
+	 * @return The color of the String
 	 */
 	public String getColorString()
 	{
@@ -164,7 +164,7 @@ public abstract class Piece {
 	
 	/**
 	 * Setter method for the hasMoved field
-	 * @param b 
+	 * @param b A boolean value
 	 */
 	public void setHasMoved(boolean b)
 	{
@@ -182,7 +182,7 @@ public abstract class Piece {
 	
 	/**
 	 * Setter method for the current tile
-	 * @param newTile
+	 * @param newTile The new tile that needs to be added
 	 */
 	public void setCurrentTile(Tile newTile)
 	{

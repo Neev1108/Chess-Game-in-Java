@@ -19,7 +19,7 @@ public class Tile {
 	 * @param col   The vertical coordinate of the tile
 	 * @param piece The chess piece
 	 */
-	public Tile(int row, int col, Piece piece) {
+	public Tile(int row,int col, Piece piece) {
 		this.piece = piece;
 		this.row = row;
 		this.col = col;
@@ -44,7 +44,7 @@ public class Tile {
 	/**
 	 * This method replaces the piece on the tile by the new piece.
 	 * 
-	 * @param piece
+	 * @param piece The moved piece
 	 */
 	public void setPiece(Piece piece) { // replaces the piece on the tile by the new piece
 		this.piece = piece;

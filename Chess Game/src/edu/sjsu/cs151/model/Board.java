@@ -133,6 +133,7 @@ public class Board {
 
 	/**
 	 * Method to set the white king
+	 * @param k The White King
 	 */
 
 	public void setWhiteKing(King k) {
@@ -141,6 +142,7 @@ public class Board {
 
 	/**
 	 * Method to set the black king
+	 * @param k The Black King
 	 */
 
 	public void setBlackKing(King k) {
