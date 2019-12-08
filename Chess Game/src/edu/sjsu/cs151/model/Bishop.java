@@ -4,6 +4,13 @@ package edu.sjsu.cs151.model;
  */
 public class Bishop extends Piece {
 	PieceType type;
+	
+	
+	/**
+	 * Constructor of the Bishop
+	 * @param isWhite Boolean value to 
+	 * check if the piece is white or not
+	 */
 
 	public Bishop(boolean isWhite) {
 		super(isWhite, PieceType.Bishop);

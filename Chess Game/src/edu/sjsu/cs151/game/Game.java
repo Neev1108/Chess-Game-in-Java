@@ -8,47 +8,70 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import edu.sjsu.cs151.controller.*;
 
+/**
+ * The main class of our which lets us play the actual game it combines the
+ * three components of our game which are the model, view and controller.
+ * 
+ * @author Skylar, Neeval and Sehajmeet
+ *
+ */
+
 public class Game {
 
+	/**
+	 * The blocking queue that contains all the message of our game.
+	 */
 	private static BlockingQueue<Message> queue = new LinkedBlockingQueue<Message>();
+
+	/**
+	 * The view field that exports all the methods and fields in the View.
+	 */
 	private static View view;
+
+	/**
+	 * The model field that exports all the methods and fields in the Model.
+	 */
 	private static Model model;
-	
 
-    
+	/**
+	 * The main method that lets us play the game combining the three components.
+	 */
 
-	public static void main(String [] args){
+	public static void main(String[] args) {
 		view = new View(queue);
 		model = new Model();
 //		System.out.println("test1");
 
 		Controller controller = new Controller(model, view, queue);
-		
-	//	System.out.println("test");
+
+		// System.out.println("test");
 		try {
 			controller.mainLoop();
-	//		controller.printMessageQueue(queue);
+			// controller.printMessageQueue(queue);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//view.dispose();
-		queue.clear();	
+
+		// view.dispose();
+		queue.clear();
 	}
-	
-	
+
+	/**
+	 * Method get the model.
+	 * 
+	 * @return The model of our game
+	 */
 	public static Model getModel() {
-        return model;
-    }
+		return model;
+	}
 
-    /**
-     * Getter for view
-     * @return view
-     */
-    public static View getView() {
-        return view;
-    }
+	/**
+	 * Getter for view
+	 * 
+	 * @return view
+	 */
+	public static View getView() {
+		return view;
+	}
 }
-
-

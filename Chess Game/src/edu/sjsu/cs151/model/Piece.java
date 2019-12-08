@@ -1,7 +1,7 @@
 package edu.sjsu.cs151.model;
 
 /**
- * Created by Sehaj on 10/26/2019
+ * Created by Sehajmeet on 10/26/2019
  */
 public abstract class Piece {
 
@@ -26,10 +26,11 @@ public abstract class Piece {
 			colorString = "Black";
 		}
 		this.type = type;
-		this.currentTile = currentTile;
 	}
 
-	// enums for type and color
+	/**
+	 * Enum for pieceColor
+	 */
 	public enum PieceColor {
 		White {
 			@Override
@@ -45,7 +46,10 @@ public abstract class Piece {
 			}
 		}
 	}
-
+	
+	/**
+	 * Enum for pieceType
+	 */
 	public enum PieceType {
 		King {
 			@Override
@@ -86,19 +90,36 @@ public abstract class Piece {
 
 	}
 
+	/**
+	 * This method return true if a piece is white else returns false
+	 * @return The boolean value after checking the color of the piece
+	 */
 	public boolean isWhite() {
 		return this.isWhite;
 	}
 
-	// getter methods for each
+	/**
+	 * Getter method for the piece type
+	 * @return The type of the piece
+	 */
 	public PieceType getPieceType() {
 		return type;
 	}
 
+	/**
+	 * Getter method for the color of the piece
+	 * @return The color of the piece
+	 */
 	public PieceColor getPieceColor() {
 		return color;
 	}
 
+	/**
+	 * Abstract method to check the validity of the move.
+	 * @param origin The initial tile 
+	 * @param destination The final tile
+	 * @return The boolean value after determining the validity of the piece
+	 */
 	public abstract boolean isValidMove(Tile origin, Tile destination);
 	
 	public void move(Tile origin, Tile destination)
@@ -111,34 +132,55 @@ public abstract class Piece {
 	}
 	
 
-//	public abstract boolean isValidMove(Board board, Tile currentPos, Tile endPos);
-
+	/**
+	 * This method return the boolean value if a piece has died.
+	 * @return true if the piece has died else false
+	 */
 	public boolean pieceDied() {
 		this.PieceAlive = false;
 		return this.PieceAlive;
 	}
 	
-	
+	/**
+	 * This method the 
+	 * @return
+	 */
 	public String getColorString()
 	{
 		return colorString;
 	}
 	
+	/**
+	 * Getter method for the hasMoved field
+	 * @return A boolean value
+	 */
 	public boolean getHasMoved()
 	{
 		return hasMoved;
 	}
 	
+	/**
+	 * Setter method for the hasMoved field
+	 * @param b 
+	 */
 	public void setHasMoved(boolean b)
 	{
 		hasMoved = b;
 	}
 	
+	/**
+	 * Getter method for the current tile
+	 * @return The current tile
+	 */
 	public Tile getCurrentTile()
 	{
 		return currentTile;
 	}
 	
+	/**
+	 * Setter method for the current tile
+	 * @param newTile
+	 */
 	public void setCurrentTile(Tile newTile)
 	{
 		currentTile = newTile;

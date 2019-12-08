@@ -1,7 +1,5 @@
 package edu.sjsu.cs151.model;
 
-import edu.sjsu.cs151.model.Piece.PieceType;
-
 /**
  * Created by Sehajmeet on 10/26/2019
  */	
@@ -65,11 +63,19 @@ public class King extends Piece {
     	return true;
     } 
   
+    /**
+     * Method to check if the King is in Check
+     * @return Boolean value after determining the status of the King
+     */
     public boolean getIsInCheck()
     {
     	return isInCheck;
     }
  
+    /**
+     * Setter method to put the King in check
+     * @return Boolean value after determining the status of the King
+     */
     public void setIsInCheck(boolean b)
     {
     	isInCheck = b;

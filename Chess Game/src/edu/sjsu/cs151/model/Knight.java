@@ -7,7 +7,11 @@ package edu.sjsu.cs151.model;
 public class Knight extends Piece {
 	PieceType type;
 	
-	
+	/**
+	 * Constructor of the Knight class
+	 * @param isWhite boolean value to check if 
+	 * the knight piece is white or not
+	 */
 	public Knight(boolean isWhite) {
 		super(isWhite, PieceType.Knight);
 	}

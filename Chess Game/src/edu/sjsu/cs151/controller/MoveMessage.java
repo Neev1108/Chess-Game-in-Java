@@ -1,5 +1,8 @@
 package edu.sjsu.cs151.controller;
 
+/**
+* This class represents an attempted move event sent from the View when the user drags a chess piece
+*/
 public class MoveMessage implements Message{
 
 	private int currentPosition, endPosition;

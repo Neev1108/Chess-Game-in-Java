@@ -1,6 +1,5 @@
 package edu.sjsu.cs151.model;
 /**
- * 
  * Created by Neeval Kumar on 10/27/2019
  *
  */
@@ -8,6 +7,11 @@ public class Player {
 	public String color;
 	public boolean firstTurn = false;
 
+	/**
+	 * Constructor for a Player.
+	 * @param color The color of the player
+	 * @param firstTurn The boolean value to determine the first turn
+	 */
 	public Player(String color, boolean firstTurn) {
 		this.color = color;
 		this.firstTurn = firstTurn;
@@ -15,14 +19,26 @@ public class Player {
 
 	}
 
+	/**
+	 * Getter method to get the color of the player.
+	 * @return The color of the player
+	 */
 	public String getColor() {
 		return color;
 	}
 
+	/**
+	 * Method that checks which player gets the first turn
+	 * @return The boolean value after determining the first turn
+	 */
 	public boolean firstTurn() {
 		return firstTurn = true;
 	}
 	
+	/**
+	 * The to string method that return 
+	 * the color and the name of the player.
+	 */
 	public String toString()
 	{
 		return color + " Player";

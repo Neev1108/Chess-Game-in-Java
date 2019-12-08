@@ -1,7 +1,6 @@
 package edu.sjsu.cs151.model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
@@ -9,6 +8,7 @@ import edu.sjsu.cs151.controller.Message;
 import edu.sjsu.cs151.controller.PlayerChosenMessage;
 
 /**
+ * This is the Model class for our Chess game.
  * Created by Neeval on 10/27/2019
  */
 public class Model {
@@ -23,43 +23,79 @@ public class Model {
 	BlockingQueue<Message> queue;
 	String message;
 	
+	/**
+	 * Method to get the Player1
+	 * @return player
+	 */
 	public Player getPlayer1()
 	{
 		return player1;
 	}
 	
+	/**
+	 * Method to set the Player2 using the Message from the controller
+	 * @param message PlayerChosen message from the controller
+	 */
 	public void setPlayer1(PlayerChosenMessage message) {
 		this.player1 = new Player(message.getColor(), message.isFirstTurn());
 	}
-
-	public void setPlayer2(PlayerChosenMessage message) {
-		this.player2 = new Player(message.getColor(), message.isFirstTurn());
-	}
+	
+	/**
+	 * Method to get the Player
+	 * @return player
+	 */
 	public Player getPlayer2()
 	{
 		return player2;
 	}
 
+
+	/**
+	 * Method to set the Player2 using the Message from the controller
+	 * @param message PlayerChosen message from the controller
+	 */
+	public void setPlayer2(PlayerChosenMessage message) {
+		this.player2 = new Player(message.getColor(), message.isFirstTurn());
+	}
+	
+	
+	/**
+	 * Method for making the players to complete their turn
+	 * @return The player that needs to do the turn
+	 */
 	public Player getDoTurn()
 	{
 		return doTurn;
 	}
 
+	/**
+	 * Method to get the current state of the game. 
+	 * @return GameEvent
+	 */
 	public GameEvent getEvent()
 	{
 		return event;
 	}
-
+	
+	
+	
+	/**
+	 * Constructor for the Model
+	 */
 	public Model() {
 		this.board = Board.getInstance();
+		// Checking if the color of the first moving player is white.
 		if (player1.getColor().equals("White")) {
 			this.doTurn = player1;
 		}
 		else
 			this.doTurn = player2;
-		//playGame();
 	}
 
+	/**
+	 * Method to print the board with all the pieces
+	 * on the board.
+	 */
 	public void printBoard() {
 		Tile[][] b = board.getArray();
 		for (int i = 0; i < 8; i++ ) {
@@ -81,7 +117,11 @@ public class Model {
 		
 		}
 	}
-	 
+	
+	
+	/**
+	 * Method to play the game	 
+	 */
 	public void playGame()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -180,7 +220,13 @@ public class Model {
 		scan.close();
 	}
 	
-	
+
+	/**
+	 * Method to check if the player is making a valid move 
+	 * and not moving the enemy pieces
+	 * @param move
+	 * @return The boolean value by checking the validity of the move.
+	 */
 	
 	public boolean startTurn(Moves move){
 		ArrayList<String> results = new ArrayList<String>();
@@ -288,7 +334,11 @@ public class Model {
 	 }
 	
 
-
+	/**
+	 * Method to check if a tile is already occupied or not
+	 * @param tile The tile value
+	 * @return The boolean value to check if the tile is occupied or not
+	 */
 	 public boolean isOccupied(Tile tile)
 	 {
 	 	if (tile.getPiece() != null)
@@ -298,8 +348,13 @@ public class Model {
 	 	return false;
 	 }
 
-	 
-	 //returns false if there is not an ally (either empty or enemy)
+	 /**
+	  * Method to check if the destination is occupied by a friendly piece or not
+	  * @param move The valid move of the player
+	  * @param player The Player making the move
+	  * @param pieceMoved The piece moved by the player
+	  * @return false if there is not an ally (either empty or enemy)
+	  */
 	 public boolean checkDestinationForAlly(Moves move, Player player, Piece pieceMoved)
 	 {
 		 if (move.getEndPos().getIsOccupied() == false)
@@ -313,7 +368,12 @@ public class Model {
 		 return false;
 	 }
 	 
-	 
+	 /**
+	  * Method to check if any collisions happened or not.
+	  * @param player The Player making the move
+	  * @param pieceMoved The piece moved by the player
+	  * @return  false if there are NOT any collisions
+	  */
 	 // returns false if there are NOT any collisions
 	 public boolean checkCollisions(Moves move, Player player, Piece pieceMoved)
 	 {
@@ -573,12 +633,21 @@ public class Model {
 
 
 
-
+	 /**
+	  * Method to get the tile
+	  * @param row The x coordinate of the board
+	  * @param col The Y coordinate of the board
+	  * @return The correct tile 
+	  */
 	 public Tile getTile(int row, int col)
 	 {
 		 return board.getTile(row, col);
 	 }
 	 
+	 /**
+	  * Method to get the current state of the game
+	  * @return The message about the current state of the game.
+	  */
 	 public String getGameInfo() {
 		  return message;
 		 

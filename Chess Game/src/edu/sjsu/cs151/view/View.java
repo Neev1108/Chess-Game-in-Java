@@ -29,7 +29,8 @@ import edu.sjsu.cs151.controller.*;
 import java.awt.event.*;
 
 /**
- * This program creates a simple moving animation
+ * This program creates a simple moving animation and the GUI component of our
+ * game.
  * 
  * @author Sehajmeet and Neeval
  *
@@ -51,120 +52,117 @@ public class View implements Runnable {
 		run();
 	}
 
+	/**
+	 * Method to make the the animation move
+	 */
 	public void run() {
 		/**
 		 * Creating a JFrame of size 2000 x 2000
 		 */
 
-/*		JFrame frame = new JFrame();
-		frame.setSize(1000, 500);
-*/
+		/*
+		 * JFrame frame = new JFrame(); frame.setSize(1000, 500);
+		 */
 		/**
 		 * Creating three MoveableShape objects
 		 */
-/*		final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH);
-		final MoveableShape quiz = new stationaryTile(0, 0, 100);
-		final MoveableShape bish = new BishopShape(0, 0, PAWN_WIDTH);
-*/
+		/*
+		 * final MoveableShape shape = new PawnShape(0, 0, PAWN_WIDTH); final
+		 * MoveableShape quiz = new stationaryTile(0, 0, 100); final MoveableShape bish
+		 * = new BishopShape(0, 0, PAWN_WIDTH);
+		 */
 		/**
 		 * Creating the first chess piece animation
 		 */
-/*		ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT);
-		final JLabel label = new JLabel(icon);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(label);
-*/
+		/*
+		 * ShapeIcon icon = new ShapeIcon(shape, ICON_WIDTH, ICON_HEIGHT); final JLabel
+		 * label = new JLabel(icon); frame.setVisible(true);
+		 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); frame.add(label);
+		 */
 		/**
 		 * Creating the second chess piece animation
 		 */
-/*		ShapeIcon bishop = new ShapeIcon(bish, ICON_WIDTH, ICON_HEIGHT);
-		final JLabel label3 = new JLabel(bishop);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		frame.add(label3);
-*/
+		/*
+		 * ShapeIcon bishop = new ShapeIcon(bish, ICON_WIDTH, ICON_HEIGHT); final JLabel
+		 * label3 = new JLabel(bishop); frame.setVisible(true);
+		 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 * 
+		 * frame.add(label3);
+		 */
 		/**
 		 * Creating the tiles of the chess board
 		 */
-/*		ShapeIcon tile = new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT);
-		final JLabel label2 = new JLabel(tile);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(label2);
-
-		final int DELAY = 5;
-*/
+		/*
+		 * ShapeIcon tile = new ShapeIcon(quiz, ICON_WIDTH, ICON_HEIGHT); final JLabel
+		 * label2 = new JLabel(tile); frame.setVisible(true);
+		 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); frame.add(label2);
+		 * 
+		 * final int DELAY = 5;
+		 */
 		/**
 		 * The timer for the animation
 		 */
-/*		Timer t = new Timer(DELAY, event -> {
-			shape.move();
-			label.repaint();
-			bish.move();
-			label3.repaint();
-
-		});
-
-		t.start();
-*/
+		/*
+		 * Timer t = new Timer(DELAY, event -> { shape.move(); label.repaint();
+		 * bish.move(); label3.repaint();
+		 * 
+		 * });
+		 * 
+		 * t.start();
+		 */
 		/**
 		 * Creating the button for starting the chess game
 		 */
-//		JButton startButton = new JButton("START CHESS GAME");
+		// JButton startButton = new JButton("START CHESS GAME");
 
 		// Creating a GridBagLayout for our output
-/*		JLabel backg = new JLabel(new ImageIcon("background.png"));
-		JLabel backg = new JLabel(new ImageIcon(getClass().getResource("/resources/background.png")));
-		backg.setLayout(new FlowLayout());
-		JPanel pnl = new JPanel();
+		/*
+		 * JLabel backg = new JLabel(new ImageIcon("background.png")); JLabel backg =
+		 * new JLabel(new
+		 * ImageIcon(getClass().getResource("/resources/background.png")));
+		 * backg.setLayout(new FlowLayout()); JPanel pnl = new JPanel();
+		 * 
+		 * backg.add(pnl); pnl.add(startButton); frame.add(backg);
+		 * frame.setVisible(true);
+		 * 
+		 * startButton.addActionListener(event -> {
+		 */
+		// was doing some thread testing lock.wait will make the view thread wait, but I
+		// still have to figure out how to start the model's thread
 
-		backg.add(pnl);
-		pnl.add(startButton);
-		frame.add(backg);
-		frame.setVisible(true);
-
-		startButton.addActionListener(event -> {
-*/
-			// was doing some thread testing lock.wait will make the view thread wait, but I
-			// still have to figure out how to start the model's thread
-
-			// synchronized(lock) {
-			// try {
-/*			try {
-				queue.put(new NewGameMessage());// Add to queue
-				
-				printMessageQueue();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			// lock.wait();
-
-			// } catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
-			// }
-			// start a new frame for the pick color screen
-			frame.dispose();
-
-			playerScreen();
-
-		});*/
+		// synchronized(lock) {
+		// try {
+		/*
+		 * try { queue.put(new NewGameMessage());// Add to queue
+		 * 
+		 * printMessageQueue(); } catch (InterruptedException e1) {
+		 * e1.printStackTrace(); } // lock.wait();
+		 * 
+		 * // } catch (InterruptedException e) { // TODO Auto-generated catch block //
+		 * e.printStackTrace(); // } // } // start a new frame for the pick color screen
+		 * frame.dispose();
+		 * 
+		 * playerScreen();
+		 * 
+		 * });
+		 */
 
 		playerScreen();
 	}
 
-	public  void playerScreen() {
+	/**
+	 * The method that displays the Player screen which lets the player to choose
+	 * the color.
+	 */
+	public void playerScreen() {
 		JFrame playerScreen = new JFrame("Player Screen");
 		playerScreen.setSize(400, 300);
 		playerScreen.setBackground(Color.black);
 		playerScreen.setVisible(true);
 
 		JLabel background = new JLabel(new ImageIcon("resources/background.png"));
-	//	Icon background = new ImageIcon("/resources/background.png");
-		
+		// Icon background = new ImageIcon("/resources/background.png");
+
 		background.setLayout(new FlowLayout());
 
 		// textField asking the player to choose a color
@@ -176,8 +174,8 @@ public class View implements Runnable {
 		// Buttons are in the shape of pawns that are black and white
 		// This only works on my computer. Still need to create an image folder in the
 		// project so we cans store our images when someone runs
-	//	Icon wPawn = new ImageIcon("/resources/whitePawn.png");
-	//	Icon bPawn = new ImageIcon("/resources/blackPawn.png");
+		// Icon wPawn = new ImageIcon("/resources/whitePawn.png");
+		// Icon bPawn = new ImageIcon("/resources/blackPawn.png");
 		Icon whitePawn = new ImageIcon(getClass().getResource("/resources/whitePawn.png"));
 		Icon blackPawn = new ImageIcon(getClass().getResource("/resources/blackPawn.png"));
 		JButton white = new JButton(whitePawn);
@@ -200,8 +198,8 @@ public class View implements Runnable {
 		white.addActionListener(event2 -> {
 			queue.add(new PlayerChosenMessage("White", true));
 			playerScreen.dispose();
-			//JFrame frame = new ChessBoard(queue);
-			//	frame = setIdealFrame(frame);
+			// JFrame frame = new ChessBoard(queue);
+			// frame = setIdealFrame(frame);
 			chessBoardFrame = (ChessBoard) setIdealFrame(chessBoardFrame);
 
 		});
@@ -212,14 +210,21 @@ public class View implements Runnable {
 		black.addActionListener(event3 -> {
 			queue.add(new PlayerChosenMessage("Black", false));
 			playerScreen.dispose();
-		//	JFrame frame = new ChessBoard(queue);
-		//	frame = setIdealFrame(frame);
+			// JFrame frame = new ChessBoard(queue);
+			// frame = setIdealFrame(frame);
 			chessBoardFrame = (ChessBoard) setIdealFrame(chessBoardFrame);
 		});
 
 	}
 
-	public  JFrame setIdealFrame(JFrame frame) {
+	/**
+	 * The method that creates all the GUI components of our Game and
+	 * 
+	 * @param frame The frame containing all the GUI of our game
+	 * @return The frame with all the buttons and the ChessBoard with all the
+	 *         pieces.
+	 */
+	public JFrame setIdealFrame(JFrame frame) {
 		frame.setSize(600, 750);
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
@@ -272,227 +277,236 @@ public class View implements Runnable {
 
 	}
 
-	
+	public void dontMove(int currentPosition, int endPosition) {
 
-	
-	
-	
-	
-	
-	
-	
-	public void dontMove(int currentPosition, int endPosition)
-	{
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	JLayeredPane pane;
 	JPanel chessBoard;
 	JLabel chessPiece;
 	int x;
 	int y;
-	
+
 	int currentPosition;
 	int endPosition;
-	
-	
-	
-	
-	// NOTE ALL IMAGES FOR THE PIECE OR JLABELS
-		public void mousePressed(MouseEvent e) {
-			// keep chess piece null, so we can store to drop later when we mouse press
-			chessPiece = null;
 
-			// get component on chessBoard at point clicked
+	/**
+	 * Method to change the pieces when a piece is pressed.
+	 * 
+	 * @param e MouseEvent
+	 */
+	public void mousePressed(MouseEvent e) {
+		// keep chess piece null, so we can store to drop later when we mouse press
+		chessPiece = null;
+
+		// get component on chessBoard at point clicked
+		Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
+
+		// if person clicks empty tile, just return so they can choose a piece instead
+		if (pieceImage instanceof JPanel)
+			return;
+
+		// store the chessPiece in a chessPiece and sets the location image from the
+		// mouse pointer
+
+		chessPiece = (JLabel) pieceImage;
+		chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
+		chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
+		pane.add(chessPiece, JLayeredPane.DRAG_LAYER);
+		currentPosition = (e.getX() / 75) + (8 * (e.getY() / 75));
+
+	}
+
+	/**
+	 * This method changes the position of the piece when the piece is dragged the
+	 * chess piece around.
+	 * 
+	 * @param e The MouseEvent
+	 */
+
+	public void mouseDragged(MouseEvent e) {
+		if (chessPiece == null)
+			return;
+		chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
+
+	}
+
+	/**
+	 * This method changes the position of the piece when the piece is dragged and
+	 * dropped back onto the chess board.
+	 * 
+	 * @param e The MouseEvent
+	 */
+	public void mouseReleased(MouseEvent e) {
+		// if no chessPiece initialized means nothing was mouse pressed
+		if (chessPiece == null)
+
+			return;
+
+		else {
+
+			chessPiece.setVisible(false);
+			endPosition = (e.getX() / 75) + (8 * (e.getY() / 75));
+
+			System.out.println(currentPosition + " " + endPosition);
 			Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
 
-			// if person clicks empty tile, just return so they can choose a piece instead
-			if (pieceImage instanceof JPanel)
-				return;
+			if (pieceImage instanceof JLabel) {
 
-			// store the chessPiece in a chessPiece and sets the location image from the
-			// mouse pointer
-
-			chessPiece = (JLabel) pieceImage;
-			chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
-			chessPiece.setSize(chessPiece.getWidth(), chessPiece.getHeight());
-			pane.add(chessPiece, JLayeredPane.DRAG_LAYER);
-			currentPosition = (e.getX()/75) + (8 *(e.getY()/75));
-			
-			
-		}
-
-		// drag the chess piece around
-
-		public void mouseDragged(MouseEvent e) {
-			if (chessPiece == null)
-				return;
-			chessPiece.setLocation(e.getX() - 25, e.getY() - 25);
-
-		}
-
-		// Drop the chess piece back onto the chess board
-
-		public void mouseReleased(MouseEvent e) {
-			// if no chessPiece initialized means nothing was mouse pressed
-			if (chessPiece == null)
-
-				return;
-			
-
-			else {
-
-				chessPiece.setVisible(false);
-				endPosition = (e.getX()/75) + (8 * (e.getY()/75));
-				
-				
-				System.out.println(currentPosition + " " + endPosition);
-				Component pieceImage = chessBoard.findComponentAt(e.getX(), e.getY());
-				
-
-
-				if (pieceImage instanceof JLabel) {
-
-					try {
-						MoveMessage message = new MoveMessage(currentPosition, endPosition);
-						queue.put(message);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					if(canMove == true) {
-						Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
-						tile.remove(0); // removes whichever piece was already there
-						tile.add(chessPiece);
-						updateBoard();
-					}
-					else {
-						Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
-						tile.add(chessPiece);
-						updateBoard();
-					}
+				try {
+					MoveMessage message = new MoveMessage(currentPosition, endPosition);
+					queue.put(message);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
-				chessPiece.setVisible(true);
+				if (canMove == true) {
+					Container tile = pieceImage.getParent(); // gets the parent component of the piece which is the tile
+					tile.remove(0); // removes whichever piece was already there
+					tile.add(chessPiece);
+					updateBoard();
+				} else {
+					Container tile = (Container) pieceImage;// if the tile is already empty, just add as a component
+					tile.add(chessPiece);
+					updateBoard();
+				}
 			}
 
-		}
-			
-			
-		
-		
-
-		// just for interface implementation, blank methods
-		public void mouseClicked(MouseEvent e) {
-
+			chessPiece.setVisible(true);
 		}
 
-		public void mouseMoved(MouseEvent e) {
-		}
+	}
 
-		public void mouseEntered(MouseEvent e) {
+	/**
+	 * The unused mouseClicked method
+	 * 
+	 * @param e The mouseEvent
+	 */
+
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	/**
+	 * The unused mouseClicked method
+	 * 
+	 * @param e The mouseEvent
+	 */
+	public void mouseMoved(MouseEvent e) {
+	}
+
+	/**
+	 * The unused mouseEntered method
+	 * 
+	 * @param e The mouseEvent
+	 */
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	/**
+	 * The unused mouseExited method
+	 * 
+	 * @param e The mouseEvent
+	 */
+	public void mouseExited(MouseEvent e) {
+
+	}
+
+	/**
+	 * Method to print the message from the MessageQueue or throws an exception
+	 */
+	public void printMessageQueue() {
+		try {
+			System.out.println(queue.take());
+
+		} catch (InterruptedException e) {
 
 		}
+	}
 
-		public void mouseExited(MouseEvent e) {
+	/**
+	 * Method to update the board after the pieces are moved.
+	 */
+	public void updateBoard() {
+		pane.removeAll();
+		pane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
+	}
 
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		public void printMessageQueue()
-		{
-			try {
-				System.out.println(queue.take());
-				
-			}
-			catch (InterruptedException e){
-				
-			}
-		}
-		
-		
-		
-		
-		
-		
-		public void updateBoard() {
-			pane.removeAll(); 
-	        pane.add(chessBoard, JLayeredPane.DEFAULT_LAYER);
-		}
-		
-		public JPanel getTileAt(int position) {
-			return (JPanel) chessBoard.getComponent(position);
-		}
-		
-		public void canmovePiece(boolean canMove) {
-			this.canMove = canMove;
-			chessBoardFrame.updateChessBoardFrame(canMove);
-		}
-		
-		public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue){
-			return queue;
-		}
+	/**
+	 * Method to return the tile with the piece on it.
+	 * 
+	 * @param position The position of the piece
+	 * @return The tile with piece on it.
+	 */
+	public JPanel getTileAt(int position) {
+		return (JPanel) chessBoard.getComponent(position);
+	}
 
-		public JPanel getChessBoard() {
-			return chessBoard;
-		}
+	/**
+	 * This method moves the pieces after determining a piece can be moved or not.
+	 * 
+	 * @param canMove The boolean value to determine the validity of the move.
+	 */
+	public void canmovePiece(boolean canMove) {
+		this.canMove = canMove;
+		chessBoardFrame.updateChessBoardFrame(canMove);
+	}
 
-		public JLabel getChessPiece() {
-			return chessPiece;
-		}
+	/**
+	 * THis method gets the queue with the messages in it.
+	 * 
+	 * @return The BlockingQueue
+	 */
+	public BlockingQueue<Message> getQueue(BlockingQueue<Message> queue) {
+		return queue;
+	}
 
-		public BlockingQueue<Message> getQueue() {
-			return queue;
+	/**
+	 * THis method returns the chessBoard
+	 * 
+	 * @return ChessBoard
+	 */
+	public JPanel getChessBoard() {
+		return chessBoard;
+	}
+
+	/**
+	 * This method returns the chessPiece
+	 * 
+	 * @return ChessPiece
+	 */
+	public JLabel getChessPiece() {
+		return chessPiece;
+	}
+
+	/**
+	 * This method returns the message queue
+	 * 
+	 * @return The blocking queue
+	 */
+	public BlockingQueue<Message> getQueue() {
+		return queue;
+	}
+
+	/**
+	 * This method sets the game info
+	 * 
+	 * @param message The message of the queue
+	 */
+	public void setGameInfo(String message) {
+		gameInfo.add(message);
+	}
+
+	/**
+	 * This method prints the game info
+	 */
+	public void printGameInfo() {
+		for (String s : gameInfo) {
+			textArea.append(" \n" + s);
+			gameInfo.remove(0);
 		}
-	
-		public void setGameInfo(String message) {
-			gameInfo.add(message);
-		}
-		
-		public void printGameInfo() {
-			for(String s: gameInfo) {
-				textArea.append( " \n" + s);
-				gameInfo.remove(0);
-			}
-		}
-	
+	}
+
 }

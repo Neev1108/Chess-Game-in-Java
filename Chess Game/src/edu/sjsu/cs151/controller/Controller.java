@@ -24,9 +24,9 @@ public class Controller {
 	
 	/**
 	 * Controller constructor. 
-	 * @param model
-	 * @param view
-	 * @param queue
+	 * @param model The model component of our game 
+	 * @param view The GUI component of our game
+	 * @param queue The queue to contain the messages
 	 */
 
 	public Controller(Model model, View view,BlockingQueue<Message> queue) {
@@ -38,12 +38,19 @@ public class Controller {
 		this.queue = queue;
 	}
 	
-	
+
+	 /**
+     * Getter for view
+     * @return view
+     */
 	public View getView() {
 		return view;
 	}
 
-
+	 /**
+     * Getter for model
+     * @return model
+     */
 	public Model getModel() {
 		return model;
 	}
@@ -71,11 +78,18 @@ public class Controller {
 		
 		
 	}
-	
+	/**
+	 * Method that updates the message into the queue
+	 * @param queue The BlockingQueue containing the messages
+	 */
 	public void updateMessageQueue(BlockingQueue<Message> queue){
 		this.queue = queue;
 	}
-	
+
+	/**
+	 * Method that prints the messages or throws an exception
+	 * @param queue The BlockingQueue containing the messages
+	 */
 	public void printMessageQueue(BlockingQueue<Message> queue)
 	{
 		try {
