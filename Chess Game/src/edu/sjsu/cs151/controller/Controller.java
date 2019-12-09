@@ -54,6 +54,8 @@ public class Controller {
 	public Model getModel() {
 		return model;
 	}
+	
+	
 
 
 	public void mainLoop() throws Exception{

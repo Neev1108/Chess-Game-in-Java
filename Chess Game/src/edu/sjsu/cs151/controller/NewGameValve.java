@@ -13,6 +13,7 @@ public class NewGameValve implements Valve{
 			return ValveResponses.MISS;
 		}
 		
+		
 		return ValveResponses.EXECUTED;
 	}
 
