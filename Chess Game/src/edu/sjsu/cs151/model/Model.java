@@ -528,6 +528,10 @@ public class Model {
 
 
 
+	 
+	 
+	 
+	 
 	 public boolean kingInCheck(King king) 
 	 {
 		 boolean result = false;
@@ -556,13 +560,15 @@ public class Model {
 					 //if the piece is an enemy, check if their range includes the King
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
+						 System.out.println(checkPiece.toString());
+
 						 king.setIsInCheck(true);
 						 return true;
 					 }
 					 else
 					 	 {
 						 //Either an ally is protecting the king, or the enemy is out of range
-						 System.out.println("Breaking");
+						 System.out.println("Breaking 1");
 						 break;
 						 }
 				 }
@@ -570,9 +576,7 @@ public class Model {
 			 checkRow = checkRow -1;
 		 }
 		 
-		 System.out.println("Broke");
 		 checkRow = kingTile.getRow();
-		 System.out.println(checkRow);
 		 while (checkRow < 8)
 		 {
 			 checkTile = board.getTile(checkRow, checkCol);
@@ -587,13 +591,14 @@ public class Model {
 					 //if the piece is an enemy, check if their range includes the King
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
+						 System.out.println(checkPiece.toString());
 						 king.setIsInCheck(true);
 						 return true;
 					 }
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking");
+					 System.out.println("Breaking 2");
 					 break;
 					 }
 				 }
@@ -616,13 +621,15 @@ public class Model {
 					 //if the piece is an enemy, check if their range includes the King
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
+						 System.out.println(checkPiece.toString());
+
 						 king.setIsInCheck(true);
 						 return true;
 					 }
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking");
+					 System.out.println("Breaking 3");
 					 break;
 					 }
 				 }
@@ -645,19 +652,163 @@ public class Model {
 					 //if the piece is an enemy, check if their range includes the King
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
+						 System.out.println(checkPiece.toString());
+
 						 king.setIsInCheck(true);
 						 return true;
 					 }
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking");
+					 System.out.println("Breaking 4");
 					 break;
 					 }
 				 }
 			 }
 			 checkCol = checkCol + 1;
 		 }
+		 
+		 
+		 
+		 
+		 checkRow = kingTile.getRow();
+		 checkCol = kingTile.getCol();
+		 while (checkRow < 8 && checkCol < 8)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 System.out.println(checkPiece.toString());
+
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking 5");
+					 break;
+					 }
+				 }
+			 }
+			 checkRow = checkRow + 1;
+			 checkCol = checkCol + 1;
+		 }
+		 
+		 
+		 
+		 checkRow = kingTile.getRow();
+		 checkCol = kingTile.getCol();
+		 while (checkRow > -1 && checkCol > -1)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 System.out.println(checkPiece.toString());
+
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking 5");
+					 break;
+					 }
+				 }
+			 }
+			 checkRow = checkRow - 1;
+			 checkCol = checkCol - 1;
+		 }
+		 
+		 
+		 
+		 
+		 checkRow = kingTile.getRow();
+		 checkCol = kingTile.getCol();
+		 while (checkRow < 8 && checkCol > -1)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 System.out.println(checkPiece.toString());
+
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking 5");
+					 break;
+					 }
+				 }
+			 }
+			 checkRow = checkRow + 1;
+			 checkCol = checkCol - 1;
+		 }
+		 
+		 
+		 checkRow = kingTile.getRow();
+		 checkCol = kingTile.getCol();
+		 while (checkRow > -1 && checkCol < 8)
+		 {
+			 checkTile = board.getTile(checkRow, checkCol);
+			 checkForPiece = checkTile.getIsOccupied();
+			 if (checkForPiece == true)
+			 {
+				 checkPiece = checkTile.getPiece();
+				 
+				 //if an enemy piece is found, test color
+				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+				 {
+					 //if the piece is an enemy, check if their range includes the King
+					 if (checkPiece.isValidMove(checkTile, kingTile))
+					 {
+						 System.out.println(checkPiece.toString());
+
+						 king.setIsInCheck(true);
+						 return true;
+					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking 5");
+					 break;
+					 }
+				 }
+			 }
+			 checkRow = checkRow - 1;
+			 checkCol = checkCol + 1;
+		 }
+		 
 		 king.setIsInCheck(result);
 		 return result;
 	 }

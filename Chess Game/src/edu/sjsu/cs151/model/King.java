@@ -41,13 +41,17 @@ public class King extends Piece {
     	diffCol = Math.abs(diffCol);
     	
     	//King can only move 1 square in any direction (unless Castling)
-    	if ((diffRow > 1 || diffCol > 1) && (this.getHasMoved() == true))
+/*    	if ((diffRow > 1 || diffCol > 1) && (this.getHasMoved() == true))
+    	{
+    		System.out.println("This King cannot move that far right now.");
+    		return false;
+    	}*/
+    	
+    	if ((diffRow > 1 || diffCol > 1))
     	{
     		System.out.println("This King cannot move that far right now.");
     		return false;
     	}
-    	
-    	
     	
     	//check for allies
     	if (end.getIsOccupied() == true)
