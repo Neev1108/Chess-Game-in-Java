@@ -172,18 +172,18 @@ public class View implements Runnable {
 		chooseColor.setBackground(Color.white);
 
 		// Buttons are in the shape of pawns that are black and white
-		// This only works on my computer. Still need to create an image folder in the
-		// project so we cans store our images when someone runs
-		// Icon wPawn = new ImageIcon("/resources/whitePawn.png");
-		// Icon bPawn = new ImageIcon("/resources/blackPawn.png");
+		// Button for rules for anyone unfamiliar
 		Icon whitePawn = new ImageIcon(getClass().getResource("/resources/whitePawn.png"));
 		Icon blackPawn = new ImageIcon(getClass().getResource("/resources/blackPawn.png"));
 		JButton white = new JButton(whitePawn);
 		JButton black = new JButton(blackPawn);
+		JButton rules = new JButton("Rules");
+		
 
 		// adding everything
 		background.add(white);
 		background.add(black);
+		background.add(rules);
 
 		chooseColor.setFont(font1);
 		chooseColor.setEditable(false);
@@ -213,6 +213,40 @@ public class View implements Runnable {
 			// JFrame frame = new ChessBoard(queue);
 			// frame = setIdealFrame(frame);
 			chessBoardFrame = (ChessBoard) setIdealFrame(chessBoardFrame);
+		});
+		
+		
+		//Action listener for the rules screen 
+		rules.addActionListener(event3 -> {
+			JFrame rulesScreen = new JFrame();
+			rulesScreen.setSize(1000, 400);
+			
+			
+			JTextArea rule = new JTextArea();
+			rule.append("Hello users. This is our chess game. Some important rules to remember in chess. \n"
+					+ "Players pick sides. White goes first. \n"
+					+ "Goal of the game is to take players pieces and checkmating the king. \n "
+					+ "Checking the king means putting him in the position where you can take the piece.\n "
+					+ "Checkmating means no further movements can be made to opponenent's king, thus stopping from making any further movements \n"
+					+ "\n"
+					+ "Pieces and their movements: \n"
+					+ "1. Pawn: There are 8 pawns on the board. On the first turn they can be moven twice up, but afterwards can only take 1. \n  They can ONLY cut diagonally in one tile move \n"
+					+ "2. King: The main piece. Can only move 1 tile but in any direction. Must move when checked or if checkmated, game is over. \n"
+					+ "3. Queen: Can make a move in any direction with as much tiles as it wants. \n"
+					+ "4. Rook: The castle looking piece. Can make a move in any horizontal or vertical direction with no limits on tiles. \n"
+					+ "5. Knight: Horse piece. Can only move in any L-direction, taking 2 tiles in the vertical direction and 1 tile in the horizontal. \n"
+					+ "6. Bishop: This piece can make a move in the diagonal direction with no limits on tiles. \n"
+					+ "\n"
+					+ "NOTE: To move the pieces please click and drag, then release on the tile you want. \n"
+					+ "You cannot jump over pieces unless you are a knight. \n"
+					+ "\n"
+					+ "Finally the game is a work in progress so there may be bugs in the game that may have gone unnoticed. \n"
+					+ "Chess itself is a very complex game, so there are many edge cases on the bugs that have to be handled. \n"
+					+ "If a bug goes unnoticed, please contact me at neevalkumar@gmail.com. Thank you.");
+			rule.setEditable(false);
+			rulesScreen.add(rule);
+			
+			rulesScreen.setVisible(true);
 		});
 
 	}
@@ -249,9 +283,8 @@ public class View implements Runnable {
 		// newGame button functionality
 		newGame.addActionListener(newGameRecurs -> {
 			frame.dispose();
-
 			this.playerScreen();
-			;
+			
 		});
 
 		// quitGame button functionality
@@ -277,9 +310,6 @@ public class View implements Runnable {
 
 	}
 
-	public void dontMove(int currentPosition, int endPosition) {
-
-	}
 
 	JLayeredPane pane;
 	JPanel chessBoard;
@@ -508,5 +538,7 @@ public class View implements Runnable {
 			gameInfo.remove(0);
 		}
 	}
+	
+	
 
 }
