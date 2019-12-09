@@ -397,15 +397,15 @@ public class Model {
 		}
 	 	
 	 	
-	 	int changeX = move.getEndPos().getRow() - move.getCurrentPos().getRow();
-	 	int changeY = move.getEndPos().getCol() - move.getCurrentPos().getCol();
-	 	//If x coordinate did not change
-		if (changeX == 0)
+	 	int changeRow = move.getEndPos().getRow() - move.getCurrentPos().getRow();
+	 	int changeCol = move.getEndPos().getCol() - move.getCurrentPos().getCol();
+	 	//If Row coordinate did not change
+		if (changeRow == 0)
 		{
-			if (changeY > 0)
+			if (changeCol > 0)
 			{
-				//piece moved in increasing Y
-				for (int i = 1; i < changeY; i++)
+				//piece moved in increasing Col
+				for (int i = 1; i < changeCol; i++)
 				{
 					boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getRow(), (move.getCurrentPos().getCol() + i)));
 					if (occupied == true)
@@ -417,9 +417,9 @@ public class Model {
 					}
 				}
 			}
-			else //piece moved in decreasing Y
+			else //piece moved in decreasing Col
 			{
-				for (int i = -1; i > changeY; i--)
+				for (int i = -1; i > changeCol; i--)
 				{
 					boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getRow(), (move.getCurrentPos().getCol() + i)));
 					if (occupied == true)
@@ -432,13 +432,13 @@ public class Model {
 			}
 		}
 
-		//if Y coordinate did not change
-		else if (changeY == 0)
+		//if Col coordinate did not change
+		else if (changeCol == 0)
 		{
-			if (changeX > 0)
+			if (changeRow > 0)
 			{
-				//piece moved in increasing X
-				for (int i = 1; i < changeX; i++)
+				//piece moved in increasing Row
+				for (int i = 1; i < changeRow; i++)
 				{
 					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), move.getCurrentPos().getCol()));
 					if (occupied == true)
@@ -452,8 +452,8 @@ public class Model {
 			
 			else
 			{
-				//piece moved in decreasing X
-				for (int i = -1; i > changeX; i--)
+				//piece moved in decreasing Row
+				for (int i = -1; i > changeRow; i--)
 				{
 					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), move.getCurrentPos().getCol()));
 					if (occupied == true)
@@ -469,54 +469,72 @@ public class Model {
 		
 		
 		//If the piece moved diagonally
-		if (Math.abs(changeX) == Math.abs(changeY))
+		if (Math.abs(changeRow) == Math.abs(changeCol))
 		{
-			//both x and y increase
-			for (int i = 1; i < changeX; i++)
+			if (changeRow > 0 && changeCol > 0)
 			{
-				boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() + i)));
-				if (occupied == true)
+				//both Row and Col increase
+				for (int i = 1; i < changeRow; i++)
 				{
-					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
-					message = "A different piece prevents you from reaching your destination. Please select another destination.";
-					return true;
-				}
-			}
-			
-			//both x and y decrease
-			for (int i = -1; i > changeX; i--)
-			{
-				boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() + i)));
-				if (occupied == true)
-				{
-					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
-					message = "A different piece prevents you from reaching your destination. Please select another destination.";
-					return true;
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
+						return true;
+					}
 				}
 			}
 			
 			
-			//x decreases while y increases
-			for (int i = 1; i < changeY; i++)
+			
+			else if (changeRow < 0 && changeCol < 0)
 			{
-				boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() - i), (move.getCurrentPos().getCol() + i)));
-				if (occupied == true)
+				//both Row and Col decrease
+				for (int i = -1; i > changeRow; i--)
 				{
-					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
-					message = "A different piece prevents you from reaching your destination. Please select another destination.";
-					return true;
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
+						return true;
+					}
 				}
 			}
 			
-			//y decreases while x increases
-			for (int i = 1; i < changeX; i++)
+			
+			else if (changeRow < 0 && changeCol > 0)
 			{
-				boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() - i)));
-				if (occupied == true)
+				//Row decreases while Col increases
+				for (int i = 1; i < changeCol; i++)
 				{
-					System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
-					message = "A different piece prevents you from reaching your destination. Please select another destination.";
-					return true;
+					System.out.println(move.getCurrentPos().getRow() - i);
+					System.out.println(move.getCurrentPos().getCol() + i);
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() - i), (move.getCurrentPos().getCol() + i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
+						return true;
+					}
+				}
+			}
+			
+			
+			
+			else if (changeRow > 0 && changeCol < 0)
+			{
+				//Col decreases while Row increases
+				for (int i = 1; i < changeRow; i++)
+				{
+					boolean occupied = isOccupied(board.getTile((move.getCurrentPos().getRow() + i), (move.getCurrentPos().getCol() - i)));
+					if (occupied == true)
+					{
+						System.out.println("A different piece prevents you from reaching your destination. Please select another destination.");
+						message = "A different piece prevents you from reaching your destination. Please select another destination.";
+						return true;
+					}
 				}
 			}
 		}
@@ -730,7 +748,7 @@ public class Model {
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking 5");
+					 System.out.println("Breaking 6");
 					 break;
 					 }
 				 }
@@ -766,7 +784,7 @@ public class Model {
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking 5");
+					 System.out.println("Breaking 7");
 					 break;
 					 }
 				 }
@@ -800,7 +818,7 @@ public class Model {
 					 else
 				 	 {
 					 //Either an ally is protecting the king, or the enemy is out of range
-					 System.out.println("Breaking 5");
+					 System.out.println("Breaking 8");
 					 break;
 					 }
 				 }
