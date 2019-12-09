@@ -6,6 +6,7 @@ import java.util.concurrent.BlockingQueue;
 
 import edu.sjsu.cs151.controller.Message;
 import edu.sjsu.cs151.controller.PlayerChosenMessage;
+import edu.sjsu.cs151.model.Piece.PieceType;
 
 /**
  * This is the Model class for our Chess game.
@@ -267,18 +268,44 @@ public class Model {
 		 }
 		 
 		 
-		 //test if the move leaves allied king in check
+		 
+		 
 		 boolean testAllyKingCheck = false;
-		 System.out.println(testAllyKingCheck);
-		 if (player.getColor().compareTo("White") == 0)
+		 //if King is moving, must test King's location post move
+		 if (PieceMoved.getPieceType() == PieceType.King)
 		 {
-			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+			 
+			 //NOT IMPLEMENTED PROPERLY
+			 
+			 
 			 System.out.println(testAllyKingCheck);
+			 if (player.getColor().compareTo("White") == 0)
+			 {
+				 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+				 System.out.println(testAllyKingCheck);
+			 }
+			 else
+			 {
+				 testAllyKingCheck = kingInCheck(board.getBlackKing());
+				 System.out.println(testAllyKingCheck);
+			 }
 		 }
-		 else
+		 
+		 
+		 else 
 		 {
-			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+			 //test if the move leaves allied king in check
 			 System.out.println(testAllyKingCheck);
+			 if (player.getColor().compareTo("White") == 0)
+			 {
+				 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+				 System.out.println(testAllyKingCheck);
+			 }
+			 else
+			 {
+				 testAllyKingCheck = kingInCheck(board.getBlackKing());
+				 System.out.println(testAllyKingCheck);
+			 }
 		 }
 		 if (testAllyKingCheck == true)
 		 {
@@ -579,6 +606,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 1");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -589,6 +617,12 @@ public class Model {
 						 System.out.println("Breaking 1");
 						 break;
 						 }
+				 }
+			 	 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 1");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow -1;
@@ -610,6 +644,8 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 2");
+
 						 king.setIsInCheck(true);
 						 return true;
 					 }
@@ -619,6 +655,12 @@ public class Model {
 					 System.out.println("Breaking 2");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 2");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow + 1;
@@ -640,6 +682,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 3");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -650,6 +693,12 @@ public class Model {
 					 System.out.println("Breaking 3");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 3");
+				 break;
 				 }
 			 }
 			 checkCol = checkCol -1;
@@ -671,6 +720,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 4");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -681,6 +731,12 @@ public class Model {
 					 System.out.println("Breaking 4");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 4");
+				 break;
 				 }
 			 }
 			 checkCol = checkCol + 1;
@@ -706,6 +762,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 5");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -716,6 +773,12 @@ public class Model {
 					 System.out.println("Breaking 5");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 5");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow + 1;
@@ -741,6 +804,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 6");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -751,6 +815,12 @@ public class Model {
 					 System.out.println("Breaking 6");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 6");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow - 1;
@@ -777,6 +847,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 7");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -787,6 +858,12 @@ public class Model {
 					 System.out.println("Breaking 7");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 7");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow + 1;
@@ -811,6 +888,7 @@ public class Model {
 					 if (checkPiece.isValidMove(checkTile, kingTile))
 					 {
 						 System.out.println(checkPiece.toString());
+						 System.out.println("Point 8");
 
 						 king.setIsInCheck(true);
 						 return true;
@@ -821,6 +899,12 @@ public class Model {
 					 System.out.println("Breaking 8");
 					 break;
 					 }
+				 }
+				 else
+			 	 {
+				 //Either an ally is protecting the king, or the enemy is out of range
+				 System.out.println("Breaking 8");
+				 break;
 				 }
 			 }
 			 checkRow = checkRow - 1;
