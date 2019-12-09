@@ -188,4 +188,10 @@ public abstract class Piece {
 	{
 		currentTile = newTile;
 	}
+	
+	
+	public String toString()
+	{
+		return this.getColorString() + " " + this.getPieceType().toString();
+	}
 }
