@@ -28,8 +28,8 @@ public class Queen extends Piece {
 	@Override
 	public boolean isValidMove(Tile start, Tile end) {
 		int x_diff = Math.abs(end.getRow() - start.getRow());
-		int y_diff = Math.abs(end.getRow() - start.getRow());
-
+		int y_diff = Math.abs(end.getCol() - start.getCol());
+		System.out.println("x diff: " + x_diff + "     y diff: " + y_diff);
 		if ((x_diff == y_diff) || (end.getRow() == start.getRow()) || (end.getCol() == start.getCol()))
 			return true;
 
