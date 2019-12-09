@@ -270,43 +270,22 @@ public class Model {
 		 
 		 
 		 
-		 boolean testAllyKingCheck = false;
-		 //if King is moving, must test King's location post move
-		 if (PieceMoved.getPieceType() == PieceType.King)
+		 boolean testAllyKingCheck = false;	 
+		 //test if the move leaves allied king in check
+		 System.out.println(testAllyKingCheck);
+		 if (player.getColor().compareTo("White") == 0)
 		 {
-			 
-			 //NOT IMPLEMENTED PROPERLY
-			 
-			 
+			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
 			 System.out.println(testAllyKingCheck);
-			 if (player.getColor().compareTo("White") == 0)
-			 {
-				 testAllyKingCheck = kingInCheck(board.getWhiteKing());
-				 System.out.println(testAllyKingCheck);
-			 }
-			 else
-			 {
-				 testAllyKingCheck = kingInCheck(board.getBlackKing());
-				 System.out.println(testAllyKingCheck);
-			 }
+		 }
+		 else
+		 {
+			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+			 System.out.println(testAllyKingCheck);
 		 }
 		 
 		 
-		 else 
-		 {
-			 //test if the move leaves allied king in check
-			 System.out.println(testAllyKingCheck);
-			 if (player.getColor().compareTo("White") == 0)
-			 {
-				 testAllyKingCheck = kingInCheck(board.getWhiteKing());
-				 System.out.println(testAllyKingCheck);
-			 }
-			 else
-			 {
-				 testAllyKingCheck = kingInCheck(board.getBlackKing());
-				 System.out.println(testAllyKingCheck);
-			 }
-		 }
+		 
 		 if (testAllyKingCheck == true)
 		 {
 			 System.out.println("This move would leave your King in danger and thus cannot be performed");
