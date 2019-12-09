@@ -268,21 +268,24 @@ public class Model {
 		 
 		 
 		 //test if the move leaves allied king in check
-	/*	 boolean testAllyKingCheck = false;
+		 boolean testAllyKingCheck = false;
+		 System.out.println(testAllyKingCheck);
 		 if (player.getColor().compareTo("White") == 0)
 		 {
 			 testAllyKingCheck = kingInCheck(board.getWhiteKing());
+			 System.out.println(testAllyKingCheck);
 		 }
 		 else
 		 {
 			 testAllyKingCheck = kingInCheck(board.getBlackKing());
+			 System.out.println(testAllyKingCheck);
 		 }
 		 if (testAllyKingCheck == true)
 		 {
 			 System.out.println("This move would leave your King in danger and thus cannot be performed");
 			 return false;
 		 }
-*/ 
+ 
 		 //Move is able to be performed; perform move
 		 PieceMoved.move(move.getCurrentPos(), move.getEndPos());
 		 
@@ -525,7 +528,7 @@ public class Model {
 
 
 
-/*	 public boolean kingInCheck(King king) 
+	 public boolean kingInCheck(King king) 
 	 {
 		 boolean result = false;
 		 
@@ -536,16 +539,19 @@ public class Model {
 		 boolean checkForPiece = false;
 		 Piece checkPiece = null;
 		 
+		 //checks each row in the king's column
 		 while (checkRow > -1)
 		 {
 			 checkTile = board.getTile(checkRow, checkCol);
 			 checkForPiece = checkTile.getIsOccupied();
+			 System.out.println(checkRow);
+
 			 if (checkForPiece == true)
 			 {
-				 checkPiece = checkTile.getPiece();
-				 
-				 //if an enemy piece is found, test color
-				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
+			 	 checkPiece = checkTile.getPiece();
+			 	 System.out.println(checkPiece);
+			  	 //if another piece is found, test color
+			 	 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
 					 if (checkPiece.isValidMove(checkTile, kingTile))
@@ -553,12 +559,20 @@ public class Model {
 						 king.setIsInCheck(true);
 						 return true;
 					 }
+					 else
+					 	 {
+						 //Either an ally is protecting the king, or the enemy is out of range
+						 System.out.println("Breaking");
+						 break;
+						 }
 				 }
 			 }
 			 checkRow = checkRow -1;
 		 }
 		 
+		 System.out.println("Broke");
 		 checkRow = kingTile.getRow();
+		 System.out.println(checkRow);
 		 while (checkRow < 8)
 		 {
 			 checkTile = board.getTile(checkRow, checkCol);
@@ -576,12 +590,18 @@ public class Model {
 						 king.setIsInCheck(true);
 						 return true;
 					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking");
+					 break;
+					 }
 				 }
 			 }
 			 checkRow = checkRow + 1;
 		 }
 		 
-		 
+		 checkRow = kingTile.getRow();
 		 while (checkCol > -1)
 		 {
 			 checkTile = board.getTile(checkRow, checkCol);
@@ -599,13 +619,19 @@ public class Model {
 						 king.setIsInCheck(true);
 						 return true;
 					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking");
+					 break;
+					 }
 				 }
 			 }
 			 checkCol = checkCol -1;
 		 }
 		 
 		 checkCol = kingTile.getCol();
-		 while (checkRow < 8)
+		 while (checkCol < 8)
 		 {
 			 checkTile = board.getTile(checkRow, checkCol);
 			 checkForPiece = checkTile.getIsOccupied();
@@ -622,6 +648,12 @@ public class Model {
 						 king.setIsInCheck(true);
 						 return true;
 					 }
+					 else
+				 	 {
+					 //Either an ally is protecting the king, or the enemy is out of range
+					 System.out.println("Breaking");
+					 break;
+					 }
 				 }
 			 }
 			 checkCol = checkCol + 1;
@@ -630,7 +662,7 @@ public class Model {
 		 return result;
 	 }
 
-*/
+
 
 
 
