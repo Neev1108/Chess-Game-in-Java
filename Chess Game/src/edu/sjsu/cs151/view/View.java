@@ -196,7 +196,7 @@ public class View implements Runnable {
 		 * The actionListener for selecting the white color
 		 */
 		white.addActionListener(event2 -> {
-			queue.add(new PlayerChosenMessage("White", true));
+			queue.add(new PlayerChosenMessage("White"));
 			playerScreen.dispose();
 			// JFrame frame = new ChessBoard(queue);
 			// frame = setIdealFrame(frame);
@@ -208,7 +208,7 @@ public class View implements Runnable {
 		 * The actionListener for selecting the black color
 		 */
 		black.addActionListener(event3 -> {
-			queue.add(new PlayerChosenMessage("Black", false));
+			queue.add(new PlayerChosenMessage("Black"));
 			playerScreen.dispose();
 			// JFrame frame = new ChessBoard(queue);
 			// frame = setIdealFrame(frame);

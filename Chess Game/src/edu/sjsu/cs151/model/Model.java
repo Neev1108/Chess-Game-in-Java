@@ -15,8 +15,8 @@ public class Model {
 	private Board board;
 	/** Represents the players.
 	*/
-	Player player1 = new Player("White" , true);
-	Player player2 = new Player("Black", false);
+	Player player1 = new Player("White");
+	Player player2 = new Player("Black");
 	Player doTurn;
 	GameEvent event;
 	BlockingQueue<Message> queue;
@@ -61,7 +61,7 @@ public class Model {
 	 * @param message PlayerChosen message from the controller
 	 */
 	public void setPlayer1(PlayerChosenMessage message) {
-		this.player1 = new Player(message.getColor(), message.isFirstTurn());
+		this.player1 = new Player(message.getColor());
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class Model {
 	 * @param message PlayerChosen message from the controller
 	 */
 	public void setPlayer2(PlayerChosenMessage message) {
-		this.player2 = new Player(message.getColor(), message.isFirstTurn());
+		this.player2 = new Player(message.getColor());
 	}
 	
 	

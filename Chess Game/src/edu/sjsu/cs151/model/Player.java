@@ -11,7 +11,7 @@ import java.io.*;
 
 public class Player extends Thread{
 	private String color;
-	private boolean firstTurn = false;
+//	private boolean firstTurn = false;
 	private Player opponent;
 	private Socket socket;
 	private BufferedReader in;
@@ -23,10 +23,9 @@ public class Player extends Thread{
 	 * @param color The color of the player
 	 * @param firstTurn The boolean value to determine the first turn
 	 */
-	public Player(String color, boolean firstTurn) {
+	public Player(String color) {
 		this.color = color;
-		this.firstTurn = firstTurn;
-
+		
 
 	}	
 
@@ -54,15 +53,20 @@ public class Player extends Thread{
 	public String getColor() {
 		return color;
 	}
+	
+	public void setColor(String s)
+	{
+		color = s;
+	}
 
 	/**
 	 * Method that checks which player gets the first turn
 	 * @return The boolean value after determining the first turn
 	 */
-	public boolean firstTurn() {
+/*	public boolean firstTurn() {
 		return firstTurn = true;
 	}
-	
+	*/
 	/**
 	 * The to string method that return 
 	 * the color and the name of the player.
