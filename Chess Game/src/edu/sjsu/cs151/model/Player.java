@@ -3,10 +3,19 @@ package edu.sjsu.cs151.model;
  * Created by Neeval Kumar on 10/27/2019
  *
  */
-public class Player {
-	public String color;
-	public boolean firstTurn = false;
 
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class Player extends Thread{
+	private String color;
+	private boolean firstTurn = false;
+	private Socket socket;
+	private Player opponent;
+	
+	
+	
 	/**
 	 * Constructor for a Player.
 	 * @param color The color of the player
@@ -18,6 +27,14 @@ public class Player {
 
 
 	}
+	
+	
+	
+	public Player(Socket socket)
+	{
+		this.socket = socket;
+	}
+	
 
 	/**
 	 * Getter method to get the color of the player.
@@ -43,4 +60,15 @@ public class Player {
 	{
 		return color + " Player";
 	}
+	
+	public Player getOpponent()
+	{
+		return opponent;
+	}
+	
+	public void setOpponent(Player p)
+	{
+		opponent = p;
+	}
+	
 }
