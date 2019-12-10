@@ -25,7 +25,7 @@ public class Client {
 	BufferedReader in;
 	PrintWriter out;
 	
-	public void connectToServer()
+	public void establishConnection()
 	{
 		while(true)
 		{
@@ -38,7 +38,7 @@ public class Client {
 			try
 	        {
 		        // Make connection and initialize streams
-		        Socket socket = new Socket(input, 4387);
+		        socket = new Socket(input, 4387);
 		        in = new BufferedReader(new InputStreamReader(
 		                socket.getInputStream()));
 		        out = new PrintWriter(socket.getOutputStream(), true);
@@ -46,7 +46,7 @@ public class Client {
 	        }
 	        catch(IOException e)
 	        {
-	        	System.out.println("Exception! - cannot connect to the server");
+	        	System.out.println("Failed to connect to the server");
 	        	e.printStackTrace(System.out);
 	        	if(socket != null)
 	        		try {socket.close();} catch (IOException e1) {}
@@ -59,7 +59,7 @@ public class Client {
 	public static void main(String args[]) throws Exception
 	{
 		Client c = new Client();
-		c.connectToServer();
+		c.establishConnection();
 	}
 	
 	
