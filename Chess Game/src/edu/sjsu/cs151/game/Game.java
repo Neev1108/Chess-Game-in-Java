@@ -12,11 +12,11 @@ import edu.sjsu.cs151.controller.*;
  * The main class of our which lets us play the actual game it combines the
  * three components of our game which are the model, view and controller.
  * 
- * @author Skylar, Neeval and Sehajmeet
+ * @author Skyler, Neeval and Sehajmeet
  *
  */
 
-public class Game {
+public class Game extends Thread{
 
 	/**
 	 * The blocking queue that contains all the message of our game.
@@ -33,12 +33,15 @@ public class Game {
 	 */
 	private static Model model;
 
-	/**
-	 * The main method that lets us play the game combining the three components.
-	 * @param args The String arguments
-	 */
-
-	public static void main(String[] args) {
+	public Game()
+	{	}
+	
+	public Game(Player P1, Player P2)
+	{
+		run(P1, P2);
+	}
+	
+	public void run(Player P1, Player P2) {
 		view = new View(queue);
 		model = new Model();
 //		System.out.println("test1");
@@ -74,5 +77,29 @@ public class Game {
 	 */
 	public static View getView() {
 		return view;
+	}
+	
+	/**
+	 * The main method that lets us play the game combining the three components.
+	 * @param args The String arguments
+	 */
+	public static void main(String[] args) {
+		view = new View(queue);
+		model = new Model();
+//		System.out.println("test1");
+
+		Controller controller = new Controller(model, view, queue);
+
+		// System.out.println("test");
+		try {
+			controller.mainLoop();
+			// controller.printMessageQueue(queue);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//view.dispose();
+		queue.clear();
 	}
 }

@@ -13,7 +13,8 @@ public class Player extends Thread{
 	private boolean firstTurn = false;
 	private Socket socket;
 	private Player opponent;
-	
+	private BufferedReader br;
+	private PrintWriter pw;
 	
 	
 	/**
@@ -69,6 +70,11 @@ public class Player extends Thread{
 	public void setOpponent(Player p)
 	{
 		opponent = p;
+	}
+	
+	public void serverClose()
+	{
+		pw.print("The server has closed. Terminating client.");
 	}
 	
 }
