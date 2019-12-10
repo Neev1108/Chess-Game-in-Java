@@ -4,18 +4,10 @@ package edu.sjsu.cs151.model;
  *
  */
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
-public class Player extends Thread{
+public class Player {
 	private String color;
 	private boolean firstTurn = false;
-	private Socket socket;
 	private Player opponent;
-	private BufferedReader br;
-	private PrintWriter pw;
-	
 	
 	/**
 	 * Constructor for a Player.
@@ -27,15 +19,7 @@ public class Player extends Thread{
 		this.firstTurn = firstTurn;
 
 
-	}
-	
-	
-	
-	public Player(Socket socket)
-	{
-		this.socket = socket;
-	}
-	
+	}	
 
 	/**
 	 * Getter method to get the color of the player.
@@ -70,11 +54,5 @@ public class Player extends Thread{
 	public void setOpponent(Player p)
 	{
 		opponent = p;
-	}
-	
-	public void serverClose()
-	{
-		pw.print("The server has closed. Terminating client.");
-	}
-	
+	}	
 }
