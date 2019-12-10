@@ -21,27 +21,39 @@ import edu.sjsu.cs151.view.ChessBoard;
 
 public class Client {
 	
-	
+	Socket socket;
+	BufferedReader in;
+	PrintWriter out;
 	
 	public void connectToServer()
 	{
-		
-			JFrame playerScreen = new JFrame("Server Identification");
-			playerScreen.setSize(400, 300);
-			playerScreen.setVisible(true);
-
+		while(true)
+		{
 			String input = JOptionPane.showInputDialog("Please enter the IP address of the server");
 			
-
-			
-
-			
-			
-			
-
-
-			
-			playerScreen.setVisible(true);		
+			if (input == null)
+			{
+				break;
+			}
+			try
+	        {
+		        // Make connection and initialize streams
+		        Socket socket = new Socket(input, 4387);
+		        in = new BufferedReader(new InputStreamReader(
+		                socket.getInputStream()));
+		        out = new PrintWriter(socket.getOutputStream(), true);
+		        break;
+	        }
+	        catch(IOException e)
+	        {
+	        	System.out.println("Exception! - cannot connect to the server");
+	        	e.printStackTrace(System.out);
+	        	if(socket != null)
+	        		try {socket.close();} catch (IOException e1) {}
+	        	JOptionPane.showMessageDialog(null, "No server found at IP address " + input, "No server found at IP address " + input, JOptionPane.ERROR_MESSAGE);
+	        }
+		
+		}
 	}
 	
 	public static void main(String args[]) throws Exception
