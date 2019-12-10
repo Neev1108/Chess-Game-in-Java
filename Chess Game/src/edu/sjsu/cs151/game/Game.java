@@ -2,11 +2,9 @@ package edu.sjsu.cs151.game;
 
 import edu.sjsu.cs151.view.*;
 import edu.sjsu.cs151.model.*;
-
+import edu.sjsu.cs151.controller.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import edu.sjsu.cs151.controller.*;
 
 /**
  * The main class of our which lets us play the actual game it combines the
