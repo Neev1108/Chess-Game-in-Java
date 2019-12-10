@@ -34,12 +34,12 @@ public class Game extends Thread{
 	public Game()
 	{	}
 	
-	public Game(Client P1, Client P2)
+	public Game(Player P1, Player P2)
 	{
 		run(P1, P2);
 	}
 	
-	public void run(Client P1, Client P2) {
+	public void run(Player P1, Player P2) {
 		view = new View(queue);
 		model = new Model();
 //		System.out.println("test1");
@@ -59,6 +59,12 @@ public class Game extends Thread{
 		queue.clear();
 	}
 
+	public void endGame()
+	{
+//		view.dispose();
+		queue.clear();
+	}
+	
 	/**
 	 * Method get the model.
 	 * 

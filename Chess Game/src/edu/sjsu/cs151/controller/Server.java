@@ -12,16 +12,9 @@ import edu.sjsu.cs151.game.*;
 
 public class Server extends Thread{
 	
-	private static List<Client> players;
 	private static ServerSocket listener;
 	
 	public Server() {	}
-	
-	
-	
-	
-	
-	
 	
 	public void run()
 	{
@@ -34,12 +27,16 @@ public class Server extends Thread{
 			ExecutorService gameInstances = Executors.newFixedThreadPool(10);
 			while(true)
 			{
-				//Wait for first player, add to list of players, repeat for P2
-				Client player1 = new Client(listener.accept());
-				players.add(player1);
+				//Wait for first player, repeat for P2
+				Socket s = listener.accept();
+				System.out.println(s);
+				Player player1 = new Player(s);
+				System.out.println(player1);
+				System.out.println("Player 1 connected");
 				System.out.println("Player 1 has joined");
-				Client player2 = new Client(listener.accept());
-				players.add(player2);
+				
+				Player player2 = new Player(listener.accept());
+				System.out.println("Player 2 connected");
 				System.out.println("Player 2 has joined");
 				gameInstances.execute(new Game(player1, player2));
 			}
@@ -63,9 +60,9 @@ public class Server extends Thread{
 	
 	public void shutdown()
 	{
-		for (int i = 0; i < players.size(); i++)
+		//for (int i = 0; i < players.size(); i++)
 		{
-		//	players.get(i).serverClose();
+			//players.get(i).serverClose();
 		}
 		System.exit(0);
 	}

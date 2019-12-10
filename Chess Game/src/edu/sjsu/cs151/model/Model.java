@@ -3,10 +3,8 @@ package edu.sjsu.cs151.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
-
-import edu.sjsu.cs151.controller.Message;
-import edu.sjsu.cs151.controller.PlayerChosenMessage;
 import edu.sjsu.cs151.model.Piece.PieceType;
+import edu.sjsu.cs151.controller.*;
 
 /**
  * This is the Model class for our Chess game.
@@ -23,6 +21,31 @@ public class Model {
 	GameEvent event;
 	BlockingQueue<Message> queue;
 	String message;
+	
+	/**
+	 * Constructor for the Model
+	 */
+	public Model() {
+		this.board = Board.getInstance();
+		// Checking if the color of the first moving player is white.
+		if (player1.getColor().equals("White")) {
+			this.doTurn = player1;
+		}
+		else
+			this.doTurn = player2;
+	}
+	
+	
+	public Model(Client P1, Client P2) {
+		this.board = Board.getInstance();
+		// Checking if the color of the first moving player is white.
+		if (player1.getColor().equals("White")) {
+			this.doTurn = player1;
+		}
+		else
+			this.doTurn = player2;
+	}
+	
 	
 	/**
 	 * Method to get the Player1
@@ -78,20 +101,6 @@ public class Model {
 		return event;
 	}
 	
-	
-	
-	/**
-	 * Constructor for the Model
-	 */
-	public Model() {
-		this.board = Board.getInstance();
-		// Checking if the color of the first moving player is white.
-		if (player1.getColor().equals("White")) {
-			this.doTurn = player1;
-		}
-		else
-			this.doTurn = player2;
-	}
 
 	/**
 	 * Method to print the board with all the pieces

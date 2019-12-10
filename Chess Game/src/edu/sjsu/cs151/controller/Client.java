@@ -30,7 +30,7 @@ public class Client extends Thread {
 	public Client()
 	{
 		establishConnection();
-		runClient();
+		runClient2();
 	}
 	
 	public Client(Socket s)
@@ -42,7 +42,7 @@ public class Client extends Thread {
 	{
 		while(true)
 		{
-			String input = JOptionPane.showInputDialog("Please enter the IP address of the server");
+			String input = JOptionPane.showInputDialog("Please enter the IP address of the server.\nIf the server is on this computer, please use local IP address 127.0.0.1");
 			//127.0.0.1 is the local ip address
 			if (input == null)
 			{
@@ -54,6 +54,7 @@ public class Client extends Thread {
 		        socket = new Socket(input, 4387);
 		        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		        out = new PrintWriter(socket.getOutputStream(), true);
+				System.out.println("Connection successful");
 		        break;
 	        }
 	        catch(IOException e)
@@ -63,27 +64,23 @@ public class Client extends Thread {
 	        	if(socket != null)
 	        		try {socket.close();} catch (IOException e1) {}
 	        	JOptionPane.showMessageDialog(null, "No server found at IP address " + input, "No server found at IP address " + input, JOptionPane.ERROR_MESSAGE);
-	        	return;
+	        	System.exit(1);
 	        }
-			finally{
-				System.out.println("Connection successful");
-			}
+			
 			
 		}
 	}
 	
-	
-	public void receiveMessage()
+	public void runClient2()
 	{
-		 try 
-		 {
-             incomingMessage = in.readLine();
-         } 
-		 catch(Exception e1)
-		 {
-        	System.out.println("Exception! - cannot read from the input buffer");
-        	e1.printStackTrace(System.out);
-		 }
+		try {
+			sleep(10000);
+			System.out.println("yeeeeeeeeeeeeeeet");
+		}
+		catch (Exception e)
+		{
+			System.out.println("I broked " + e.getClass());
+		}
 	}
 	
 	public void runClient()
@@ -93,6 +90,10 @@ public class Client extends Thread {
 	        while (true) 
 	        {
 	        	receiveMessage();
+	        	if (incomingMessage == null)
+	        	{
+	        		continue;
+	        	}
 	        	if(incomingMessage != null)
 	        	{
 		        	if(incomingMessage.startsWith("ALLIANCE"))
@@ -140,16 +141,80 @@ public class Client extends Thread {
         }
 	}
 	
-	
-	
-	
-	
-	
-	private void sendMessage(String string) {
-		// TODO Auto-generated method stub
-		
+	public void receiveMessage()
+	{
+		 try 
+		 {
+             incomingMessage = in.readLine();
+         } 
+		 catch(Exception e1)
+		 {
+        	System.out.println("Exception! - cannot read from the input buffer");
+        	e1.printStackTrace(System.out);
+		 }
 	}
+	public void sendMessage(String message)
+	{
+		try
+		{
+			out.println(message);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception! - cannot write to the server");
+        	e.printStackTrace(System.out);
+		}
+	}
+	
+	public void serverClose()
+	{
+		JOptionPane.showInternalConfirmDialog(null,"The server has shut down. We apologize for any inconvenience.", 
+				"Server Shutdown",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		System.exit(1);
 
+	}
+	
+	
+	/**
+	 * This method prints prompt for user to ask if he wants to play and
+	 * returns true if yes, false otherwise.
+	 * @return true if user wants to play, false otherwise.
+	 */
+    private boolean wantsToPlayAgain() 
+    {
+        int response = JOptionPane.showConfirmDialog(/*gameView.getMainFrame()*/ null,
+            "Want to play again?",
+            "",
+            JOptionPane.YES_NO_OPTION);
+        return response == JOptionPane.YES_OPTION;
+    }
+	
+    /**
+     * This method contains main client loop in which it 
+     * performs cyclic connection to the server, running the game 
+     * and provides user decision to play or not to play again. 
+     * It also clears the game objects and prepares new board 
+     * before new game.
+     */
+	public void clientHandle()
+	{
+		 while (true) 
+		 {
+			establishConnection();
+          
+            runClient();
+
+            if (!wantsToPlayAgain())
+            {
+    	        sendMessage("QUIT");
+                System.exit(0);
+            }
+     /*       model.resetModel();
+            View.prepareNextMatch();*/
+        }
+	}
+	
+	
 	public static void main(String args[]) throws Exception
 	{
 		Client c = new Client();
