@@ -49,7 +49,6 @@ public class King extends Piece {
     	
     	if ((diffRow > 1 || diffCol > 1))
     	{
-    		System.out.println("This King cannot move that far right now.");
     		return false;
     	}
     	

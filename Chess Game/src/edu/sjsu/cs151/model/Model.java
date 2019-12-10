@@ -247,8 +247,8 @@ public class Model {
 		 
 		 //Check if the move can be performed by the piece
 		 if (!PieceMoved.isValidMove(move.getCurrentPos(), move.getEndPos())){
-			 System.out.println("Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.");
-			 message = "Error: the destination you have selected is outside this piece's valid movement range.\n Please select an alternate destination or piece.";
+			 System.out.println("Error: Invalid move.");
+			 message = "Error: Invalid move.";
 			 return false;
 		 }
 
@@ -387,6 +387,8 @@ public class Model {
 	 // returns false if there are NOT any collisions
 	 public boolean checkCollisions(Moves move, Player player, Piece pieceMoved)
 	 {
+		String isObstructed = "A different piece prevents you from reaching your destination. Please select another destination.";
+
 	 	Piece.PieceType type = pieceMoved.getPieceType();
 	 	boolean destOcc = move.getEndPos().getIsOccupied();
 	 	//Knights can jump over other pieces, so only need to check for allies in the destination
@@ -416,7 +418,6 @@ public class Model {
 					boolean occupied = isOccupied(board.getTile(move.getCurrentPos().getRow(), (move.getCurrentPos().getCol() + i)));
 					if (occupied == true)
 					{
-						String isObstructed = "A different piece prevents you from reaching your destination. Please select another destination.";
 						System.out.println(isObstructed);
 						message = isObstructed;
 						return true;

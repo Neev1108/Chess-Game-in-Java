@@ -54,9 +54,9 @@ public class MoveValve implements Valve {
 		if (isSuccessful == true) {
 			view.canmovePiece(isSuccessful);
 			if (currentPlayer.getColor() != "White")
-				view.setGameInfo("Move successful. White player move.");
+				view.setGameInfo("Move successful.\nWhite Player's turn is next.");
 			else
-				view.setGameInfo("Move sucessful. Black Player move.");
+				view.setGameInfo("Move successful.\nBlack Player's turn is next.");
 		} else {
 			view.canmovePiece(false);
 			view.setGameInfo(model.getGameInfo());
