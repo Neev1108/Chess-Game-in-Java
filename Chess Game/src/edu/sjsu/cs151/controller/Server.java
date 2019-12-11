@@ -104,33 +104,6 @@ public class Server extends Thread{
 		System.exit(0);
 	}
 	
-/*	class ServerManager extends Thread
-	{
-		Server handledServer;
-		public ServerManager(Server handledServer)
-		{
-			this.handledServer = handledServer;
-		}
-		
-		public void run()
-		{
-			Scanner inputReader = new Scanner(System.in);
-			while(true) 
-		    {
-		        if (inputReader.hasNext())
-		        {
-		            String input = inputReader.next();
-		            if (input.toLowerCase().equals("quit"))
-		            {
-		            	handledServer.shutdown();
-		            	break;
-		            }
-		        }
-		    }
-			inputReader.close();
-		}
-	}*/
-	
 	
 	public static void main(String args[])
 	{

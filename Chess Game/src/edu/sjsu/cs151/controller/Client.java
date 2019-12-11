@@ -87,14 +87,10 @@ public class Client extends Thread {
 	{
 		try
 		{
-	        while (true) 
+        	System.out.println("Entered runClient");
+        	while ((incomingMessage = in.readLine()) != null)
 	        {
-	        	System.out.println("Entered runClient");
-	        	receiveMessage();
-	        	if (incomingMessage == null)
-	        	{
-	        		continue;
-	        	}
+//	        	receiveMessage();
 	        	if(incomingMessage != null)
 	        	{
 		        	if(incomingMessage.startsWith("ALLIANCE"))
@@ -136,6 +132,15 @@ public class Client extends Thread {
 	        	}
 	        }
 	        sendMessage("QUIT");
+		}
+		catch (SocketException se)
+		 {
+			 serverClose();
+		 }
+		catch(Exception e)
+		{
+			System.out.println("Oops");
+			e.printStackTrace(System.out);
 		}
         finally {
         	try {socket.close();} catch (IOException e1) {}
