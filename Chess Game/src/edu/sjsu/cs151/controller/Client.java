@@ -26,18 +26,14 @@ public class Client extends Thread {
 	private BufferedReader in;
 	private PrintWriter out;
 	private String incomingMessage;
+	private Player myID;
 	
 	public Client()
 	{
 		establishConnection();
-		runClient2();
+		runClient();
 	}
-	
-	public Client(Socket s)
-	{
-		socket = s;
-	}
-	
+		
 	public void establishConnection()
 	{
 		while(true)
@@ -73,13 +69,15 @@ public class Client extends Thread {
 	
 	public void runClient2()
 	{
-		try {
-			sleep(10000);
-			System.out.println("yeeeeeeeeeeeeeeet");
-		}
-		catch (Exception e)
-		{
-			System.out.println("I broked " + e.getClass());
+		while(true) {
+			try {
+				sleep(10000);
+				System.out.println("yeeeeeeeeeeeeeeet");
+			}
+			catch (Exception e)
+			{
+				System.out.println("I broked " + e.getClass());
+			}
 		}
 	}
 	

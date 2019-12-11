@@ -33,17 +33,20 @@ public class Player extends Thread{
 	public Player(Socket s)
 	{
 		this.socket = s;
-		/*try 
+		System.out.println("I exist");
+		System.out.println(this);
+		try 
         {
         	in = new BufferedReader(new InputStreamReader(
 	                socket.getInputStream()));
         	out = new PrintWriter(socket.getOutputStream(), true);
         	out.println("Welcome to the chess game! Waiting for opponent...");
+        	System.out.println("still runnin");
         } 
         catch (IOException e) 
         {
             System.out.println("Player died: " + e);
-        }*/
+        }
 	}
 	
 	/**
