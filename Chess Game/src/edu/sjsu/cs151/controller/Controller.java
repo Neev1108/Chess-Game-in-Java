@@ -29,14 +29,14 @@ public class Controller {
 	 * @param queue The queue to contain the messages
 	 */
 
-	public Controller(Model model, View view,BlockingQueue<Message> queue) {
+/*	public Controller(Model model, View view,BlockingQueue<Message> queue) {
 		valves.add(new NewGameValve());
     	valves.add(new MoveValve(model, view));
     	valves.add(new EndGameValve(this));
 		this.model = model;
 		this.view = view;
 		this.queue = queue;
-	}
+	}*/
 	
 	
 	public Controller(Model model, View view,BlockingQueue<Message> queue, Server server) {
@@ -72,7 +72,6 @@ public class Controller {
 
 
 	public void mainLoop() throws Exception{
-	//	System.out.println("I am running");
 		ValveResponses response = ValveResponses.EXECUTED;
 		Message message = null;
 		while (response != ValveResponses.FINISH) {

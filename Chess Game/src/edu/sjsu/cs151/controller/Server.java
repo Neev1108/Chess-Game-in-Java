@@ -22,7 +22,6 @@ public class Server extends Thread{
 	private BufferedReader inputClient1;
 	private BufferedReader inputClient2;
 	
-	//ExecutorService gameInstances = Executors.newFixedThreadPool(10);
 
 	public Server() {	}
 	
@@ -38,11 +37,8 @@ public class Server extends Thread{
 			{
 				//Wait for first player, repeat for P2
 				Socket firstPlayer = listener.accept();
-				System.out.println(firstPlayer);
 				Player player1 = new Player(firstPlayer, 1);
-				System.out.println(player1);
 				System.out.println("Player 1 connected");
-				System.out.println("Player 1 has joined");
 				oSR1 = new OutputStreamWriter(firstPlayer.getOutputStream());
 				outputClient1 = new BufferedWriter(oSR1);
 				iSR1 = new InputStreamReader(firstPlayer.getInputStream());
@@ -51,16 +47,13 @@ public class Server extends Thread{
 				
 				Socket secondPlayer = listener.accept();
 				Player player2 = new Player(secondPlayer, 2);
-				System.out.println(player2.getSocket());
-				System.out.println(player2);
 				System.out.println("Player 2 connected");
-				System.out.println("Player 2 has joined");
 				oSR2 = new OutputStreamWriter(secondPlayer.getOutputStream());
 				outputClient2 = new BufferedWriter(oSR2);
 				iSR2 = new InputStreamReader(secondPlayer.getInputStream());
 				inputClient2 = new BufferedReader(iSR2);
 				
-				//gameInstances.execute(new Game(player1, player2, this));
+				System.out.println("Starting Game");
 				Game g = new Game(player1, player2, this);
 				g.start();
 			}
@@ -95,15 +88,15 @@ public class Server extends Thread{
 			System.out.println("messages didn't send");
 		}
 		
-		try {
+	/*	try {
 		sleep(10000);
 		}
 		catch(Exception e){
 			
-		}
+		}*/
 		System.exit(0);
 	}
-	
+
 	
 	public static void main(String args[])
 	{

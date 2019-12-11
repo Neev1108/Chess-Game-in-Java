@@ -24,7 +24,6 @@ public class Client extends Thread {
 	
 	private Socket socket;
 	private BufferedReader in;
-	private Scanner inMk2;
 	private BufferedWriter out;
 	private String incomingMessage;
 	private Player myID;
@@ -50,7 +49,6 @@ public class Client extends Thread {
 		        // Make connection and initialize streams
 		        socket = new Socket(input, 4387);
 		        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		        inMk2 = new Scanner(socket.getInputStream());
 		        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 				System.out.println("Connection successful");
 		        break;
@@ -68,73 +66,23 @@ public class Client extends Thread {
 			
 		}
 	}
-	
-	public void runClient2()
-	{
-		while(true) {
-			try {
-				sleep(10000);
-				System.out.println("yeeeeeeeeeeeeeeet");
-			}
-			catch (Exception e)
-			{
-				System.out.println("I broked " + e.getClass());
-			}
-		}
-	}
-	
+		
 	public void runClient()
 	{
 		try
 		{
-        	System.out.println("Entered runClient");
         	while ((incomingMessage = in.readLine()) != null)
 	        {
-//	        	receiveMessage();
-	        	if(incomingMessage != null)
+	        	if (incomingMessage.equals("Server shutting down"))
 	        	{
-		        	if(incomingMessage.startsWith("ALLIANCE"))
-			    	{
-		        		if(incomingMessage.charAt(9)== 'B')
-		        		{
-		        			
-		        		}
-			              	//gameAlliance = Alliance.BLACK;
-		        		else if (incomingMessage.charAt(9)== 'W')
-		        		{
-		        			
-		        		}
-			              	//gameAlliance = Alliance.WHITE;
-			    	}
-		        	else if(incomingMessage.startsWith("START"))
-		        	{
-		        		//gameModel.setNetworkGameStartFlag();
-		        	}
-		        	else if (incomingMessage.startsWith("MOVE")) 
-		            {
-		            	//moveToExecute = transformToMove(readMessage);
-		            	//gameModel.executeMove(moveToExecute);
-		            	//if(gameModel.isGameOver())
-		            		//break;
-		            } 
-		        	else if(incomingMessage.startsWith("DISCON"))
-		        	{
-		        		break;
-		        	}
-		        	if (incomingMessage.equals("Server shutting down"))
-		             {
-		        		serverClose();
-		             }
-		        	else
-		        	{
-		        		//gameView.setMessageText(readMessage);
-		        	}
+	        		System.out.println("Successful shutdown");
+	        		serverClose();
 	        	}
 	        }
-	        sendMessage("QUIT");
 		}
 		catch (SocketException se)
 		 {
+			System.out.println("failed shutdown");
 			 serverClose();
 		 }
 		catch(Exception e)
@@ -147,33 +95,7 @@ public class Client extends Thread {
         }
 	}
 	
-	public void receiveMessage()
-	{
-		 try 
-		 {
-			 System.out.println("Entered receiveMessage()");
-			 //if (inMk2.hasNext())
-			 incomingMessage = in.readLine();
-         } 
-		 catch (SocketException se)
-		 {
-			 serverClose();
-		 }
-		 catch(Exception e1)
-		 {
-			System.out.println("failure, proceed to wait");
-		
-			try{
-				sleep(5000);
-			}
-			catch(Exception e)
-			{
-				
-			}
-        	System.out.println("Exception! - cannot read from the input buffer");
-        	e1.printStackTrace(System.out);
-		 }
-	}
+
 	public void sendMessage(String message)
 	{
 		try
@@ -194,47 +116,6 @@ public class Client extends Thread {
 		System.exit(1);
 
 	}
-	
-	
-	/**
-	 * This method prints prompt for user to ask if he wants to play and
-	 * returns true if yes, false otherwise.
-	 * @return true if user wants to play, false otherwise.
-	 */
-    private boolean wantsToPlayAgain() 
-    {
-        int response = JOptionPane.showConfirmDialog(/*gameView.getMainFrame()*/ null,
-            "Want to play again?",
-            "",
-            JOptionPane.YES_NO_OPTION);
-        return response == JOptionPane.YES_OPTION;
-    }
-	
-    /**
-     * This method contains main client loop in which it 
-     * performs cyclic connection to the server, running the game 
-     * and provides user decision to play or not to play again. 
-     * It also clears the game objects and prepares new board 
-     * before new game.
-     */
-	public void clientHandle()
-	{
-		 while (true) 
-		 {
-			establishConnection();
-          
-            runClient();
-
-            if (!wantsToPlayAgain())
-            {
-    	        sendMessage("QUIT");
-                System.exit(0);
-            }
-     /*       model.resetModel();
-            View.prepareNextMatch();*/
-        }
-	}
-	
 	
 	public static void main(String args[]) throws Exception
 	{

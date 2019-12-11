@@ -6,6 +6,8 @@ import edu.sjsu.cs151.controller.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import javax.swing.JPanel;
+
 /**
  * The main class of our which lets us play the actual game it combines the
  * three components of our game which are the model, view and controller.
@@ -45,26 +47,14 @@ public class Game extends Thread{
 	public void run(Player P1, Player P2) {
 		view = new View(queue);
 		model = new Model();
-//		System.out.println("test1");
 
 		Controller controller = new Controller(model, view, queue, server);
 
-		// System.out.println("test");
 		try {
 			controller.mainLoop();
-			// controller.printMessageQueue(queue);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// view.dispose();
-		queue.clear();
-	}
-
-	public void endGame()
-	{
-//		view.dispose();
 		queue.clear();
 	}
 	
@@ -86,27 +76,31 @@ public class Game extends Thread{
 		return view;
 	}
 	
+/*	private void run2()
+	{
+		View v = getView();
+		JPanel jp = v.getChessBoard();
+		jp.setVisible(true);
+	}*/
+	
+	
+	
 	/**
 	 * The main method that lets us play the game combining the three components.
 	 * @param args The String arguments
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		view = new View(queue);
 		model = new Model();
-//		System.out.println("test1");
 
 		Controller controller = new Controller(model, view, queue);
 
-		// System.out.println("test");
 		try {
 			controller.mainLoop();
-			// controller.printMessageQueue(queue);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		//view.dispose();
 		queue.clear();
-	}
+	}*/
 }

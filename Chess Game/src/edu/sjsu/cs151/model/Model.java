@@ -589,6 +589,7 @@ public class Model {
 			 	 checkPiece = checkTile.getPiece();
 			 	 System.out.println(checkPiece);
 			  	 //if another piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
 			 	 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -627,6 +628,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -665,6 +668,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -703,6 +708,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -745,6 +752,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -787,6 +796,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -830,6 +841,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
@@ -871,6 +884,8 @@ public class Model {
 				 checkPiece = checkTile.getPiece();
 				 
 				 //if an enemy piece is found, test color
+			 	 System.out.println(checkPiece.getColorString());
+
 				 if (king.getColorString().compareTo(checkPiece.getColorString()) != 0)
 				 {
 					 //if the piece is an enemy, check if their range includes the King
