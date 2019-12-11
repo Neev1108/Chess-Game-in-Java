@@ -18,6 +18,8 @@ public class Player extends Thread{
 	private PrintWriter out;
 	private String input;
 	private String output;
+	
+	
 	/**
 	 * Constructor for a Player.
 	 * @param color The color of the player
@@ -30,15 +32,24 @@ public class Player extends Thread{
 	}	
 
 	
-	public Player(Socket s)
+	public Player(Socket s, int i)
 	{
 		this.socket = s;
 		System.out.println("I exist");
+		if (i == 1)
+		{
+			this.color = "White";
+		}
+		else
+		{
+			this.color = "Black";
+		}
 		System.out.println(this);
 		try 
         {
         	in = new BufferedReader(new InputStreamReader(
 	                socket.getInputStream()));
+        	System.out.println(socket);
         	out = new PrintWriter(socket.getOutputStream(), true);
         	out.println("Welcome to the chess game! Waiting for opponent...");
         	System.out.println("still runnin");
@@ -48,6 +59,13 @@ public class Player extends Thread{
             System.out.println("Player died: " + e);
         }
 	}
+	
+	
+	public Socket getSocket()
+	{
+		return socket;
+	}
+	
 	
 	/**
 	 * Getter method to get the color of the player.
@@ -186,6 +204,7 @@ public class Player extends Thread{
     public void run()
     {
     	 try {
+    		 System.out.println("run method");
              setup();
             // processCommands();
          } catch (Exception e) {

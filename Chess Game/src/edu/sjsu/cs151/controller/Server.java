@@ -30,12 +30,14 @@ public class Server extends Thread{
 				//Wait for first player, repeat for P2
 				Socket s = listener.accept();
 				System.out.println(s);
-				Player player1 = new Player(s);
+				Player player1 = new Player(s, 1);
 				System.out.println(player1);
 				System.out.println("Player 1 connected");
 				System.out.println("Player 1 has joined");
 				
-				Player player2 = new Player(listener.accept());
+				Player player2 = new Player(listener.accept(), 2);
+				System.out.println(player2.getSocket());
+				System.out.println(player2);
 				System.out.println("Player 2 connected");
 				System.out.println("Player 2 has joined");
 				gameInstances.execute(new Game(player1, player2));
