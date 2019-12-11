@@ -18,7 +18,7 @@ public class Controller {
 	private View view;
 	private Model model;
 	private List<Valve> valves = new LinkedList<Valve>();
-	
+	private Server server;
 	
 	
 	
@@ -32,12 +32,22 @@ public class Controller {
 	public Controller(Model model, View view,BlockingQueue<Message> queue) {
 		valves.add(new NewGameValve());
     	valves.add(new MoveValve(model, view));
-    	valves.add(new EndGameValve());
+    	valves.add(new EndGameValve(this));
 		this.model = model;
 		this.view = view;
 		this.queue = queue;
 	}
 	
+	
+	public Controller(Model model, View view,BlockingQueue<Message> queue, Server server) {
+		valves.add(new NewGameValve());
+    	valves.add(new MoveValve(model, view));
+    	valves.add(new EndGameValve(this));
+		this.model = model;
+		this.view = view;
+		this.queue = queue;
+		this.server = server;
+	}
 
 	 /**
      * Getter for view
@@ -55,7 +65,10 @@ public class Controller {
 		return model;
 	}
 	
-	
+	public Server getServer()
+	{
+		return server;
+	}
 
 
 	public void mainLoop() throws Exception{

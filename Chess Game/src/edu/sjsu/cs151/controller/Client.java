@@ -24,7 +24,8 @@ public class Client extends Thread {
 	
 	private Socket socket;
 	private BufferedReader in;
-	private PrintWriter out;
+	private Scanner inMk2;
+	private BufferedWriter out;
 	private String incomingMessage;
 	private Player myID;
 	
@@ -49,7 +50,8 @@ public class Client extends Thread {
 		        // Make connection and initialize streams
 		        socket = new Socket(input, 4387);
 		        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		        out = new PrintWriter(socket.getOutputStream(), true);
+		        inMk2 = new Scanner(socket.getInputStream());
+		        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 				System.out.println("Connection successful");
 		        break;
 	        }
@@ -87,6 +89,7 @@ public class Client extends Thread {
 		{
 	        while (true) 
 	        {
+	        	System.out.println("Entered runClient");
 	        	receiveMessage();
 	        	if (incomingMessage == null)
 	        	{
@@ -122,10 +125,10 @@ public class Client extends Thread {
 		        	{
 		        		break;
 		        	}
-		        	if(incomingMessage.startsWith("SERVER CLOSE"))
-			    	{
-		        		break;
-			    	}
+		        	if (incomingMessage.equals("Server shutting down"))
+		             {
+		        		serverClose();
+		             }
 		        	else
 		        	{
 		        		//gameView.setMessageText(readMessage);
@@ -143,10 +146,25 @@ public class Client extends Thread {
 	{
 		 try 
 		 {
-             incomingMessage = in.readLine();
+			 System.out.println("Entered receiveMessage()");
+			 //if (inMk2.hasNext())
+			 incomingMessage = in.readLine();
          } 
+		 catch (SocketException se)
+		 {
+			 serverClose();
+		 }
 		 catch(Exception e1)
 		 {
+			System.out.println("failure, proceed to wait");
+		
+			try{
+				sleep(5000);
+			}
+			catch(Exception e)
+			{
+				
+			}
         	System.out.println("Exception! - cannot read from the input buffer");
         	e1.printStackTrace(System.out);
 		 }
@@ -155,7 +173,7 @@ public class Client extends Thread {
 	{
 		try
 		{
-			out.println(message);
+			out.write(message);
 		}
 		catch(Exception e)
 		{
@@ -166,8 +184,8 @@ public class Client extends Thread {
 	
 	public void serverClose()
 	{
-		JOptionPane.showInternalConfirmDialog(null,"The server has shut down. We apologize for any inconvenience.", 
-				"Server Shutdown",JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null,"The server has shut down. We apologize for any inconvenience.", 
+				"Server Shutdown", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(1);
 
 	}

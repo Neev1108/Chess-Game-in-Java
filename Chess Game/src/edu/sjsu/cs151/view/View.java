@@ -295,6 +295,7 @@ public class View implements Runnable {
 				e1.printStackTrace();
 			}
 			frame.dispose();
+			
 			System.exit(1);
 		});
 

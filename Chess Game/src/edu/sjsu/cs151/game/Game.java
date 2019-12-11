@@ -31,11 +31,14 @@ public class Game extends Thread{
 	 */
 	private static Model model;
 
+	private Server server;
+	
 	public Game()
 	{	}
 	
-	public Game(Player P1, Player P2)
+	public Game(Player P1, Player P2, Server server)
 	{
+		this.server = server;
 		run(P1, P2);
 	}
 	
@@ -44,7 +47,7 @@ public class Game extends Thread{
 		model = new Model();
 //		System.out.println("test1");
 
-		Controller controller = new Controller(model, view, queue);
+		Controller controller = new Controller(model, view, queue, server);
 
 		// System.out.println("test");
 		try {
