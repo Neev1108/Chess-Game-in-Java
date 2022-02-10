@@ -5,3 +5,4 @@ Authors: Skyler Hungerford, Sehajmeet Sohal, Neeval Kumar
 
 Check class diagram for an overview of classes
 
+The game can ran be running the jar file.
